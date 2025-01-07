@@ -1,6 +1,7 @@
 const path = require('path');
 const express = require('express');
 const hbs = require('hbs');
+const courtListener = require('./utils/courtlistener');
 
 const app = express();
 
@@ -19,7 +20,19 @@ app.get('', (req, res) => {
 })
 
 app.get('/search', (req, res) => {
-    res.render('search');
+    if(!req.query.lawcase) {
+        return res.send({
+            error: "You must provide a case"
+        })
+    }
+    courtListener(req.query.lawcase, (error, {results} = {}) => {
+        if (error) {
+            return res.send({error})
+        }
+        res.send({
+            results: results
+        })
+    });
 })
 
 app.get('/login', (req, res) => {
