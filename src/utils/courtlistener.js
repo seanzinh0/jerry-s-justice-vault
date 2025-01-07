@@ -7,18 +7,18 @@ const courtListener = (lawCase, callback) => {
         if (error) {
             callback("Unable to connect to CourtListener", undefined)
         } else if (body.results.length === 0) {
-            callback("No cases found", undefined)
+           return  callback("No cases found", undefined)
         }
 
         const results = body.results.map(result => {
-            const opinions = results.opinions || [];
+            const opinions = body.results.opinions || [];
             return {
                 attorney: result.attorney,
                 caseName: result.caseName,
                 court: result.court,
                 dateFiled: result.dateFiled,
-                doc: opinions[2] || null,
-                snippet: opinions[9] || null
+                doc: opinions[2],
+                snippet: opinions[9]
             };
         });
         callback(undefined, results);

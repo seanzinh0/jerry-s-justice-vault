@@ -20,12 +20,16 @@ app.get('', (req, res) => {
 })
 
 app.get('/search', (req, res) => {
-    if(!req.query.lawcase) {
+    res.render('search');
+})
+
+app.get('/api/search', (req, res) => {
+    if(!req.query.lawCase) {
         return res.send({
             error: "You must provide a case"
         })
     }
-    courtListener(req.query.lawcase, (error, {results} = {}) => {
+    courtListener(req.query.lawCase, (error, results) => {
         if (error) {
             return res.send({error})
         }
