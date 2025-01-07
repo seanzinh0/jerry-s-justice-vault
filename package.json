@@ -10,9 +10,10 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
+    "@supabase/supabase-js": "^2.47.10",
+    "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "hbs": "^4.2.0",
-    "mysql2": "^3.12.0",
     "postman-request": "^2.88.1-postman.40",
     "validator": "^13.12.0"
   }
