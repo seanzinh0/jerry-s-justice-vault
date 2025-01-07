@@ -11,14 +11,16 @@ const courtListener = (lawCase, callback) => {
         }
 
         const results = body.results.map(result => {
-            const opinions = body.results.opinions || [];
+            const opinions = result.opinions || [];
+            const downloadUrl = opinions[0].download_url || null;
+            const snippet = opinions[0].snippet || null;
             return {
                 attorney: result.attorney,
                 caseName: result.caseName,
                 court: result.court,
                 dateFiled: result.dateFiled,
-                doc: opinions[2],
-                snippet: opinions[9]
+                doc: downloadUrl,
+                snippet: snippet
             };
         });
         callback(undefined, results);
