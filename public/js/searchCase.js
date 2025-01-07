@@ -23,5 +23,5 @@ form.addEventListener('submit', (e) => {
             });
             similarCases.innerHTML = result;
         }
-    })
-})
+    });
+});
