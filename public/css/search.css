@@ -1,0 +1,14 @@
+body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+form {
+    display: flex;
+}
+
+input {
+    font-size: 1rem;
+    padding: 1rem;
+}
