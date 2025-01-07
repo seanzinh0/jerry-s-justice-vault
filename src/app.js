@@ -1,7 +1,7 @@
 const path = require('path');
 const express = require('express');
 const hbs = require('hbs');
-const courtlistener = require('./utils/courtlistener');
+const courtListener = require('./utils/courtlistener');
 
 const app = express();
 
@@ -25,18 +25,12 @@ app.get('/search', (req, res) => {
             error: "You must provide a case"
         })
     }
-
-    courtlistener(req.query.lawcase, (error, {attorney, caseName, court, dateFiled, doc, snippet} = {}) => {
+    courtListener(req.query.lawcase, (error, {results} = {}) => {
         if (error) {
             return res.send({error})
         }
         res.send({
-            attorney: attorney,
-            caseName: caseName,
-            court: court,
-            dateFiled: dateFiled,
-            doc: doc,
-            snippet: snippet
+            results: results
         })
     });
 })

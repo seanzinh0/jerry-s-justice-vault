@@ -1,22 +1,28 @@
-const request = require('postman-request')
+const request = require('postman-request');
+require('dotenv').config();
 
-const courtlistener = (lawcase, callback) => {
-    const url = `https://www.courtlistener.com/api/rest/v4/search/?q=${encodeURIComponent(lawcase)}`;
-    request({url: url, json: true}, (error, {body}) => {
+const courtListener = (lawCase, callback) => {
+    const url = `https://www.courtlistener.com/api/rest/v4/search/?q=${encodeURIComponent(lawCase)}`;
+    request({url: url, json: true, headers: {'Authorization': `Bearer ${process.env.BEARER_TOKEN}`}}, (error, {body}) => {
         if (error) {
             callback("Unable to connect to CourtListener", undefined)
         } else if (body.results.length === 0) {
             callback("No cases found", undefined)
         }
-        callback(undefined, {
-            attorney: body.results.attorney,
-            caseName: body.results.caseName,
-            court: body.results.court,
-            dateFiled: body.results.dateFiled,
-            doc: body.results.opinions[2],
-            snippet: body.results.opinions[9]
-        })
+
+        const results = body.results.map(result => {
+            const opinions = results.opinions || [];
+            return {
+                attorney: result.attorney,
+                caseName: result.caseName,
+                court: result.court,
+                dateFiled: result.dateFiled,
+                doc: opinions[2] || null,
+                snippet: opinions[9] || null
+            };
+        });
+        callback(undefined, results);
     })
 }
 
-module.exports = courtlistener;
+module.exports = courtListener;
