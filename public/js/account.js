@@ -19,7 +19,7 @@ document.addEventListener('DOMContentLoaded', () => {
     })
     .catch(error => {
         console.error('Error fetching user data:', error);
-        alert('Error loading user information.');
+        alert('Error loading user information. Please log in or create an account.');
     })
 })
 
