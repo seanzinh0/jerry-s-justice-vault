@@ -43,7 +43,7 @@ async function fetchUserData(neededData = '*') {
 };
 
 async function insertUserData(username, firstName, lastName, email, password) {
-    const connection = await pool.getConnection();
+    const connection = await pool.getConnection()
     try {
          const [rows] = await connection.query("INSERT INTO `jjv`.`users` (`username`, `firstName`, `lastName`, `email`, `password`) VALUES" +  "(" + "'" + username + "'" + ", " + "'" + firstName + "'" + ", " + "'" + lastName + "'" + ", " + "'" + email + "'" + ", " + "'" + password + "'" + ")")
          return rows;
