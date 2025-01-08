@@ -99,7 +99,7 @@ async function insertUserData(username, firstName, lastName, email, password) {
         const connection = await pool.getConnection()
         try {
             const [rows] = await connection.query("INSERT INTO `jjv`.`users` (`username`, `firstName`, `lastName`, `email`, `password`) VALUES" +  "(" + "'" + username + "'" + ", " + "'" + firstName + "'" + ", " + "'" + lastName + "'" + ", " + "'" + email + "'" + ", " + "'" + password + "'" + ")")
-            return rows;
+            return 'Registration successful!'
         } catch (e) {
             console.error('Error inserting user:', e);
         } finally {
@@ -121,9 +121,9 @@ async function getUserId(username, password) {
 
         // Check if a user was found
         if (rows.length > 0) {
-            return rows[0].id;
+            return { id: rows[0].id };
         } else {
-            return new Error('No user found with the provided info.')
+            throw new Error('No user found with the provided info.')
         }
     } catch (e) {
         console.error('Error getting user ID: ', e);
@@ -136,23 +136,23 @@ async function getUserId(username, password) {
 
 
  async function checkUserExistWhenLogin(username, email) {
-    const connection = await pool.getConnection()
-    try {
-        const [rows] = await connection.query(`
-            SELECT username, email
-            FROM users
-            WHERE username = ?
-             AND email = ?
-        `, [username, email])
+    // const connection = await pool.getConnection()
+    // try {
+    //     const [rows] = await connection.query(`
+    //         SELECT username, email
+    //         FROM users
+    //         WHERE username = ?
+    //          AND email = ?
+    //     `, [username, email])
 
-         if(rows) {
-            return 'You already have an account, please use log in instead.'
-         } 
-    } catch (e) {
-        console.error('Error checking if the user exist:', e);
-    } finally {
-        connection.release();
-    }
+    //      if(rows) {
+    //         return 'You already have an account, please use log in instead.'
+    //      } 
+    // } catch (e) {
+    //     console.error('Error checking if the user exist:', e);
+    // } finally {
+    //     connection.release();
+    // }
  }
 
 module.exports =  {
