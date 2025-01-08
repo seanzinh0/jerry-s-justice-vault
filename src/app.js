@@ -3,8 +3,9 @@ const express = require('express');
 const hbs = require('hbs');
 const courtListener = require('./utils/courtlistener');
 const {insertUserData} = require('./database/databaseQueries');
-const {fetchUserData} = require('./database/databaseQueries');
 const {getUserId} = require('./database/databaseQueries');
+const {getAccountInfoById} = require('./database/databaseQueries');
+
 
 const app = express();
 
@@ -83,7 +84,14 @@ app.get('/account', (req, res) => {
 })
 
 app.get('/api/account', (req, res) => {
-
+    if(!req.query.id){
+        return res.send({
+            error: "You are not logged in"
+        })
+    }
+    getAccountInfoById(req.query.id).then(result => {
+        res.send(result)
+    })
 })
 
 const port = process.env.PORT || 3000;
