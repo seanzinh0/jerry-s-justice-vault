@@ -32,7 +32,7 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0; 
-    min-height: 100vh;
+    min-height: 100vh; 
     background-color: #ededed;
     color: rgb(42, 42, 42);
 }
