@@ -9,27 +9,57 @@ form.addEventListener('submit', (e) => {
             similarCases.innerHTML = data.error;
         } else {
             similarCases.innerHTML = '';
-            let result = '';
             data.results.forEach(lawCase  => {
-                const {caseName, court, dateFiled, doc, snippet} = lawCase;
-                
+                const {caseName, court, dateFiled, doc, snippet} = lawCase;              
                 const attorney = lawCase.attorney && lawCase.attorney.trim() !== "" ? lawCase.attorney : 'N/A';
                 console.log(attorney);
 
-                result += `<div class="case">
-                    <div class="case-name">
-                        <h4>${caseName}</h3>
-                        <p>Attorney: ${attorney}</p>
-                        <p>Date Filed: ${dateFiled}</p>
-                    </div>
-                    <div class="case-desc">
-                        <h4>Court: ${court}</h4>
-                        <p>Snippet: ${snippet}</p>
-                    </div>
-                    <button><a href=${doc}>Case Document</a></button>
-                </div>`
+                const caseCard = document.createElement('div');
+                caseCard.classList.add('case');
+                
+
+                const caseNameSection = document.createElement('div');
+                caseNameSection.classList.add('case-name');
+
+                const name = document.createElement('h4')
+                name.textContent = caseName
+
+                const attorneyName = document.createElement('p');
+                attorneyName.textContent = `Attorney: ${attorney}`;
+
+                const dateEl = document.createElement('p')
+                dateEl.textContent = `Date Filed: ${dateFiled}`
+
+                const caseDesc = document.createElement('div');
+                caseDesc.classList.add('case-desc');
+
+                const courtEL = document.createElement('h4');
+                courtEL.textContent = `Court: ${court}`
+
+                const snippetEl = document.createElement('p');
+                snippetEl.textContent = `Snippet: ${snippet}`
+
+                const caseBtn = document.createElement('button');
+                caseBtn.textContent = 'Case Document';
+
+                const a = document.createElement('a');
+                a.href = doc;
+
+                caseNameSection.appendChild(name);
+                caseNameSection.appendChild(attorneyName);
+                caseNameSection.appendChild(dateEl);
+
+                caseDesc.appendChild(courtEL);
+                caseDesc.appendChild(snippetEl);
+
+                caseBtn.appendChild(a);
+
+                caseCard.appendChild(caseNameSection);
+                caseCard.appendChild(caseDesc);
+                caseCard.appendChild(caseBtn);
+
+                similarCases.appendChild(caseCard);
             });
-            similarCases.innerHTML = result;
         }
     });
 });

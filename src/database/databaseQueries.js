@@ -87,7 +87,7 @@ async function getAccountInfoById(id) {
         SELECT username, firstName, lastName, email
         FROM users
         WHERE id = ?`, [id]);
-        return rows;
+        return rows[0];
     } catch (e) {
         console.error('Error finding account information: ', e);
         throw e;

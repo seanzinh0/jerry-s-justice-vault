@@ -1,39 +1,31 @@
-// const form = document.querySelector(".form");
+const form = document.querySelector(".form");
 
-// const authUser = async (username, password) => {
-//     let isLoggedIn = false;
+async function processUserLogin(e) {
+    e.preventDefault();
+    try {
+        const username = document.querySelector("#username");
+        const password = document.querySelector("#password");
+        // Fetch user id
+        const response = await fetch(`/api/login?username=${username.value}&password=${password.value}`, {
+            method: 'POST',
+         }
+        );
 
-//     try {
-//         // Fetch user data
-//         const response = await fetch(`api/login?username=${encodeURIComponent(username)}`, {
-//             method: "GET",
-//             headers: { Accept: "application/json" },
-//         });
+        const result = await response.json();
 
-//         const userDataJSON = await response.json();
+        //error handling
+        if(result.error) {
+            alert(result.error);
+        } else {
+            localStorage.setItem('id', result.id)
+            alert("Login successful!");
+        }     
 
-//         // Validate password
-//         if (userDataJSON.password !== password) {
-//             alert("The password was incorrect");
-//             window.location.href = "/login";
-//             return;
-//         } else {
-//             isLoggedIn = true;
-//         }
-
-//         // Update login status
-//         await fetch(`api/login?username=${encodeURIComponent(username)}&loggedIn=${isLoggedIn}`, {
-//             method: "PATCH",
-//             headers: { Accept: "application/json" },
-//         });
-
-//         alert("Login successful!");
-//     } catch (e) {
-//         console.error("Error authenticating user:", e);
-//     }
-// };
+    } catch (e) {
+        console.error("Error fetching user id:", e);
+    }
+}
+   
 
 
-// form.addEventListener('submit', () => {
-//     authUser
-// })
+form.addEventListener('submit', processUserLogin);
