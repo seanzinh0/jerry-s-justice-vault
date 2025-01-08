@@ -11,17 +11,25 @@ form.addEventListener('submit', (e) => {
             similarCases.innerHTML = '';
             let result = '';
             data.results.forEach(lawCase  => {
-                const {attorney, caseName, court, dateFiled, doc, snippet} = lawCase;
+                const {caseName, court, dateFiled, doc, snippet} = lawCase;
+                
+                const attorney = lawCase.attorney && lawCase.attorney.trim() !== "" ? lawCase.attorney : 'N/A';
+                console.log(attorney);
+
                 result += `<div class="case">
-                    <h3>${caseName}</h3>
-                    <p>Attorney: ${attorney}</p>
-                    <p>Court: ${court}</p>
-                    <p>Date Filed: ${dateFiled}</p>
-                    <p>Snippet: ${snippet}</p>
-                    <a href=${doc}>Case Document</a>
+                    <div class="case-name">
+                        <h4>${caseName}</h3>
+                        <p>Attorney: ${attorney}</p>
+                        <p>Date Filed: ${dateFiled}</p>
+                    </div>
+                    <div class="case-desc">
+                        <h4>Court: ${court}</h4>
+                        <p>Snippet: ${snippet}</p>
+                    </div>
+                    <button><a href=${doc}>Case Document</a></button>
                 </div>`
             });
             similarCases.innerHTML = result;
         }
-    })
-})
+    });
+});
