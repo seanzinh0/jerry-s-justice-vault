@@ -1,29 +1,24 @@
 const form = document.querySelector(".form");
-const userPassword = document.querySelector('#password').value.trim();
-const username = document.querySelector('#username').value.trim();
 
-
-async function processUserLogin() {
+async function processUserLogin(e) {
+    e.preventDefault();
     try {
+        const username = document.querySelector("#username");
+        const password = document.querySelector("#password");
         // Fetch user id
-        const response = await fetch(`/api/login?username=${username}&password=${userPassword}`, {
+        const response = await fetch(`/api/login?username=${username.value}&password=${password.value}`, {
             method: 'POST',
-            
          }
         );
-        const userId = await response.json();
-        console.log(userId)
+
+        const result = await response.json();
 
         //error handling
-        if(!userId) {
-            alert('You need to register for account')
+        if(result.error) {
+            alert(result.error);
         } else {
-            localStorage.setItem('id', userId)
+            localStorage.setItem('id', result.id)
             alert("Login successful!");
-
-            setTimeout(() => {
-                window.location.href = '/api/account'
-            }, 1000)
         }     
 
     } catch (e) {
@@ -33,6 +28,4 @@ async function processUserLogin() {
    
 
 
-form.addEventListener('submit', async () => {
-   await processUserLogin();
-})
+form.addEventListener('submit', processUserLogin);
