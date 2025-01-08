@@ -8,15 +8,23 @@
 
 </head>
 <body>
-    <div class="container">
+    <section class="container">
         <h1>Account Information</h1>
         <div class="user-info">
-            <p><strong>First Name: </strong></p>
-            <p><strong>Last Name: </strong></p>
-            <p><strong>Email: </strong></p>
+            <p><strong>Username: </strong>{{user.Username}}</p>
+            <p><strong>First Name: </strong>{{user.firstName}}</p>
+            <p><strong>Last Name: </strong>{{user.lastName}}</p>
+            <p><strong>Email: </strong>{{user.email}}</p>
+            <p><strong>Password: </strong>{{user.password}}</p>
         </div>
-    </div>
-    <button onclick="save">Save Change</button>
-    <button onclick="delete">Delete Account</button>
+    </section>
+
+    <button onclick="save" id="save-btn">Save Change</button>
+    <button onclick="delete" id="delete-btn">Delete Account</button>
+
+    <section><h2>Interested Cases</h2>
+    </section>
+
+    <script src="/js/account.js"></script>
 </body>
 </html>
