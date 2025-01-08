@@ -42,59 +42,6 @@ async function fetchUserData(neededData = '*') {
     }
 };
 
-//for get api/account route
-async function getLoggedInUser() {
-    const connection = await pool.getConnection();
-    try {
-        await connection.query(`TRUNCATE TABLE loggedInUser`);     // Ensure only one logged-in user
-        await insertLoggedInUser()                                //  Insert logged-in user's id into loggedIn table
-
-        const [rows] = await connection.query(`
-            SELECT id, username, firstName, lastName, email
-            FROM loggedInUser
-            INNER JOIN user
-            USING(id)
-            LIMIT 1;
-        `)
-        return rows;
-    } catch (e) {
-        console.error('Error getting logged in user:', e);
-    } finally {
-        connection.release();
-    }
-
-}
-
-//for getLoggedInUser function
-async function insertLoggedInUserId() {
-    const connection = await pool.getConnection();
-    try {
-        await connection.query(`
-          INSERT INTO loggedInUser
-            SELECT id
-            FROM user
-        `)
-    } catch (e) {
-        console.log('Error inserting logged in user:', e);
-    }
-}
-
-//for patch api/login route
-async function updateUserLogin(username) {
-    const connection = await pool.getConnection();
-    try {
-        //after the patch is updating the loggedIn property on the json
-        await connection.query(`
-            UPDATE user
-            SET loggedIn = true
-            WHERE username = ${username}
-        `)
-    } catch (e) {
-        console.log('Error updating a user to logged in:', e);
-    }
-}
-
-
 async function insertUserData(username, firstName, lastName, email, password) {
         const connection = await pool.getConnection()
         try {
@@ -133,31 +80,25 @@ async function getUserId(username, password) {
     }
 }
 
-
-
- async function checkUserExistWhenLogin(username, email) {
-    // const connection = await pool.getConnection()
-    // try {
-    //     const [rows] = await connection.query(`
-    //         SELECT username, email
-    //         FROM users
-    //         WHERE username = ?
-    //          AND email = ?
-    //     `, [username, email])
-
-    //      if(rows) {
-    //         return 'You already have an account, please use log in instead.'
-    //      } 
-    // } catch (e) {
-    //     console.error('Error checking if the user exist:', e);
-    // } finally {
-    //     connection.release();
-    // }
- }
+async function getAccountInfoById(id) {
+    const connection = await pool.getConnection();
+    try {
+        const [rows] = await connection.query(`
+        SELECT username, firstName, lastName, email
+        FROM users
+        WHERE id = ?`, [id]);
+        return rows;
+    } catch (e) {
+        console.error('Error finding account information: ', e);
+        throw e;
+    } finally {
+        connection.release();
+    }
+}
 
 module.exports =  {
     fetchUserData,
     insertUserData,
     getUserId,
-    checkUserExistWhenLogin,
+    getAccountInfoById
 };
