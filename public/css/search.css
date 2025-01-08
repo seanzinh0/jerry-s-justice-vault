@@ -1,0 +1,142 @@
+
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+html {
+    height: 100%;
+    width: 100%;
+}
+
+body {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    font-size: 1rem;
+    background-color: #ededed;
+    line-height: 1.5;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.container{
+    text-align: center;
+    width: 100%;
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 30px;
+}
+
+h1, h2, h3{
+    margin: 1rem;
+}
+
+
+.form-container {
+    width: 100%;
+    max-width: 800px;
+    margin: 0 auto;
+}
+
+form {
+    display: flex;
+    padding: 1rem;
+    border-radius: 10px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+    margin: 2rem;
+    
+}
+
+input {
+    font-size: 1.1rem;
+    padding: 1rem;
+    margin-right: 1rem;
+    width: 100%;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+#search-form button {
+    padding: 1rem;
+    font-size: 1rem;
+    border-radius: 5px;
+}
+
+button {
+    background-color: #AA8A50;
+    border-radius: 5px;
+    border: none;
+    cursor: pointer;
+    font-family: 'Times New Roman', Times, serif;
+    filter: brightness(calc(100% + 10%))
+}
+
+button:hover {
+    filter: brightness(calc(100% + 20%));
+}
+
+button:active {
+    filter: brightness(calc(100% + 30%));
+}
+
+.case {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #fff;
+    margin-bottom: 1.5rem;
+    padding: 1rem;
+    border-radius: 10px;
+    border:1px solid #dadde1;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.case:hover {
+    box-shadow: 0 10px 12px rgba(0, 0, 0, 0.2);
+    transform: translateY(5px);
+}
+
+.case-name {
+    text-align: start;
+    width: 25%;
+    border-right: 1px solid #000;
+    margin-right: .7rem;
+}
+
+.case-name h4{
+    margin-bottom: 1rem;
+}
+
+.case-name p{
+    margin-bottom: 1rem;
+}
+
+.case-desc {
+    width: 65%;
+    margin: 1rem;
+
+}
+
+.case-desc p {
+    text-align: start;
+    margin-bottom: 1rem;
+}
+
+.case-desc h4 {
+    text-align: start;
+    margin-bottom: 1rem;
+}
+
+.case button{
+    width: 10%;
+    padding: .7rem;
+}
+
+.case a {
+    text-decoration: none;
+    color: #000;
+}
+
+
