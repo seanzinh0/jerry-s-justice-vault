@@ -1,39 +1,38 @@
-// const form = document.querySelector(".form");
-
-// const authUser = async (username, password) => {
-//     let isLoggedIn = false;
-
-//     try {
-//         // Fetch user data
-//         const response = await fetch(`api/login?username=${encodeURIComponent(username)}`, {
-//             method: "GET",
-//             headers: { Accept: "application/json" },
-//         });
-
-//         const userDataJSON = await response.json();
-
-//         // Validate password
-//         if (userDataJSON.password !== password) {
-//             alert("The password was incorrect");
-//             window.location.href = "/login";
-//             return;
-//         } else {
-//             isLoggedIn = true;
-//         }
-
-//         // Update login status
-//         await fetch(`api/login?username=${encodeURIComponent(username)}&loggedIn=${isLoggedIn}`, {
-//             method: "PATCH",
-//             headers: { Accept: "application/json" },
-//         });
-
-//         alert("Login successful!");
-//     } catch (e) {
-//         console.error("Error authenticating user:", e);
-//     }
-// };
+const form = document.querySelector(".form");
+const userPassword = document.querySelector('#password').value.trim();
+const username = document.querySelector('#username').value.trim();
 
 
-// form.addEventListener('submit', () => {
-//     authUser
-// })
+async function processUserLogin() {
+    try {
+        // Fetch user id
+        const response = await fetch(`/api/login?username=${username}&password=${userPassword}`, {
+            method: 'POST',
+            
+         }
+        );
+        const userId = await response.json();
+        console.log(userId)
+
+        //error handling
+        if(!userId) {
+            alert('You need to register for account')
+        } else {
+            localStorage.setItem('id', userId)
+            alert("Login successful!");
+
+            setTimeout(() => {
+                window.location.href = '/api/account'
+            }, 1000)
+        }     
+
+    } catch (e) {
+        console.error("Error fetching user id:", e);
+    }
+}
+   
+
+
+form.addEventListener('submit', async () => {
+   await processUserLogin();
+})
