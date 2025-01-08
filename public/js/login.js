@@ -1,35 +1,38 @@
 const form = document.querySelector(".form");
 const userPassword = document.querySelector('#password').value.trim();
-const userEmail = document.querySelector('#email').value.trim();
+const username = document.querySelector('#username').value.trim();
 
-const authUser = async (email, password) => {
-    let isLoggedIn = false;
 
+async function processUserLogin() {
     try {
-        // Fetch user data
-        const response = await fetch(`api/login`, {
-            method: "GET",
-            headers: { Accept: "application/json" },
-        });
+        // Fetch user id
+        const response = await fetch(`/api/login?username=${username}&password=${userPassword}`, {
+            method: 'POST',
+            
+         }
+        );
+        const userId = await response.json();
+        console.log(userId)
 
-        const userDataJSON = await response.json();
-
-        // Validate password
-        if (userDataJSON.password !== password) {
-            alert("The password was incorrect");
-            window.location.href = "/login";
-            return;
+        //error handling
+        if(!userId) {
+            alert('You need to register for account')
         } else {
-            isLoggedIn = true;
-        }
+            localStorage.setItem('id', userId)
+            alert("Login successful!");
 
-        alert("Login successful!");
+            setTimeout(() => {
+                window.location.href = '/api/account'
+            }, 1000)
+        }     
+
     } catch (e) {
-        console.error("Error authenticating user:", e);
+        console.error("Error fetching user id:", e);
     }
-};
+}
+   
 
 
-form.addEventListener('submit', () => {
-    authUser()
+form.addEventListener('submit', async () => {
+   await processUserLogin();
 })
