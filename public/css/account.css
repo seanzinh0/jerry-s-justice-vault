@@ -1,3 +1,33 @@
 p{
-    color: blue;
+    color: rgb(0, 0, 0);
+}
+
+.container {
+    
+} 
+
+#save-btn {
+    background-color: rgb(0, 119, 255);
+    color: white;
+    font-size: 1rem;
+    padding: 12px;
+    border: none;
+    border-radius: .4rem;
+}
+#save-btn:hover {
+    cursor: pointer;
+    background-color: rgb(0, 183, 255);
+}
+
+#delete-btn {
+    background-color: red;
+    color: white;
+    font-size: 1rem;
+    padding: 12px;
+    border: none;
+    border-radius: .4rem;
+}
+#delete-btn:hover {
+    cursor: pointer;
+    background-color: rgb(184, 0, 0);
 }
