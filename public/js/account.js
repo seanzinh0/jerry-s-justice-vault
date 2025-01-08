@@ -15,7 +15,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('username').value = user.username;
         document.getElementById('first-name').value = user.firstName;
         document.getElementById('last-name').value = user.lastName;
-        document.getElementById('email').value = user.email;
+        document.getElementById('user-email').value = user.email;
     })
     .catch(error => {
         console.error('Error fetching user data:', error);
