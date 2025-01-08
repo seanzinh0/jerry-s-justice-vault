@@ -61,5 +61,5 @@ form.addEventListener('submit', (e) => {
                 similarCases.appendChild(caseCard);
             });
         }
-    })
-})
+    });
+});

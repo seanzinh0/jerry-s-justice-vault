@@ -4,9 +4,39 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login - Jerry Justice Vault</title>
+    <title>Login to Jerry Justice Vault</title>
+    <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
-    
+    <main>
+        <div class="main-container">
+            <div class="left">
+                <div class="left-container">
+                    <p>Log in</p>
+                    <h1>WELCOME</h1>
+                    <p>Sign back in to your account to access your account information and bookmarked cases</p>
+                </div>
+            </div>
+
+            <div class="right">
+                <form action="/account" action="GET" class="form">
+                    <label for="username">USERNAME</label>
+                    <input type="text" id="username" name="username">
+                   
+                    <label for="password">PASSWORD</label>
+                    <input type="password" id="password" name="password">    
+
+
+                <button type="submit" class="submit-btn">LOG IN</button>
+                </form>
+                <hr>
+                <div class="sign-up-wrapper">
+                    <p>DON'T HAVE AN ACCOUNT</p>
+                    <a href="/register">SIGN UP&#8599</a>
+                </div>
+            </div>
+        </div>
+    </main>
+    <script src="/public/js/login.js"></script>
 </body>
 </html>
