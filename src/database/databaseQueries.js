@@ -66,7 +66,7 @@ async function getLoggedInUser() {
 }
 
 //for getLoggedInUser function
-async function insertLoggedInUser() {
+async function insertLoggedInUserId() {
     const connection = await pool.getConnection();
     try {
         await connection.query(`
@@ -96,15 +96,16 @@ async function updateUserLogin(username) {
 
 
 async function insertUserData(username, firstName, lastName, email, password) {
-    const connection = await pool.getConnection()
-    try {
-         const [rows] = await connection.query("INSERT INTO `jjv`.`users` (`username`, `firstName`, `lastName`, `email`, `password`) VALUES" +  "(" + "'" + username + "'" + ", " + "'" + firstName + "'" + ", " + "'" + lastName + "'" + ", " + "'" + email + "'" + ", " + "'" + password + "'" + ")")
-         return rows;
-    } catch (e) {
-        console.error('Error inserting user:', e);
-    } finally {
-        connection.release();
-    }
+        const connection = await pool.getConnection()
+        try {
+            const [rows] = await connection.query("INSERT INTO `jjv`.`users` (`username`, `firstName`, `lastName`, `email`, `password`) VALUES" +  "(" + "'" + username + "'" + ", " + "'" + firstName + "'" + ", " + "'" + lastName + "'" + ", " + "'" + email + "'" + ", " + "'" + password + "'" + ")")
+            return rows;
+        } catch (e) {
+            console.error('Error inserting user:', e);
+        } finally {
+            connection.release();
+        }
+    
 }
 
 
@@ -132,10 +133,31 @@ async function getUserId(username, password) {
     }
 }
 
- async function checkUserExistWhenLogin() {}
+
+
+ async function checkUserExistWhenLogin(username, email) {
+    const connection = await pool.getConnection()
+    try {
+        const [rows] = await connection.query(`
+            SELECT username, email
+            FROM users
+            WHERE username = ?
+             AND email = ?
+        `, [username, email])
+
+         if(rows) {
+            return 'You already have an account, please use log in instead.'
+         } 
+    } catch (e) {
+        console.error('Error checking if the user exist:', e);
+    } finally {
+        connection.release();
+    }
+ }
 
 module.exports =  {
     fetchUserData,
     insertUserData,
-    getUserId
+    getUserId,
+    checkUserExistWhenLogin,
 };
