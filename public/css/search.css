@@ -59,7 +59,7 @@ input {
 }
 
 #search-form button {
-    padding: 1rem;
+    padding: 1rem 1.5rem;
     font-size: 1rem;
     border-radius: 5px;
 }
