@@ -3,7 +3,8 @@ const express = require('express');
 const hbs = require('hbs');
 const courtListener = require('./utils/courtlistener');
 const {insertUserData} = require('./database/databaseQueries');
-const {fetchUserData} = require('./database/databaseQueries')
+const {fetchUserData} = require('./database/databaseQueries');
+const {getUserId} = require('./database/databaseQueries');
 
 const app = express();
 
@@ -46,6 +47,18 @@ app.get('/login', (req, res) => {
 })
 
 app.post('/api/login', (req, res) => {
+    if(!req.query.username && !req.query.password) {
+        return res.send({
+            error: "Please provide a username and password to login"
+        })
+    }
+    getUserId(req.query.username, req.query.password).then(result => {
+        res.send(result);
+    }).catch(err => {
+        res.status(401).send({
+            err: 'Invalid username or password'
+        })
+    })
 
 })
 
