@@ -4,11 +4,17 @@ body {
     line-height: 1.6;
     margin: 0;
     padding: 0;
-    background-color: rgb(246, 246, 246);
+    background-color: #ededed;
     color: rgb(42, 42, 42);
 }
 
-h1, h2 {
+h1 {
+    text-align: center;
+    /* color: rgb(237, 241, 227); */
+    color: #FFD700;
+}
+
+h2 {
     text-align: center;
     color: rgb(41, 41, 41);
 }
@@ -18,14 +24,14 @@ h1, h2 {
 .container {
     max-width: 800px;
     margin: 50px auto;
-    background-color: white;
+    background-color: #20263E;
     padding: 20px 30px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 } 
 
 /* User Info */
-.user-info {
+#user-info-form {
     margin: 20px 0;
     padding: 10px 15px;
     background-color: rgb(247, 247, 247);
@@ -33,23 +39,26 @@ h1, h2 {
     border: 1px solid rgb(211, 211, 211);
 
 }
-.user-info p {
-    margin: 10px 0;
-    font-size: 1rem;
+#user-info-form label {
+    margin: 1rem;
+    text-align: center;
+    font-size: 1.2rem;
 }
-.user-info strong {
+/* #user-info-form strong {
     color: rgb(53, 53, 53);
-}
+} */
 
 /* Button Container */
 .button-container {
     text-align: center;
 }
+
 #save-btn  {
     background-color: rgb(0, 119, 255);
     color: white;
     font-size: 1rem;
     padding: 12px;
+    margin-right: 6rem;
     border: none;
     border-radius: .4rem;
 }
