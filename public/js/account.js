@@ -1,10 +1,14 @@
-// const queries = require('../../src/database/databaseQueries.js');
-// const pool = require('../../src/database/connectionPool.js')
-// const userInfo = document.querySelector('#user-info');
+const queries = require('../../src/database/databaseQueries.js');
+const pool = require('../../src/database/connectionPool.js')
+import { getAccountInfoById } from '../../src/database/databaseQueries.js';
+const userInfo = document.querySelector('#user-info');
 
 
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('/account')
+    fetch('/account', {
+        method: 'GET',
+        credentials: 'include',
+    })
     .then(response => {
         if (!response.ok) {
             throw new Error('User not logged in or not found')
@@ -12,10 +16,10 @@ document.addEventListener('DOMContentLoaded', () => {
         return response.json();
     })
     .then(user => {
-        document.getElementById('username').value = user.username;
-        document.getElementById('first-name').value = user.firstName;
-        document.getElementById('last-name').value = user.lastName;
-        document.getElementById('user-email').value = user.email;
+        document.getElementById('username').value = user.username || '';
+        document.getElementById('first-name').value = user.firstName || '';
+        document.getElementById('last-name').value = user.lastName || '';
+        document.getElementById('user-email').value = user.email || '';
     })
     .catch(error => {
         console.error('Error fetching user data:', error);

@@ -16,6 +16,36 @@
     position: relative;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+header {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background-image: url('/img/hero.jpeg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  header::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .header-content {
+    position: relative;
+    z-index: 2;
+  }
+  .header-content h1 {
+    margin: 0;
+    font-size: 2.5em;
+  }
 
 /* body {
     font-family: 'Times New Roman', Times, serif;
@@ -26,6 +56,10 @@
     display: flex;
     flex-direction: column;
 } */
+
+#mini-hero-txt {
+    color: #bc9859;
+}
 
 body {
     font-family: 'Times New Roman', Times, serif;
@@ -40,7 +74,7 @@ body {
 h1 {
     text-align: center;
     /* color: rgb(237, 241, 227); */
-    color: #FFD700;
+    color: white;
 }
 
 h2 {
@@ -163,7 +197,7 @@ h2 {
 
 #save-btn  {
     background-color: #bc9859;
-    color: white;
+    color: #20263E;
     font-size: 1rem;
     padding: 12px;
     margin-right: 6rem;
@@ -172,11 +206,11 @@ h2 {
 }
 #save-btn:hover {
     cursor: pointer;
-    background-color: rgb(0, 183, 255);
+    background-color: #be882c;
 }
 
 #delete-btn {
-    background-color: red;
+    background-color: rgb(164, 0, 0);
     color: white;
     font-size: 1rem;
     padding: 12px;
@@ -185,7 +219,7 @@ h2 {
 }
 #delete-btn:hover {
     cursor: pointer;
-    background-color: rgb(184, 0, 0);
+    background-color: rgb(129, 0, 0);
 }
 
 /* Footer Section */
@@ -342,4 +376,9 @@ footer {
     #check:checked ~ .menu {
         right: 0;
     }
+}
+
+/* Save/Delete Buttons */
+@media(max-width: 413px) {
+
 }
