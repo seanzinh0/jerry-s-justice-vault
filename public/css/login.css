@@ -1,18 +1,312 @@
-*, *::after, *::before {
+* {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
 }
-
-html, body {
+html {
+    height: 100%;
+    width: 100%;
+}
+body {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    font-size: 1rem;
+    background-color: #EDEDED;
+    line-height: 1.5;
+    font-family: 'Times New Roman', Times, serif;
+}
+/* Navbar styling */
+.navbar {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 12px 20px;
+    background-color: #20263E;
+    list-style: none;
+    position: relative;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+/* Logo image styling */
+.logo img {
+    width: 80px;
+}
+/* Menu items container */
+.menu {
+    display: flex;
+}
+/* Menu list items */
+.menu li {
+    padding-left: 30px;
+}
+/* Styling for each menu link */
+.menu li a {
+    display: inline-block;
+    text-decoration: none;
+    color: #FFF;
+    text-align: center;
+    transition: color 0.3s ease, background-color 0.3s ease;
+    position: relative;
+}
+/* Underline effect for links */
+.menu li a::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: #FFF;
+    transition: width 0.3s ease, background-color 0.3s ease;
+}
+/* Hover effect for links */
+.menu li a:hover {
+    color: #AA8A50;
+    filter: brightness(calc(100% + 10%))
+}
+/* Expand underline on hover */
+.menu li a:hover::after {
+    width: 100%;
+    background-color: #AA8A50;
+    filter: brightness(calc(100% + 10%))
+}
+/* Open and close menu buttons for mobile view */
+.open-menu, .close-menu {
+    position: absolute;
+    color: #FFF;
+    cursor: pointer;
+    font-size: 1.5rem;
+    display: none;
+}
+/* Open menu button positioning (hamburger icon) */
+.open-menu {
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+/* Close menu button positioning (close icon) */
+.close-menu {
+    top: 20px;
+    right: 20px;
+}
+/* Hide the checkbox input (it's used to toggle the mobile menu) */
+#check {
+    display: none;
+}
+header {
+    position: relative;
+    width: 100%;
+    height: 200px;
+    background-image: url('/img/hero.jpeg');
+    background-size: cover;
+    background-position: center;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+  }
+  header::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
     height: 100%;
+    background: rgba(0, 0, 0, 0.5);
+  }
+  .header-content {
+    position: relative;
+    z-index: 2;
+  }
+  .header-content h1 {
+    margin: 0;
+    font-size: 2.5em;
+  }
+
+  /* Footer */
+.footer {
+    width: 100%;
+    padding: 20px 10%;
+    background-color: #20263E;
+    color: white;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    position: relative;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    margin-top: 20px; 
 }
 
+.footer div {
+    text-align: center;
+    margin-bottom: 20px;
+    flex: 1;
+    min-width: 250px;
+    padding: 0 20px;
+    box-sizing: border-box;
+}
+
+.footer div h3 {
+    font-weight: normal;
+    color: whitesmoke;
+    margin-bottom: 10px;
+    font-size: 20px;
+    letter-spacing: 1px;
+}
+
+.col-1 {
+    text-align: left;
+}
+
+.col-1 ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.col-1 ul li {
+    margin-bottom: 10px;
+}
+
+.col-1 a {
+    display: block;
+    text-decoration: none;
+    color: whitesmoke;
+    font-size: 16px;
+    transition: color 0.3s ease, transform 0.3s ease;
+}
+
+.col-1 a:hover {
+    color: #AA8A50;
+    filter: brightness(calc(100% + 10%));
+    transform: translateX(5px);
+}
+
+form input {
+    font-family: 'Times New Roman', Times, serif;
+    width: 80%;
+    max-width: 300px;
+    height: 35px;
+    border-radius: 20px;
+    text-align: center;
+    margin-top: 10px;
+    margin-bottom: 20px;
+    outline: none;
+    border: 2px solid #AA8A50;
+    filter: brightness(calc(100% + 10%));
+    background-color: #333;
+    color: whitesmoke;
+    font-size: 14px;
+    padding: 0 10px;
+}
+
+form input:focus {
+    border-color: #AA8A50;
+    filter: brightness(calc(100% + 30%));
+    background-color: #444;
+}
+
+form button {
+    font-family: 'Times New Roman', Times, serif;
+    background-color:#AA8A50;
+    filter: brightness(calc(100% + 10%));
+    border: 2px solid #AA8A50;
+    border-radius: 30px;
+    padding: 12px 35px;
+    font-size: 14px;
+    cursor: pointer;
+    color: #20263E;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+}
+
+form button:hover {
+    background-color: #AA8A50;
+    filter: brightness(calc(100% + 10%));
+    transform: translateY(-2px);
+}
+
+.col-3 p {
+    font-size: 14px;
+    color: #ddd;
+    line-height: 1.6;
+}
+
+/* Sticky footer at the bottom of the page */
+footer {
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background-color: #20263E;
+    padding: 10px 0;
+    text-align: center;
+    color: white;
+    font-size: 12px;
+}
+
+/* Mobile view adjustments */
+@media(max-width: 710px) {
+    .menu {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 80%;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        z-index: 100;
+        background-color: #20263E;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .menu li {
+        margin-top: 40px;
+    }
+
+    .menu li a {
+        padding: 10px;
+    }
+
+    /* Show the menu buttons on mobile */
+    .open-menu, .close-menu {
+        display: block;
+    }
+
+    /* When the checkbox is checked, show the menu */
+    #check:checked ~ .menu {
+        right: 0;
+    }
+}
+
+/* submit form styling */
 .main-container {
     width: 100vw;
     height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
+    place-items: center;
 }
+.login-form {
+    height: 80vh;
+    width: 40vw;
+    background-color: green ;
+    padding: 5rem;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+}
+
+form h2 {
+    margin-bottom: 1rem;
+}
+hr {
+    width: 100%;
+}
+form input {
+    width: 50vh;
+} 
 
