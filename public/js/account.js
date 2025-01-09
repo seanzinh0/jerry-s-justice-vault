@@ -25,6 +25,11 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('first-name').value = user.firstName || '';
         document.getElementById('last-name').value = user.lastName || '';
         document.getElementById('user-email').value = user.email || '';
+
+        const helloUserMessage = document.getElementById('hello-user');
+        if (helloUserMessage && user.firstName) {
+            helloUserMessage.textContent = `Hello, ${user.firstName}`;
+        } 
     })
     .catch(error => {
         console.error('Error fetching user data:', error);
