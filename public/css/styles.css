@@ -8,7 +8,7 @@
 /* Basic body styling */
 body {
     font-family: 'Times New Roman', Times, serif;
-    font-size: 1.2rem;
+    font-size: 1rem;
     background-color: whitesmoke;
     color: #FFF;
     min-height: 100vh;
@@ -147,7 +147,8 @@ body {
 
 /* Offerings Section */
 .offerings {
-    background-color: #ededed;
+    background-color: #AA8A50;
+    filter: brightness(calc(100% + 20%));
     padding: 50px 20px;
     text-align: center;
 }
