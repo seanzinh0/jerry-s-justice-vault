@@ -1,3 +1,8 @@
+:root {
+    --primary-color: #AA8A50;
+    --secondary-color: #20263E;
+}
+
 * {
     margin: 0;
     padding: 0;
@@ -185,7 +190,7 @@ header {
 }
 
 form input {
-    font-family: 'Times New Roman', Times, serif;
+   font-family: 'Times New Roman', Times, serif;
     width: 80%;
     max-width: 300px;
     height: 35px;
@@ -283,16 +288,16 @@ footer {
 
 
 
-/* ---------------------------------------------------- */
-
-/* submit form styling */
+/* ----------------------- submit form styling ----------------------------- */
 .main-container {
     width: 100vw;
     height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
     place-items: center;
+    background-color: #ededed ;
 }
+
 .login-form {
     height: 80vh;
     width: 40vw;
@@ -302,9 +307,26 @@ footer {
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
+    background-color: var(--secondary-color);
+
+}
+.login-form p,
+ .login-form label,
+ .login-form h2 {
+    color: white;
 }
 
-.login-form  h2 {
+.login-form a,
+.login-form a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.login-form a:hover {
+    text-decoration: underline;
+}
+
+.login-form h2 {
     margin-bottom: 1rem;
 }
 
@@ -320,19 +342,40 @@ hr {
 .login-form input {
     width: 80%; 
     max-width: 400px; 
-    padding: 10px; 
+    padding: 10px;
+    background-color: var(--primary-color);
+ 
 }
 
 .sign-up-wrapper {
-    width: 80%;
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
 
-.sign-up-wrapper p {
-    margin-right: 2rem;
+
+.left-container {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    place-items: center;
+}
+.welcome-text {
+    font-size: 5rem;
+    white-space: pre-wrap;
+}
+
+#username, #password {
+    background-color: white;
+    color: black;
+    text-align: left;
+    filter: brightness(calc(100% + 10%));
+    border-radius: 0;
+    border: 2px solid black;
 }
 
 
+.submit-btn {
+    border-radius: 0;
+}
 
