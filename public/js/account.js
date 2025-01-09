@@ -1,11 +1,16 @@
-const queries = require('../../src/database/databaseQueries.js');
-const pool = require('../../src/database/connectionPool.js')
-import { getAccountInfoById } from '../../src/database/databaseQueries.js';
-const userInfo = document.querySelector('#user-info');
+// const queries = require('../../src/database/databaseQueries.js');
+// const pool = require('../../src/database/connectionPool.js')
+// import { getAccountInfoById } from '../../src/database/databaseQueries.js';
+// const userInfo = document.querySelector('#user-info');
 
-
+// Pulls user data from the database and displays it 
 document.addEventListener('DOMContentLoaded', () => {
-    fetch('/account', {
+    const userId = localStorage.getItem('id');
+    if (!userId) {
+        alert('You are not logged in. Please log in to access your account.')
+        return;
+    }
+    fetch(`/api/account?id=${userId}`, {
         method: 'GET',
         credentials: 'include',
     })

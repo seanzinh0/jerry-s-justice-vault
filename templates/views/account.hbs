@@ -17,7 +17,7 @@
     </div>
 </header>
     <section class="container">
-        <h1>Hello, User</h1>
+        <h1 id="hello-user"></h1>
         <form id="user-info-form">
 
             <div>
@@ -40,15 +40,10 @@
             <input type="email" id="user-email" name="email" required><br>
             </div>
 
-            <div>
-            <label for="password">Password:</label>
-            <input type="password" id="password" name="password" required><br>
-            </div>
         </form>
 
         <div class="button-container">
-            <button onclick="save" id="save-btn">Save Change</button>
-            <button onclick="delete" id="delete-btn">Delete Account</button>
+            <button onclick="submit" id="logout-btn">Log Out</button>
         </div>
     </section>
 

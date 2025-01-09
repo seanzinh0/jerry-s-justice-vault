@@ -195,21 +195,7 @@ h2 {
     text-align: center;
 }
 
-#save-btn  {
-    background-color: #bc9859;
-    color: #20263E;
-    font-size: 1rem;
-    padding: 12px;
-    margin-right: 6rem;
-    border: none;
-    border-radius: .4rem;
-}
-#save-btn:hover {
-    cursor: pointer;
-    background-color: #be882c;
-}
-
-#delete-btn {
+#logout-btn {
     background-color: rgb(164, 0, 0);
     color: white;
     font-size: 1rem;
@@ -217,7 +203,7 @@ h2 {
     border: none;
     border-radius: .4rem;
 }
-#delete-btn:hover {
+#logout-btn:hover {
     cursor: pointer;
     background-color: rgb(129, 0, 0);
 }
@@ -382,3 +368,18 @@ footer {
 @media(max-width: 413px) {
 
 }
+
+
+/* #save-btn  {
+    background-color: #bc9859;
+    color: #20263E;
+    font-size: 1rem;
+    padding: 12px;
+    margin-right: 6rem;
+    border: none;
+    border-radius: .4rem;
+}
+#save-btn:hover {
+    cursor: pointer;
+    background-color: #be882c;
+} */
