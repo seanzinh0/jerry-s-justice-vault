@@ -55,7 +55,7 @@ app.post('/api/login', (req, res) => {
     }
     getUserId(req.query.username, req.query.password).then(result => {
         res.send(result);
-    })
+    });
 })
 
 app.get('/register', (req, res) => {
