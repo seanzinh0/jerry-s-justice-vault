@@ -4,14 +4,24 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
+     <script src="https://kit.fontawesome.com/3a218d1933.js" crossorigin="anonymous"></script>
     <link rel="stylesheet" href="css/search.css">
 </head>
 <body>
-    <div class="container">
+    {{>navbar}}
+
+    {{!-- <div class="container">
         <h1>Find a Case.</h1>
         <h2>Solve Your issues.</h2>
         <h3>We make legal easier.</h3>
+    </div> --}}
+
+    <header>
+    <div class="header-content">
+    <h1>Search</h1>
+    <h2>Find your case, resolve your issues, and simplify legal with ease!</h2>
     </div>
+    </header>
     
 
     <div class="form-container">
@@ -26,6 +36,8 @@
 
         </section>
     </div>
+
+    {{>footer}}
 
     <script src="js/searchCase.js"></script>
 </body>
