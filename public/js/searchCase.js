@@ -40,10 +40,11 @@ form.addEventListener('submit', (e) => {
                 snippetEl.textContent = `Snippet: ${snippet}`
 
                 const caseBtn = document.createElement('button');
-                caseBtn.textContent = 'Case Document';
 
                 const a = document.createElement('a');
                 a.href = doc;
+                a.textContent = 'Case Document';
+                a.setAttribute('target', '_blank');
 
                 caseNameSection.appendChild(name);
                 caseNameSection.appendChild(attorneyName);
