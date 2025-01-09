@@ -281,6 +281,10 @@ footer {
     }
 }
 
+
+
+/* ---------------------------------------------------- */
+
 /* submit form styling */
 .main-container {
     width: 100vw;
@@ -300,13 +304,35 @@ footer {
     flex-direction: column;
 }
 
-form h2 {
+.login-form  h2 {
     margin-bottom: 1rem;
 }
+
+.submit-btn {
+    margin-bottom: 50%;
+}
+
 hr {
     width: 100%;
+    margin-bottom: 1rem;
 }
-form input {
-    width: 50vh;
-} 
+
+.login-form input {
+    width: 80%; 
+    max-width: 400px; 
+    padding: 10px; 
+}
+
+.sign-up-wrapper {
+    width: 80%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.sign-up-wrapper p {
+    margin-right: 2rem;
+}
+
+
 
