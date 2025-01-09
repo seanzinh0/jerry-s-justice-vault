@@ -29,8 +29,21 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(error => {
         console.error('Error fetching user data:', error);
         alert('Error loading user information. Please log in or create an account.');
-    })
-})
+    });
+
+    const logoutButton = document.getElementById('logout-btn');
+    if (logoutButton) {
+        logoutButton.addEventListener('click', async () => {
+            localStorage.removeItem('id');
+            localStorage.removeItem('username');
+            localStorage.removeItem('firstName');
+            localStorage.removeItem('lastName');
+            localStorage.removeItem('email');
+
+            window.location.href = '/login';
+        })
+    }
+});
 
 
 
