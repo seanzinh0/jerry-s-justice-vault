@@ -45,7 +45,15 @@ async function fetchUserData(neededData = '*') {
 async function insertUserData(username, firstName, lastName, email, password) {
         const connection = await pool.getConnection()
         try {
-            const [rows] = await connection.query("INSERT INTO `jjv`.`users` (`username`, `firstName`, `lastName`, `email`, `password`) VALUES" +  "(" + "'" + username + "'" + ", " + "'" + firstName + "'" + ", " + "'" + lastName + "'" + ", " + "'" + email + "'" + ", " + "'" + password + "'" + ")")
+            const [existingUser] = await connection.query(`
+                SELECT id
+                FROM users
+                WHERE username = ? OR email = ?;
+            `, [username, email]);
+            if (existingUser.length > 0) {
+                return 'Username or email already exists';
+            }
+            const [rows] = await connection.query('INSERT INTO `jjv`.`users` (`username`, `firstName`, `lastName`, `email`, `password`) VALUES (?, ?, ?, ?, ?);', [username, firstName, lastName, email, password]);
             return 'Registration successful!'
         } catch (e) {
             console.error('Error inserting user:', e);
