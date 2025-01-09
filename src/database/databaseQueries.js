@@ -1,4 +1,5 @@
 const pool = require('./connectionPool.js');
+const bcrypt = require('bcryptjs');
 
 async function fetchUserData(neededData = '*') {
     switch(neededData) {
@@ -43,9 +44,18 @@ async function fetchUserData(neededData = '*') {
 };
 
 async function insertUserData(username, firstName, lastName, email, password) {
-        const connection = await pool.getConnection()
+        const connection = await pool.getConnection();
+        const hashedPassword = await bcrypt.hash(password, 10);
         try {
-            const [rows] = await connection.query("INSERT INTO `jjv`.`users` (`username`, `firstName`, `lastName`, `email`, `password`) VALUES" +  "(" + "'" + username + "'" + ", " + "'" + firstName + "'" + ", " + "'" + lastName + "'" + ", " + "'" + email + "'" + ", " + "'" + password + "'" + ")")
+            const [existingUser] = await connection.query(`
+                SELECT id
+                FROM users
+                WHERE username = ? OR email = ?;
+            `, [username, email]);
+            if (existingUser.length > 0) {
+                return 'Username or email already exists';
+            }
+            const [rows] = await connection.query('INSERT INTO `jjv`.`users` (`username`, `firstName`, `lastName`, `email`, `password`) VALUES (?, ?, ?, ?, ?);', [username, firstName, lastName, email, hashedPassword]);
             return 'Registration successful!'
         } catch (e) {
             console.error('Error inserting user:', e);
@@ -62,15 +72,19 @@ async function getUserId(username, password) {
         const [rows] = await connection.query(`
             SELECT id, password
             FROM users
-            WHERE username = ?
-              AND password = ?
-        `, [username, password]);
+            WHERE username = ?;
+        `, [username]);
 
         // Check if a user was found
         if (rows.length > 0) {
-            return { id: rows[0].id };
+            const isValidPassword = await bcrypt.compare(password, rows[0].password);
+            if(isValidPassword) {
+                return { id: rows[0].id };
+            } else {
+                return 'Invalid password';
+            }
         } else {
-            throw new Error('No user found with the provided info.')
+            return 'Invalid username or password'
         }
     } catch (e) {
         console.error('Error getting user ID: ', e);
