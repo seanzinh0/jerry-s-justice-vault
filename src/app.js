@@ -55,12 +55,7 @@ app.post('/api/login', (req, res) => {
     }
     getUserId(req.query.username, req.query.password).then(result => {
         res.send(result);
-    }).catch(err => {
-        res.status(401).send({
-            err: 'Invalid username or password'
-        })
-    })
-
+    });
 })
 
 app.get('/register', (req, res) => {
@@ -92,6 +87,10 @@ app.get('/api/account', (req, res) => {
     getAccountInfoById(req.query.id).then(result => {
         res.send(result)
     })
+})
+
+app.get('*', (req, res) => {
+    res.render('404');
 })
 
 const port = process.env.PORT || 3000;

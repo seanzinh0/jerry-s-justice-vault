@@ -1,26 +1,9 @@
-:root {
-    --primary-color: #AA8A50;
-    --secondary-color: #20263E;
-}
-
 * {
+    box-sizing: border-box;
     margin: 0;
     padding: 0;
-    box-sizing: border-box;
 }
-html {
-    height: 100%;
-    width: 100%;
-}
-body {
-    display: flex;
-    justify-content: center;
-    flex-direction: column;
-    font-size: 1rem;
-    background-color: #EDEDED;
-    line-height: 1.5;
-    font-family: 'Times New Roman', Times, serif;
-}
+
 /* Navbar styling */
 .navbar {
     width: 100%;
@@ -33,18 +16,22 @@ body {
     position: relative;
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
 /* Logo image styling */
 .logo img {
     width: 80px;
 }
+
 /* Menu items container */
 .menu {
     display: flex;
 }
+
 /* Menu list items */
 .menu li {
     padding-left: 30px;
 }
+
 /* Styling for each menu link */
 .menu li a {
     display: inline-block;
@@ -54,6 +41,7 @@ body {
     transition: color 0.3s ease, background-color 0.3s ease;
     position: relative;
 }
+
 /* Underline effect for links */
 .menu li a::after {
     content: "";
@@ -65,17 +53,20 @@ body {
     background-color: #FFF;
     transition: width 0.3s ease, background-color 0.3s ease;
 }
+
 /* Hover effect for links */
 .menu li a:hover {
     color: #AA8A50;
     filter: brightness(calc(100% + 10%))
 }
+
 /* Expand underline on hover */
 .menu li a:hover::after {
     width: 100%;
     background-color: #AA8A50;
     filter: brightness(calc(100% + 10%))
 }
+
 /* Open and close menu buttons for mobile view */
 .open-menu, .close-menu {
     position: absolute;
@@ -84,53 +75,26 @@ body {
     font-size: 1.5rem;
     display: none;
 }
+
 /* Open menu button positioning (hamburger icon) */
 .open-menu {
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
 }
+
 /* Close menu button positioning (close icon) */
 .close-menu {
     top: 20px;
     right: 20px;
 }
+
 /* Hide the checkbox input (it's used to toggle the mobile menu) */
 #check {
     display: none;
 }
-header {
-    position: relative;
-    width: 100%;
-    height: 200px;
-    background-image: url('/img/hero.jpeg');
-    background-size: cover;
-    background-position: center;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    text-align: center;
-  }
-  header::after {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.5);
-  }
-  .header-content {
-    position: relative;
-    z-index: 2;
-  }
-  .header-content h1 {
-    margin: 0;
-    font-size: 2.5em;
-  }
 
-  /* Footer */
+/* Footer */
 .footer {
     width: 100%;
     padding: 20px 10%;
@@ -141,7 +105,7 @@ header {
     flex-wrap: wrap;
     position: relative;
     box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-    margin-top: 20px; 
+    margin-top: 20px;
 }
 
 .footer div {
@@ -190,7 +154,7 @@ header {
 }
 
 form input {
-   font-family: 'Times New Roman', Times, serif;
+    font-family: 'Times New Roman', Times, serif;
     width: 80%;
     max-width: 300px;
     height: 35px;
@@ -251,171 +215,8 @@ footer {
     font-size: 12px;
 }
 
-
-
-/* ----------------------- submit form styling ----------------------------- */
-.main-container {
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
-    place-items: center;
-    background-color: #ededed ;
-    padding: min(4em, 8%);
-
-}
-
-.login-form {
-    height: 75dvh;
-    width: clamp(40dvh, 80dvw, 80dvh);
-    width: clamp(40vh, 80vw, 80vh);
-    padding: min(5em, 8%);
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
-    background-color: var(--secondary-color);
-    border-radius: 16px;
-
-}
-
-.left-container p {
-    margin-bottom: 1rem;
-}
-
-.login-form p,
- .login-form label,
- .login-form h2 {
-    color: white;
-}
-
-.login-form a,
-.login-form a:visited {
-    color: white;
-    text-decoration: none;
-}
-
-.login-form a:hover {
-    text-decoration: underline;
-}
-
-.login-form h2 {
-    margin-bottom: 1rem;
-}
-
-.submit-btn {
-    margin-bottom: 50%;
-}
-
-hr {
-    width: 100%;
-    margin-bottom: 1rem;
-}
-
-.login-form input {
-    width: 80%; 
-    max-width: 400px; 
-    padding: 10px;
-    background-color: var(--primary-color);
- 
-}
-
-.sign-up-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-
-.left-container {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    place-items: center;
-
-}
-.welcome-text {
-    font-size: clamp(1.8rem, calc(7vw + 1rem), 5rem); /*vw unit won't zoom in must use calc() with vw*/
-}
-
-#username, #password {
-    background-color: white;
-    color: black;
-    text-align: left;
-    filter: brightness(calc(100% + 10%));
-    border-radius: 0;
-    border: 2px solid black;
-}
-
-
-.submit-btn {
-    border-radius: 0;
-}
-
-dialog {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    border-radius: 16px; /* Softer corners */
-    padding: min(2rem, 4%); /* Increased padding for spacing */
-    text-align: center;
-    width: 500px; /* Fixed width */
-    background: #ffffff; /* White background */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06); /* Subtle shadow */
-    font-family: 'Arial', sans-serif; /* Clean font */
-    color: #333; /* Darker text color */
-}
-
-dialog::backdrop {
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent backdrop */
-}
-
-.dialog-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    color: #333;
-}
-
-.dialog-message {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-    color: #666;
-}
-
-.dialog-buttons {
-    display: flex;
-    justify-content: center;
-    gap: 1rem;
-}
-
-button {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    color: #fff;
-    background: #007bff; /* Primary blue */
-    transition: background 0.3s;
-}
-
-button:hover {
-    background: #0056b3; /* Darker blue on hover */
-}
-
-button.secondary {
-    background: #6c757d; /* Secondary gray */
-}
-
-button.secondary:hover {
-    background: #5a6268; /* Darker gray on hover */
-}
-
-
 /* Mobile view adjustments */
-@media(max-width: 710px) {
+@media(max-width: 809px) {
     .menu {
         flex-direction: column;
         align-items: center;
@@ -449,26 +250,48 @@ button.secondary:hover {
     }
 }
 
-  /* tablet responsivness */
-  @media (min-width: 700px) and (max-width: 1400px) {
-    .login-form {
-        height: 65dvh;
-        height: 65vh;
+.main-container {
+    min-height: 100vh;
+    display: flex;
+    justify-content: center;
+    margin-top: 10vh;
+    width: 90%;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.main-container h1 {
+    font-size: 4rem;
+    color: #AA8A50;
+    text-align: center;
+}
+
+.main-container p {
+    font-size: 2rem;
+    text-align: center;
+}
+
+.flex-col {
+    display: flex;
+    flex-direction: column;
+}
+
+#lady-liberty-img {
+    display: flex;
+    justify-content: center;
+    width: 80%;
+    height: auto;
+    margin-top: 10vh;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media screen and (max-width: 809px) {
+    .main-container h1 {
+        font-size: 1.75rem;
     }
 
-    .main-container {
-        grid-template-columns: 1fr;
-
+    .main-container p {
+        font-size: 1rem;
     }
-   
-  }
-
-/* desktop responsiveness */
-@media (min-width: 1024px) {
-    .login-form {
-      height: 80dvh;
-      height: 80vh;
-    }
-  }
-
-
+}

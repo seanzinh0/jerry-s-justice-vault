@@ -12,10 +12,16 @@
     {{>navbar}}
     <header>
     <div class="header-content">
-    <h1></h1>
-    <h2></h2>
+        <h1></h1>
+        <h2></h2>
     </div>
 </header>
+
+
+        <dialog data-modal class="modal">
+            <p>You are already logged in!</p>
+            <button data-close-modal>Close</button>
+        </dialog>
     <main>
         <div class="main-container">
             <div class="left">
@@ -25,8 +31,11 @@
                 </div>
             </div>
 
+
+
+
             <div class="right">
-                <form  class="login-form">
+                <form class="login-form">
                     <h2>Log In</h2>
                     <label for="username">Username</label>
                     <input type="text" id="username" name="username">
