@@ -290,7 +290,6 @@ footer {
 
 /* ----------------------- submit form styling ----------------------------- */
 .main-container {
-    width: 100vw;
     height: 100vh;
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -298,11 +297,11 @@ footer {
     background-color: #ededed ;
 }
 
-.login-form {
-    height: 80vh;
+#register-form {
+    height: 90vh;
     width: 40vw;
     background-color: green ;
-    padding: 5rem;
+    padding: 4rem 5rem;
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
@@ -310,28 +309,42 @@ footer {
     background-color: var(--secondary-color);
 
 }
-.login-form p,
- .login-form label,
- .login-form h2 {
+
+#register-form .error-message {
+    color: red;
+    font-size: 1rem;
+    height: 1rem;
+}
+
+
+.error-message {
+    border-color: red;
+}
+
+
+
+#register-form p,
+#register-form label,
+#register-form h2 {
     color: white;
 }
 
-.login-form a,
-.login-form a:visited {
+#register-form a,
+#register-form a:visited {
     color: white;
     text-decoration: none;
 }
 
-.login-form a:hover {
+#register-form a:hover {
     text-decoration: underline;
 }
 
-.login-form h2 {
+#register-form h2 {
     margin-bottom: 1rem;
 }
 
 .submit-btn {
-    margin-bottom: 50%;
+    margin-bottom: 1.5rem;
 }
 
 hr {
@@ -339,11 +352,11 @@ hr {
     margin-bottom: 1rem;
 }
 
-.login-form input {
+#register-form input {
     width: 80%; 
     max-width: 400px; 
-    padding: 10px;
-    background-color: var(--primary-color);
+    background-color: #FFF;
+    font-size: 4rem;
  
 }
 
@@ -365,7 +378,7 @@ hr {
     white-space: pre-wrap;
 }
 
-#username, #password {
+#userName, #password, #fName, #lName, #email {
     background-color: white;
     color: black;
     text-align: left;
@@ -378,4 +391,3 @@ hr {
 .submit-btn {
     border-radius: 0;
 }
-
