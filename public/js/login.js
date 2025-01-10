@@ -21,7 +21,15 @@ async function processUserLogin() {
         // Fetch user id
         const response = await fetch(`/api/login?username=${username.value}&password=${password.value}`, {
             method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username.value,
+                password: password.value
+            })
          })
+         
            const result = await response.json();
 
           
