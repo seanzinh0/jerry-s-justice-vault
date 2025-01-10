@@ -89,6 +89,10 @@ app.get('/api/account', (req, res) => {
     })
 })
 
+app.get('*', (req, res) => {
+    res.render('404');
+})
+
 const port = process.env.PORT || 3000;
 app.listen(port, () => {
     console.log(`Server is running on port ${port}`);
