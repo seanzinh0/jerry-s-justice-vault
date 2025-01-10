@@ -7,6 +7,16 @@ const closeButton = document.querySelector('[data-close-modal]')
 const modal = document.querySelector('dialog')
 
 async function processUserLogin() {
+    if(username.value.trim() === "" || password.value.trim() === "") {
+        modal.textContent = "You haven't entered a value for a field, try again"
+        modal.showModal()
+        
+        setTimeout(() => {
+          modal.close();
+        }, 2000)
+        return;
+    }
+    
     try { 
         // Fetch user id
         const response = await fetch(`/api/login?username=${username.value}&password=${password.value}`, {
@@ -14,6 +24,7 @@ async function processUserLogin() {
          })
            const result = await response.json();
 
+          
            //if user is already logged in and is trying to log in again with the same account 
            if(localStorage.getItem('id') !== null) {
             modal.innerHTML = `<p>You are already logged in, Press the link below to be taken to your account page<p><a href=/account>Your Account</a>`
@@ -44,6 +55,7 @@ async function processUserLogin() {
     }
 }
    
+
 
 form.addEventListener('submit', (e) => {
     e.preventDefault();
