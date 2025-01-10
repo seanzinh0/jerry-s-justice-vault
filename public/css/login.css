@@ -450,7 +450,7 @@ button.secondary:hover {
 }
 
   /* tablet responsivness */
-  @media (min-width: 700px) and (max-width: 1024px) {
+  @media (min-width: 700px) and (max-width: 1400px) {
     .login-form {
         height: 65dvh;
         height: 65vh;
