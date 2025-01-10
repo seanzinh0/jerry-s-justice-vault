@@ -12,11 +12,12 @@
     {{>navbar}}
     <header>
     <div class="header-content">
-    <h1>Account Information</h1>
-    <h2 id="mini-hero-txt">Log in to view your Interested cases.</h2>
+        <h1>Account Information</h1>
+        <h2 id="mini-hero-txt">Log in to view your Interested cases.</h2>
     </div>
-</header>
-    <section class="container">
+    </header>
+
+    <section id="account-container" class="container">
         <h1 id="hello-user"></h1>
         <form id="user-info-form">
 
@@ -50,21 +51,10 @@
     <section><h2>My Interested Cases</h2>
     </section>
 
-    {{>footer}}
+{{!-- Blur modal for non-users --}}
+    <div id="account-modal" class="modal" style="display: none;"></div>
 
+    {{>footer}}
     <script src="/js/account.js"></script>
 </body>
 </html>
-
-
-
-
-
-{{!-- <h1>Account Information</h1>
-        <div class="user-info">
-            <p><strong>Username: </strong>{{user.Username}}</p>
-            <p><strong>First Name: </strong>{{user.firstName}}</p>
-            <p><strong>Last Name: </strong>{{user.lastName}}</p>
-            <p><strong>Email: </strong>{{user.email}}</p>
-            <p><strong>Password: </strong>{{user.password}}</p>
-        </div> --}}

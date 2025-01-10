@@ -1,15 +1,38 @@
-// const queries = require('../../src/database/databaseQueries.js');
-// const pool = require('../../src/database/connectionPool.js')
-// import { getAccountInfoById } from '../../src/database/databaseQueries.js';
-// const userInfo = document.querySelector('#user-info');
-
 // Pulls user data from the database and displays it 
 document.addEventListener('DOMContentLoaded', () => {
     const userId = localStorage.getItem('id');
+    const accountContainer = document.getElementById('account-container');
+
+    // Blur Modal for account page
+    function showModal() {
+        if (accountContainer) {
+            accountContainer.classList.add('blur');
+        }
+
+        const modal = document.getElementById('account-modal');
+        modal.style.display = 'block';
+        modal.innerHTML = 
+        `
+        <div class="modal-content">
+            <h2>You are not logged in</h2>
+            <p>Please log in or register to access your account.</p>
+            <button id="redirect-login" class="modal-button">
+                Go to login page
+            </button>
+        </div>
+        `;
+
+        document.getElementById('redirect-login').addEventListener('click', () => {
+            window.location.href = '/login';
+        });
+    }
+
     if (!userId) {
-        alert('You are not logged in. Please log in to access your account.')
+        showModal();
         return;
     }
+
+    // Fetches user data based on ID
     fetch(`/api/account?id=${userId}`, {
         method: 'GET',
         credentials: 'include',
@@ -26,6 +49,7 @@ document.addEventListener('DOMContentLoaded', () => {
         document.getElementById('last-name').value = user.lastName || '';
         document.getElementById('user-email').value = user.email || '';
 
+        // Greeting above the account info container
         const helloUserMessage = document.getElementById('hello-user');
         if (helloUserMessage && user.firstName) {
             helloUserMessage.textContent = `Hello, ${user.firstName}`;
@@ -36,6 +60,7 @@ document.addEventListener('DOMContentLoaded', () => {
         alert('Error loading user information. Please log in or create an account.');
     });
 
+    // Logout functionality
     const logoutButton = document.getElementById('logout-btn');
     if (logoutButton) {
         logoutButton.addEventListener('click', async () => {
@@ -49,22 +74,3 @@ document.addEventListener('DOMContentLoaded', () => {
         })
     }
 });
-
-
-
-
-
-
-
-// OLD CODE
-// import pool from '../../src/database/connectionPool.js';
-// import fetchUserData from '../../src/database/databaseQueries.js';
-/* here in case of innerHTML insertion
-        `<div class="user-info">
-            <p><strong>Username: ${username} </strong></p>
-            <p><strong>First Name: ${firstName} </strong></p>
-            <p><strong>Last Name: ${lastName} </strong></p>
-            <p><strong>Email: ${email} </strong></p>
-            <p><strong>Password: ${password} </strong></p>
-        </div>`
-*/
