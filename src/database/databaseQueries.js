@@ -80,7 +80,6 @@ async function insertUserData(username, firstName, lastName, email, password) {
         } finally {
             connection.release();
         }
-    
 }
 
 
