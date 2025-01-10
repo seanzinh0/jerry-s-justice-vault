@@ -251,41 +251,6 @@ footer {
     font-size: 12px;
 }
 
-/* Mobile view adjustments */
-@media(max-width: 710px) {
-    .menu {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 80%;
-        height: 100vh;
-        position: fixed;
-        top: 0;
-        right: -100%;
-        z-index: 100;
-        background-color: #20263E;
-        transition: all 0.2s ease-in-out;
-    }
-
-    .menu li {
-        margin-top: 40px;
-    }
-
-    .menu li a {
-        padding: 10px;
-    }
-
-    /* Show the menu buttons on mobile */
-    .open-menu, .close-menu {
-        display: block;
-    }
-
-    /* When the checkbox is checked, show the menu */
-    #check:checked ~ .menu {
-        right: 0;
-    }
-}
-
 
 
 /* ----------------------- submit form styling ----------------------------- */
@@ -293,23 +258,31 @@ footer {
     width: 100vw;
     height: 100vh;
     display: grid;
-    grid-template-columns: 1fr 1fr;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
     place-items: center;
     background-color: #ededed ;
+    padding: min(4em, 8%);
+
 }
 
 .login-form {
-    height: 80vh;
-    width: 40vw;
-    background-color: green ;
-    padding: 5rem;
+    height: 75dvh;
+    width: clamp(40dvh, 80dvw, 80dvh);
+    width: clamp(40vh, 80vw, 80vh);
+    padding: min(5em, 8%);
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
     background-color: var(--secondary-color);
+    border-radius: 16px;
 
 }
+
+.left-container p {
+    margin-bottom: 1rem;
+}
+
 .login-form p,
  .login-form label,
  .login-form h2 {
@@ -359,10 +332,10 @@ hr {
     display: grid;
     grid-template-rows: 1fr 1fr;
     place-items: center;
+
 }
 .welcome-text {
-    font-size: 5rem;
-    white-space: pre-wrap;
+    font-size: clamp(1.8rem, calc(7vw + 1rem), 5rem); /*vw unit won't zoom in must use calc() with vw*/
 }
 
 #username, #password {
@@ -378,4 +351,124 @@ hr {
 .submit-btn {
     border-radius: 0;
 }
+
+dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 16px; /* Softer corners */
+    padding: min(2rem, 4%); /* Increased padding for spacing */
+    text-align: center;
+    width: 500px; /* Fixed width */
+    background: #ffffff; /* White background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+    font-family: 'Arial', sans-serif; /* Clean font */
+    color: #333; /* Darker text color */
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent backdrop */
+}
+
+.dialog-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.dialog-message {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: #666;
+}
+
+.dialog-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #fff;
+    background: #007bff; /* Primary blue */
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #0056b3; /* Darker blue on hover */
+}
+
+button.secondary {
+    background: #6c757d; /* Secondary gray */
+}
+
+button.secondary:hover {
+    background: #5a6268; /* Darker gray on hover */
+}
+
+
+/* Mobile view adjustments */
+@media(max-width: 710px) {
+    .menu {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 80%;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        z-index: 100;
+        background-color: #20263E;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .menu li {
+        margin-top: 40px;
+    }
+
+    .menu li a {
+        padding: 10px;
+    }
+
+    /* Show the menu buttons on mobile */
+    .open-menu, .close-menu {
+        display: block;
+    }
+
+    /* When the checkbox is checked, show the menu */
+    #check:checked ~ .menu {
+        right: 0;
+    }
+}
+
+  /* tablet responsivness */
+  @media (min-width: 700px) and (max-width: 1024px) {
+    .login-form {
+        height: 65dvh;
+        height: 65vh;
+    }
+
+    .main-container {
+        grid-template-columns: 1fr;
+
+    }
+   
+  }
+
+/* desktop responsiveness */
+@media (min-width: 1024px) {
+    .login-form {
+      height: 80dvh;
+      height: 80vh;
+    }
+  }
+
 
