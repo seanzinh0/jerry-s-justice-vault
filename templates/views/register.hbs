@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Register</title>
     <link rel="stylesheet" href="/css/register.css">
 </head>
 <body>
@@ -14,32 +14,43 @@
         <div class="main-container">
             <div class="left">
                 <div class="left-container">
-                    <h1 class="welcome-text">WELCOME</h1>
-                    <p>Sign back in to your account to access your account information and bookmarked cases</p>
+                    <h1 class="welcome-text">Sign Up</h1>
+                    <p>Sign up for an account to save bookmarked cases</p>
                 </div>
             </div>
 
             <div class="right">
-                <form  class="login-form">
+                <form  id="register-form">
                     <h2>Sign Up!</h2>
 
+                    <span class="error-message" id="fName-error"></span>
                     <label for="first name">First Name</label>
                     <input type="text" id="fName" name="first name">
 
+                    <span class="error-message" id="lName-error"></span>
                     <label for="last name">Last Name</label>
                     <input type="text" id="lName" name="Last Name">
                     
+                    <span class="error-message" id="email-error"></span>
                     <label for="email">Email</label>
                     <input type="text" id="email" name="email">
-
+                    
+                    <span class="error-message" id="userName-error"></span>
                     <label for="username">Username</label>
                     <input type="text" id="userName" name="Username">
-        
+
+                    <span class="error-message" id="password-error"></span>
                     <label for="password">Password</label>
                     <input type="password" id="password" name="password">  
 
 
-                <button type="submit" class="submit-btn">Log In</button>
+                    <button type="submit" class="submit-btn">Sign Up</button>
+
+                    <hr>
+                    <div class="sign-up-wrapper">
+                        <p>Already have an account?</p>
+                        <a href="/login">Login&#8599</a>
+                    </div>
                 
                 </form>
             </div>
@@ -47,5 +58,6 @@
     </main>
 
     {{>footer}}
+    <script src="js/register.js"></script>
 </body>
 </html>
