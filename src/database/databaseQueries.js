@@ -60,7 +60,7 @@ async function fetchUserData(neededData = '*') {
         connection.release();
     }
 };
-
+//update register functionality
 async function insertUserData(username, firstName, lastName, email, password) {
         const connection = await pool.getConnection();
         const hashedPassword = await bcrypt.hash(password, 10);
