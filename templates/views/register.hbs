@@ -9,16 +9,42 @@
 <body>
     {{>navbar}}
 
+    </header>
+    <main>
+        <div class="main-container">
+            <div class="left">
+                <div class="left-container">
+                    <h1 class="welcome-text">WELCOME</h1>
+                    <p>Sign back in to your account to access your account information and bookmarked cases</p>
+                </div>
+            </div>
 
-    <form id="register-form">
-        <h1>Sign Up</h1>
-        <input type="text" placeholder="First Name" id="fName">
-        <input type="text" placeholder="Last Name" id="lName">
-        <input type="text" placeholder="Email" id="email">
-        <input type="text" placeholder="Username" id="userName">
-        <input type="text" placeholder="Password" id="password">
-        <button>Submit</button>
-    </form>
+            <div class="right">
+                <form  class="login-form">
+                    <h2>Sign Up!</h2>
+
+                    <label for="first name">First Name</label>
+                    <input type="text" id="fName" name="first name">
+
+                    <label for="last name">Last Name</label>
+                    <input type="text" id="lName" name="Last Name">
+                    
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email">
+
+                    <label for="username">Username</label>
+                    <input type="text" id="userName" name="Username">
+        
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password">  
+
+
+                <button type="submit" class="submit-btn">Log In</button>
+                
+                </form>
+            </div>
+        </div>
+    </main>
 
     {{>footer}}
 </body>

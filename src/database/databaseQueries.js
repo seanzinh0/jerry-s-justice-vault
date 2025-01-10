@@ -1,5 +1,23 @@
 const pool = require('./connectionPool.js');
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
+
+const secretKey = crypto.randomBytes(32);
+const iv = crypto.randomBytes(16);
+
+function encryptID(id) {
+    const cipher = crypto.createCipheriv('aes-256-cbc', secretKey, iv);
+    let encrypt = cipher.update(id.toString(), 'utf8', 'hex');
+    encrypt += cipher.final('hex');
+    return encrypt;
+}
+
+function decryptID(id) {
+    const decipher = crypto.createDecipheriv('aes-256-cbc', secretKey, iv);
+    let decrypt = decipher.update(id.toString(), 'hex', 'utf8');
+    decrypt += decipher.final('utf8');
+    return decrypt;
+}
 
 async function fetchUserData(neededData = '*') {
     switch(neededData) {
@@ -79,7 +97,8 @@ async function getUserId(username, password) {
         if (rows.length > 0) {
             const isValidPassword = await bcrypt.compare(password, rows[0].password);
             if(isValidPassword) {
-                return { id: rows[0].id };
+                const encryptedID = encryptID(rows[0].id);
+                return { id: encryptedID };
             } else {
                 return 'Invalid password';
             }
@@ -97,10 +116,11 @@ async function getUserId(username, password) {
 async function getAccountInfoById(id) {
     const connection = await pool.getConnection();
     try {
+        const decryptedID = decryptID(id)
         const [rows] = await connection.query(`
         SELECT username, firstName, lastName, email
         FROM users
-        WHERE id = ?`, [id]);
+        WHERE id = ?`, [decryptedID]);
         return rows[0];
     } catch (e) {
         console.error('Error finding account information: ', e);
