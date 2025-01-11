@@ -107,7 +107,7 @@ async function displayLegalCases(id) {
     const connection = await pool.getConnection();
     try {
         const decryptedID = decryptID(id)
-        const [rows] = await connection.query(`SELECT * FROM legal_cases WHERE id = ?;`, [decryptedID]);
+        const [rows] = await connection.query(`SELECT * FROM legal_cases WHERE user_id = ?;`, [decryptedID]);
         return rows;
     } catch (e) {
         console.error('Error getting legal cases: ', e);
