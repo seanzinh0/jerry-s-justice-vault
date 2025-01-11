@@ -352,6 +352,7 @@ footer {
 
 
 
+/* bookmark icon and loading anim. styling */
 .bookmark-wrapper {
     height: 199.98px;
     display: flex;
@@ -368,6 +369,10 @@ footer {
 .bookmark-wrapper button {
     width: 3rem;
     overflow: hidden;
+}
+
+.loading-anim {
+    margin: 0 auto;
 }
 
 /* Mobile view adjustments */

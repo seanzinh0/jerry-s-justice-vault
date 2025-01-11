@@ -1,11 +1,15 @@
+import handleBookmarkFeature from './bookmark.js';
+
 const form = document.querySelector('#search-form');
 const similarCases = document.querySelector('#similar-cases');
 const loadingAnim = document.querySelector('.loading-anim');
 const submitBtn = document.querySelector('.submit-btn')
 
+
 loadingAnim.style.display = 'none';
 submitBtn.addEventListener('click', () => {
     loadingAnim.style.display = "block"
+    similarCases.innerHTML = '';
 })
 
 
@@ -18,7 +22,7 @@ form.addEventListener('submit', (e) => {
         if (data.error) {
             similarCases.innerHTML = data.error;
         } else {
-            
+            loadingAnim.style.display = "none"
             similarCases.innerHTML = '';
             data.results.forEach(lawCase  => {
                 
@@ -55,23 +59,19 @@ form.addEventListener('submit', (e) => {
 
                 const bookmarkIcon = document.createElement('i')
                 bookmarkIcon.classList.add('fa-regular', 'fa-bookmark');
+            
 
                 const caseBtn = document.createElement('button');
-
              
                 bookmarkWrapper.appendChild(bookmarkIcon);
                 bookmarkWrapper.appendChild(caseBtn);
 
+                
                 bookmarkIcon.addEventListener('click', () => {
                     bookmarkIcon.classList.toggle('fa-regular');
                     bookmarkIcon.classList.toggle('fa-solid');
+                    handleBookmarkFeature(caseCard);  // Pass caseCard to get the correct context
                 });
-
-
-
-
-
-
                 
 
                 const a = document.createElement('a');

@@ -7,7 +7,7 @@ const closeButton = document.querySelector('[data-close-modal]')
 const modal = document.querySelector('.modal')
 const modalOriginalContent = modal.innerHTML;
 
-localStorage.removeItem('id');
+
 async function processUserLogin() {
     if(username.value.trim() === "" || password.value.trim() === "") {
         modal.textContent = "You haven't entered a value for a field, try again"
