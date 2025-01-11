@@ -87,7 +87,7 @@ async function getAccountInfoById(id) {
         connection.release();
     }
 }
-
+//comment
 async function insertLegalCase(userID, attorney, caseName, court, dateFiled, doc, snippet) {
     const connection = await pool.getConnection();
     try {
