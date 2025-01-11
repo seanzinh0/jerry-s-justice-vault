@@ -19,47 +19,6 @@ function decryptID(id) {
     return decrypt;
 }
 
-async function fetchUserData(neededData = '*') {
-    switch(neededData) {
-        case 'id': {
-            neededData = 'id'
-            break;
-        }
-        case 'firstName': {
-            neededData = 'firstName'
-            break;
-        }
-        case 'lastName': {
-            neededData = 'lastName'
-            break;
-        }
-        case 'email': {
-            neededData = 'email'
-            break;
-        }
-        case 'username': {
-            neededData = 'username'
-            break;
-        }
-        case 'password': {
-            neededData = 'password'
-            break;
-        }
-        default: 
-            neededData = '*';
-            break;
-    }
-
-    const connection = await pool.getConnection();
-    try {
-         const [rows] = await connection.query(`SELECT * FROM users`)
-         return rows;
-    } catch (e) {
-        console.error('Error fetching user:', e);
-    } finally {
-        connection.release();
-    }
-};
 //update register functionality
 async function insertUserData(username, firstName, lastName, email, password) {
         const connection = await pool.getConnection();
@@ -129,9 +88,38 @@ async function getAccountInfoById(id) {
     }
 }
 
+async function insertLegalCase(userID, attorney, caseName, court, dateFiled, doc, snippet) {
+    const connection = await pool.getConnection();
+    try {
+        const [rows] = await connection.query('INSERT INTO `JJV`.`legal_cases` (`userID`, `attorney`, `caseName`, `court`, `dateFiled`, `doc`, `snippet`) VALUES (?, ?, ?, ?, ?, ?, ?);', [userID, attorney, caseName, court, dateFiled, doc, snippet]);
+        return 'Case bookmarked'
+    } catch (e) {
+        console.error('Cannot bookmark case: ', e);
+        throw e;
+    }
+    finally {
+        connection.release();
+    }
+}
+
+async function displayLegalCases(id) {
+    const connection = await pool.getConnection();
+    try {
+        const [rows] = await connection.query(`SELECT * FROM legal_cases WHERE id = ?;`, [id]);
+        return rows;
+    } catch (e) {
+        console.error('Error getting legal cases: ', e);
+        throw e;
+    }
+    finally {
+        connection.release();
+    }
+}
+
 module.exports =  {
-    fetchUserData,
     insertUserData,
     getUserId,
-    getAccountInfoById
+    getAccountInfoById,
+    insertLegalCase,
+    displayLegalCases
 };
