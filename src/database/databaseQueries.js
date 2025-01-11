@@ -115,7 +115,7 @@ async function displayLegalCases(id) {
         connection.release();
     }
 }
-//comment
+//comment b
 
 module.exports =  {
     insertUserData,
