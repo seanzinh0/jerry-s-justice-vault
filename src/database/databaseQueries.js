@@ -91,7 +91,8 @@ async function getAccountInfoById(id) {
 async function insertLegalCase(userID, attorney, caseName, court, dateFiled, doc, snippet) {
     const connection = await pool.getConnection();
     try {
-        const [rows] = await connection.query('INSERT INTO `JJV`.`legal_cases` (`userID`, `attorney`, `caseName`, `court`, `dateFiled`, `doc`, `snippet`) VALUES (?, ?, ?, ?, ?, ?, ?);', [userID, attorney, caseName, court, dateFiled, doc, snippet]);
+        const decryptedID = decryptID(userID);
+        const [rows] = await connection.query('INSERT INTO `JJV`.`legal_cases` (`user_id`, `attorney`, `caseName`, `court`, `dateFiled`, `doc`, `snippet`) VALUES (?, ?, ?, ?, ?, ?, ?);', [decryptedID, attorney, caseName, court, dateFiled, doc, snippet]);
         return 'Case bookmarked'
     } catch (e) {
         console.error('Cannot bookmark case: ', e);
@@ -105,7 +106,8 @@ async function insertLegalCase(userID, attorney, caseName, court, dateFiled, doc
 async function displayLegalCases(id) {
     const connection = await pool.getConnection();
     try {
-        const [rows] = await connection.query(`SELECT * FROM legal_cases WHERE id = ?;`, [id]);
+        const decryptedID = decryptID(id)
+        const [rows] = await connection.query(`SELECT * FROM legal_cases WHERE id = ?;`, [decryptedID]);
         return rows;
     } catch (e) {
         console.error('Error getting legal cases: ', e);

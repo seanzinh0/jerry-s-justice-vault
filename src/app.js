@@ -91,8 +91,9 @@ app.get('/api/account', (req, res) => {
     })
 })
 
-app.post('/api/bookmark', (req, res) => {
-    insertLegalCase(req.body.userID, req.body.attorney, req.body.caseName, req.body.court, req.body.dateFiled, req.body.doc, req.body.snippet).then(result => {
+app.post('/api/insertLegalCase', (req, res) => {
+    const { userID, attorney, caseName, court, dateFiled, doc, snippet } = req.body;
+    insertLegalCase(userID, attorney, caseName, court, dateFiled, doc, snippet).then(result => {
         res.send(result)
     })
 })
