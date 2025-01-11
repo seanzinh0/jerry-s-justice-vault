@@ -5,7 +5,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-     <script src="https://kit.fontawesome.com/3a218d1933.js" crossorigin="anonymous"></script>
+     <script src="https://kit.fontawesome.com/3a218d1933.js" crossorigin="anonymous" defer></script>
     <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
@@ -17,24 +17,16 @@
     </div>
 </header>
 
-
         <dialog data-modal class="modal">
-            <p>You are already logged in!</p>
-            <button data-close-modal>Close</button>
+            <p>Redirecting to account page...</p> 
+            <lottie-player src="https://lottie.host/dc237204-66bf-4b5c-81bd-d356df729d70/qG13T5zBBS.json" background="##ffffff" speed="1.4" style="width: 100px; height: 100px" loop autoplay direction="1" mode="normal"></lottie-player>
         </dialog>
+
+
     <main>
         <div class="main-container">
-            <div class="left">
-                <div class="left-container">
-                    <h1 class="welcome-text">WELCOME</h1>
-                    <p>Sign back in to your account to access your account information and bookmarked cases</p>
-                </div>
-            </div>
 
-
-
-
-            <div class="right">
+             <div class="right">
                 <form class="login-form">
                     <h2>Log In</h2>
                     <label for="username">Username</label>
@@ -52,9 +44,23 @@
                 </div>
                 </form>
             </div>
+            
+            <div class="left">
+                <div class="left-container">
+                    <h1 class="welcome-text">WELCOME</h1>
+                    <p>Sign back in to your account to access your account information and bookmarked cases</p>
+                </div>
+            </div>
+
+
+
+
+           
         </div>
     </main>
         {{>footer}}
     <script src="js/login.js"></script>
-</body>
+    <script src="js/script.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.8/dist/lottie-player.js"></script>
+    </body>
 </html>
