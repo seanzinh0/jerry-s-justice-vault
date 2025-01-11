@@ -15,6 +15,17 @@ async function processUserRegister() {
         // send register
         const response = await fetch(`/api/register?username=${username.value}&firstName=${fName.value}&lastName=${lName.value}&email=${email.value}&password=${password.value}`, {
             method: 'POST',
+
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({
+                username: username.value,
+                firstName: fName.value,
+                lastName: lName.value,
+                email: email.value,
+                password: password.value
+            })
         })
         
         const result = await response.json();
@@ -28,14 +39,6 @@ async function processUserRegister() {
             localStorage.setItem('lastName', result.lastName);
             localStorage.setItem('email', result.email);
             localStorage.setItem('password', result.password);
-
-            alert('user created');
-
-            username.value = '';
-            fName.value = '';
-            lName.value = '';
-            email.value = '';
-            password.value = '';
         }
 
     } catch(e) {
@@ -73,5 +76,13 @@ registerForm.addEventListener('submit', (e) => {
 
     if(isValidFname && isValidLname && isValidEmail && isValidUsername && isValidPassword) {
         processUserRegister();
+
+        alert('user created');
+
+        username.value = '';
+        fName.value = '';
+        lName.value = '';
+        email.value = '';
+        password.value = '';
     }
 })

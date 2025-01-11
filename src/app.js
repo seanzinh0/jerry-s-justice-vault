@@ -2,10 +2,11 @@ const path = require('path');
 const express = require('express');
 const hbs = require('hbs');
 const courtListener = require('./utils/courtlistener');
-const {insertUserData} = require('./database/databaseQueries');
+const {insertUserData, displayLegalCases} = require('./database/databaseQueries');
 const {getUserId} = require('./database/databaseQueries');
 const {getAccountInfoById} = require('./database/databaseQueries');
-
+const {insertLegalCase} = require('./database/databaseQueries');
+const {displayLegalCase} = require('./database/databaseQueries');
 
 const app = express();
 
@@ -86,6 +87,19 @@ app.get('/api/account', (req, res) => {
         })
     }
     getAccountInfoById(req.query.id).then(result => {
+        res.send(result)
+    })
+})
+
+app.post('/api/insertLegalCase', (req, res) => {
+    const { userID, attorney, caseName, court, dateFiled, doc, snippet } = req.body;
+    insertLegalCase(userID, attorney, caseName, court, dateFiled, doc, snippet).then(result => {
+        res.send(result)
+    })
+})
+
+app.get('/api/cases', (req, res) => {
+    displayLegalCases(req.query.id).then(result => {
         res.send(result)
     })
 })
