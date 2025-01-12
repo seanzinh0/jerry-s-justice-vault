@@ -429,6 +429,13 @@ dialog::backdrop {
     #check:checked ~ .menu {
         right: 0;
     }
+
+    .main-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column-reverse;
+    }
 }
 
   /* tablet responsivness */
@@ -439,7 +446,13 @@ dialog::backdrop {
     }
 
     .main-container {
-        grid-template-columns: 1fr;
+        
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column-reverse;
+    
+
 
     }
    
