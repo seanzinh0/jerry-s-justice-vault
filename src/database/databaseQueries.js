@@ -32,12 +32,15 @@ async function insertUserData(username, firstName, lastName, email, password) {
                 WHERE username = ? OR email = ?;
             `, [username, email]);
             if (existingUser.length > 0) {
-                return 'Username or email already exists';
+                return {
+                    error: 'Username or email already exists'};
             }
             const [rows] = await connection.query('INSERT INTO `JJV`.`users` (`username`, `firstName`, `lastName`, `email`, `password`) VALUES (?, ?, ?, ?, ?);', [username, firstName, lastName, email, hashedPassword]);
-            return 'Registration successful!'
+            return {success: true,
+            message: "Registration successful!"}
         } catch (e) {
             console.error('Error inserting user:', e);
+            throw e;
         } finally {
             connection.release();
         }
