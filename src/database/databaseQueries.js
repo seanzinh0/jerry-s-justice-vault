@@ -1,9 +1,11 @@
 const pool = require('./connectionPool.js');
 const bcrypt = require('bcryptjs');
 const crypto = require('crypto');
+const dotenv = require('dotenv');
+dotenv.config();
 
-const secretKey = crypto.randomBytes(32);
-const iv = crypto.randomBytes(16);
+const secretKey = Buffer.from(process.env.SECRET_KEY, 'hex');
+const iv = Buffer.from(process.env.IV, 'hex');
 
 function encryptID(id) {
     const cipher = crypto.createCipheriv('aes-256-cbc', secretKey, iv);
