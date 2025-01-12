@@ -350,6 +350,31 @@ footer {
     font-size: 12px;
 }
 
+
+
+/* bookmark icon and loading anim. styling */
+.bookmark-wrapper {
+    height: 199.98px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5rem;
+}
+
+.bookmark-wrapper i:hover {
+    cursor: pointer;
+}
+
+.bookmark-wrapper button {
+    width: 3rem;
+    overflow: hidden;
+}
+
+.loading-anim {
+    margin: 0 auto;
+}
+
 /* Mobile view adjustments */
 @media(max-width: 710px) {
     .menu {
