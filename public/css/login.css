@@ -488,10 +488,12 @@ dialog::backdrop {
         flex-direction: column-reverse;
     }
 
-    
+    .left-container {
+        margin-top: 2rem;
+    }
 
     .welcome-text {
-        margin-top: 2rem;
+        margin-top: 1rem;
     }
 
     .footer {
