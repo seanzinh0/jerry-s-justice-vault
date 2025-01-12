@@ -352,66 +352,48 @@ hr {
     border-radius: 0;
 }
 
-dialog {
+ .modal {
+     position: absolute;
+     top: 50%;
+     width: 500px; 
+    font-family: 'Arial', sans-serif;
+    margin: 0 auto;
+    border-radius: 16px;
+    padding: min(2rem, 4%); 
+    text-align: center;
+    background: #ffffff; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06); 
+    font-family: 'Arial', sans-serif;
+    color: #333;
+   
+} 
+
+lottie-player {
+    margin: 0 auto;
+}
+
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5); 
+}
+
+/* 
+.modal {
+    width: 500px;
+    font-family: 'Arial', sans-serif;
+    border-radius: 16px;
     position: absolute;
     top: 50%;
     left: 50%;
     transform: translate(-50%, -50%);
-    border-radius: 16px; /* Softer corners */
-    padding: min(2rem, 4%); /* Increased padding for spacing */
-    text-align: center;
-    width: 500px; /* Fixed width */
-    background: #ffffff; /* White background */
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06); /* Subtle shadow */
-    font-family: 'Arial', sans-serif; /* Clean font */
-    color: #333; /* Darker text color */
-}
-
-dialog::backdrop {
-    background: rgba(0, 0, 0, 0.5); /* Semi-transparent backdrop */
-}
-
-.dialog-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
-    color: #333;
-}
-
-.dialog-message {
-    font-size: 1rem;
-    margin-bottom: 1.5rem;
-    color: #666;
-}
-
-.dialog-buttons {
     display: flex;
     justify-content: center;
-    gap: 1rem;
-}
-
-button {
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    border: none;
-    border-radius: 6px;
-    cursor: pointer;
-    color: #fff;
-    background: #007bff; /* Primary blue */
-    transition: background 0.3s;
-}
-
-button:hover {
-    background: #0056b3; /* Darker blue on hover */
-}
-
-button.secondary {
-    background: #6c757d; /* Secondary gray */
-}
-
-button.secondary:hover {
-    background: #5a6268; /* Darker gray on hover */
-}
+    align-items: center;
+    flex-direction: column;
+    padding: min(2rem, 4%); 
+    background: white;
+    border-radius: 0.25rem;
+} */
 
 
 /* Mobile view adjustments */
