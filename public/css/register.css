@@ -199,7 +199,7 @@ form input {
     margin-top: 10px;
     margin-bottom: 20px;
     outline: none;
-    border: 2px solid #AA8A50;
+    
     filter: brightness(calc(100% + 10%));
     background-color: #333;
     color: whitesmoke;
@@ -208,7 +208,7 @@ form input {
 }
 
 form input:focus {
-    border-color: #AA8A50;
+    
     filter: brightness(calc(100% + 30%));
     background-color: #444;
 }
@@ -251,62 +251,28 @@ footer {
     font-size: 12px;
 }
 
-/* Mobile view adjustments */
-@media(max-width: 710px) {
-    .menu {
-        flex-direction: column;
-        align-items: center;
-        justify-content: center;
-        width: 80%;
-        height: 100vh;
-        position: fixed;
-        top: 0;
-        right: -100%;
-        z-index: 100;
-        background-color: #20263E;
-        transition: all 0.2s ease-in-out;
-    }
-
-    .menu li {
-        margin-top: 40px;
-    }
-
-    .menu li a {
-        padding: 10px;
-    }
-
-    /* Show the menu buttons on mobile */
-    .open-menu, .close-menu {
-        display: block;
-    }
-
-    /* When the checkbox is checked, show the menu */
-    #check:checked ~ .menu {
-        right: 0;
-    }
-}
-
-
-
 /* ----------------------- submit form styling ----------------------------- */
 .main-container {
-    height: 100vh;
     display: grid;
+    /* height: 100vh; */
     grid-template-columns: 1fr 1fr;
     place-items: center;
     background-color: #ededed ;
 }
 
 #register-form {
-    height: 90vh;
+    margin: 5rem 3rem 3rem 0;
     width: 40vw;
     background-color: green ;
     padding: 4rem 5rem;
+    width: clamp(40vh, 80vw, 80vh);
+    padding: min(5em, 8%);
     display: flex;
     justify-content: flex-start;
     align-items: flex-start;
     flex-direction: column;
     background-color: var(--secondary-color);
+    border-radius: 10px;
 
 }
 
@@ -316,12 +282,14 @@ footer {
     height: 1rem;
 }
 
+.error-border {
+    border: red 3px solid;
+}
+
 
 .error-message {
     border-color: red;
 }
-
-
 
 #register-form p,
 #register-form label,
@@ -356,7 +324,11 @@ hr {
     width: 80%; 
     max-width: 400px; 
     background-color: #FFF;
- 
+    padding: 1rem;
+}
+
+input {
+    border: 2px solid black;
 }
 
 .sign-up-wrapper {
@@ -383,10 +355,140 @@ hr {
     text-align: left;
     filter: brightness(calc(100% + 10%));
     border-radius: 0;
-    border: 2px solid black;
+    
 }
 
 
 .submit-btn {
-    border-radius: 0;
+    border-radius: 10px;
 }
+
+
+/* Dialog modal */
+
+dialog {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border-radius: 16px; /* Softer corners */
+    padding: min(2rem, 4%); /* Increased padding for spacing */
+    text-align: center;
+    width: 500px; /* Fixed width */
+    background: #ffffff; /* White background */
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+    font-family: 'Arial', sans-serif; /* Clean font */
+    color: #333; /* Darker text color */
+}
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5); /* Semi-transparent backdrop */
+}
+
+.dialog-title {
+    font-size: 1.5rem;
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+    color: #333;
+}
+
+.dialog-message {
+    font-size: 1rem;
+    margin-bottom: 1.5rem;
+    color: #666;
+}
+
+.dialog-buttons {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+}
+
+button {
+    padding: 0.5rem 1rem;
+    font-size: 0.9rem;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    color: #fff;
+    background: #007bff; /* Primary blue */
+    transition: background 0.3s;
+}
+
+button:hover {
+    background: #0056b3; /* Darker blue on hover */
+}
+
+button.secondary {
+    background: #6c757d; /* Secondary gray */
+}
+
+button.secondary:hover {
+    background: #5a6268; /* Darker gray on hover */
+}
+
+input .error-border {
+    border: red 4px solid !important;
+}
+
+/* Mobile view adjustments */
+@media(max-width: 710px) {
+    .menu {
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        width: 80%;
+        height: 100vh;
+        position: fixed;
+        top: 0;
+        right: -100%;
+        z-index: 100;
+        background-color: #20263E;
+        transition: all 0.2s ease-in-out;
+    }
+
+    .menu li {
+        margin-top: 40px;
+    }
+
+    .menu li a {
+        padding: 10px;
+    }
+
+    /* Show the menu buttons on mobile */
+    .open-menu, .close-menu {
+        display: block;
+    }
+
+    /* When the checkbox is checked, show the menu */
+    #check:checked ~ .menu {
+        right: 0;
+    }
+
+    .main-container {
+        grid-template-columns: 1fr;
+        justify-content: center;
+
+    }
+
+    #register-form {
+        margin: 1rem 0;
+        /* margin-left: 1rem; */
+    }
+}
+
+  /* tablet responsivness */
+  @media (min-width: 700px) and (max-width: 1400px) {
+
+    #register-form {
+        margin: 1rem 0;
+        /* margin-left: 1rem; */
+    }
+
+    .main-container {
+        justify-content: center;
+        grid-template-columns: 1fr;
+
+    }
+   
+  }
