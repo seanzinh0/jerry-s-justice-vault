@@ -158,6 +158,7 @@ h2 {
 /* Container Section */
 .container {
     max-width: 800px;
+    text-align: center;
     margin: 50px auto;
     background-color: #20263E;
     padding: 20px 30px;
