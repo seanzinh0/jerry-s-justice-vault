@@ -2,6 +2,7 @@
 document.addEventListener('DOMContentLoaded', () => {
     const userId = localStorage.getItem('id');
     const accountContainer = document.getElementById('account-container');
+    const interestedCasesSection = document.querySelector('#interested-cases');
 
     // Blur Modal for account page
     function showModal() {
@@ -71,6 +72,42 @@ document.addEventListener('DOMContentLoaded', () => {
             localStorage.removeItem('email');
 
             window.location.href = '/login';
-        })
+        });
     }
+
+    // Fetches & displays users interested cases
+    // function fetchInterestedCases(userId) {
+        fetch(`/api/cases?id=${userId}`, {
+            method: 'GET',
+            credentials: 'include',
+        })
+        .then(response => {
+            if (!response.ok) {
+                throw new Error('Failed to fetch interested cases');
+            }
+            return response.json();
+        })
+        .then(cases => {
+            if (!cases.length) {
+                interestedCasesSection.innerHTML = '<p>No interested cases found.</p>';
+                return;
+            }
+
+            const caseHTML = cases.map(c => `
+                <div class="case-card">
+                    <h4>${c.caseName}</h4>
+                    <p><strong>Attorney:</strong> ${c.attorney || 'N/A'}</p>
+                    <p><strong>Court:</strong> ${c.court}</p>
+                    <p><strong>Date Filed:</strong> ${c.dateFiled}</p>
+                    <p><strong>Snippet:</strong> ${c.snippet}</p>
+                    <a href="${c.doc}" target="_blank" class="case-doc">View Document</a>
+                </div>
+                `).join('');
+            interestedCasesSection.innerHTML = caseHTML;
+        })
+        .catch(error => {
+            console.error('Error fetching interested cases:', error);
+            interestedCasesSection.innerHTML = '<p>Error loading interested cases.</p>'
+        })
+    // }
 });
