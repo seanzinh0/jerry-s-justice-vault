@@ -209,6 +209,7 @@ h1, h2, h3{
     border-radius: 10px;
     border:1px solid #dadde1;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow-x: hidden;
 }
 
 .case:hover {
@@ -249,8 +250,7 @@ h1, h2, h3{
 }
 
 .case button{
-    width: 10%;
-    padding: .7rem;
+    padding: 1rem;
     background-color: #AA8A50;
     border-radius: 5px;
     border: none;
@@ -367,7 +367,7 @@ footer {
 }
 
 .bookmark-wrapper button {
-    width: 3rem;
+    margin: 0 1rem;
     overflow: hidden;
 }
 
@@ -440,6 +440,7 @@ select:focus{
     
     .case {
         flex-direction: column;
+        text-align: center;
     }
 
     .case-name {
@@ -454,7 +455,9 @@ select:focus{
     }
 
     .case button {
-        width: 50%;
+        width: 100%;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
     }
 }
 
