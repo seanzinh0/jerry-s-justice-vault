@@ -143,12 +143,27 @@ async function displayLegalCases(id) {
         connection.release();
     }
 }
-//comment b
+
+async function deleteBookMark(bookmarkID) {
+    const connection = await pool.getConnection();
+    try {
+        const [rows] = await connection.query(`
+        DELETE FROM legal_cases  WHERE id = ?;`, [bookmarkID]);
+    } catch (e) {
+        console.error('Error deleting legal cases: ', e);
+        throw e;
+    }
+    finally {
+        connection.release();
+    }
+}
+
 
 module.exports =  {
     insertUserData,
     getUserId,
     getAccountInfoById,
     insertLegalCase,
-    displayLegalCases
+    displayLegalCases,
+    deleteBookMark
 };
