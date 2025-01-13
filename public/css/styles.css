@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 /* Reset for all elements to maintain consistency */
 * {
     box-sizing: border-box;
@@ -7,7 +9,7 @@
 
 /* Basic body styling */
 body {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Playfair display;
     font-size: 1rem;
     background-color: whitesmoke;
     color: #FFF;
@@ -131,6 +133,7 @@ body {
 }
 
 .hero .button {
+    font-family: Playfair display;
     background-color: #AA8A50;
     filter: brightness(calc(100% + 10%));
     padding: 10px 20px;
@@ -197,6 +200,283 @@ body {
     filter: brightness(calc(100% + 20%));
 }
 
+/* ==========================
+   TESTIMONIALS SECTION
+   ========================== */
+   .testimonials {
+    background-color: #F2F2F2;
+    padding: 50px 20px;
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.testimonials h2 {
+    font-size: 32px;
+    margin-bottom: 30px;
+    color: #20263E;
+}
+
+.test{
+    color: #20263E;
+}
+
+.testimonial-slider {
+    display: flex;
+    transition: transform 0.5s ease-in-out;
+    width: 100%;
+}
+
+.slide {
+    flex: 1 0 100%;
+    max-width: 100%;
+    text-align: center;
+    padding: 20px;
+}
+
+.testimonial-image {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    object-fit: cover;
+    margin-bottom: 15px;
+}
+
+.testimonial p {
+    font-size: 16px;
+    color: #333;
+    font-style: italic;
+}
+
+.slider-controls {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 20px;
+}
+
+.slider-btn {
+    background-color: #AA8A50;
+    color: black;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 18px;
+}
+
+/* ==========================
+   CONTACT FORM SECTION
+   ========================== */
+   .contact-form {
+    background-color: #20263E;
+    color: white;
+    padding: 40px 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.contact-form h2, 
+.contact-form p {
+    margin-bottom: 20px;
+}
+
+.contact-form form {
+    max-width: 35%;
+    width: 100%;
+    background-color: #2A3B5C;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form input, 
+.contact-form textarea {
+    width: 100%;
+    padding: 10px;
+    margin-top: 8px;
+    margin-bottom: 15px;
+    border-radius: 8px;
+    border: 2px solid #AA8A50;
+    font-size: 14px;
+    background-color: white;
+    color: black;
+    transition: all 0.3s ease;
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.contact-form button {
+    font-family: 'Times New Roman', Times, serif;
+    background-color: #AA8A50;
+    color: black;
+    font-size: 16px;
+    padding: 10px 30px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: 600;
+    margin-top: 15px;
+}
+
+.contact-form button:hover{
+    background-color: #8C7041;
+}
+
+/* ==========================
+   FAQ SECTION STYLES
+   ========================== */
+.faq-background {
+    background-color: #f7f7f7;
+    padding: 50px 0;
+}
+
+.faq-wrapper {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.faq-container {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.faq-item {
+    background-color: white;
+    padding: 20px;
+    border-radius: 5px;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.faq1 {
+    color: #20263E;
+    display: flex;
+    justify-content: center;
+    padding-bottom: 15px;
+}
+
+.faq-icon {
+    color: #AA8A50;
+}
+
+.faq-checkbox {
+    display: none;
+}
+
+.faq-question {
+    font-size: 18px;
+    font-weight: bold;
+    cursor: pointer;
+    margin: 0;
+    padding: 0;
+    color: #20263E;
+    transition: color 0.3s;
+}
+
+.faq-question:hover {
+    color: #20263E;
+}
+
+.faq-answer {
+    display: none;
+    margin-top: 10px;
+    font-size: 16px;
+    color: #20263E;
+}
+
+.faq-checkbox:checked + .faq-question + .faq-answer {
+    display: block;
+}
+
+.faq-item:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
+}
+
+/* ==========================
+   ERROR MESSAGE STYLING
+   ========================== */
+.error-message {
+    color: #FF3B3B;
+    font-size: 12px;
+    margin-top: 5px;
+    display: none; /* Hidden by default */
+}
+
+/* ==========================
+   RESPONSIVE DESIGN
+   ========================== */
+@media (max-width: 1024px) {
+    .offerings-container {
+        flex-direction: column;
+        gap: 20px;
+    }
+
+    .offering {
+        width: 80%;
+        margin: 0 auto;
+    }
+
+}
+
+@media (max-width: 768px) {
+    .hero {
+        padding: 80px 20px;
+    }
+
+    .hero h1 {
+        font-size: 2em;
+    }
+
+    .hero p {
+        font-size: 1.1em;
+    }
+
+    .offerings-container {
+        flex-direction: column;
+    }
+
+    .contact-form form {
+        max-width: 90%;
+    }
+
+    .contact-form button {
+        width: 100%;
+    }
+
+}
+
+@media (max-width: 480px) {
+    .hero {
+        padding: 60px 20px;
+    }
+
+    .hero h1 {
+        font-size: 1.8em;
+    }
+
+    .hero p {
+        font-size: 1em;
+    }
+
+    .offerings h2 {
+        font-size: 28px;
+    }
+
+    .offering {
+        width: 100%;
+    }
+
+    .contact-form form {
+        max-width: 100%;
+    }
+}
+
+
 /* Footer */
 .footer {
     width: 100%;
@@ -254,30 +534,6 @@ body {
     color: #AA8A50;
     filter: brightness(calc(100% + 10%));
     transform: translateX(5px);
-}
-
-form input {
-    font-family: 'Times New Roman', Times, serif;
-    width: 80%;
-    max-width: 300px;
-    height: 35px;
-    border-radius: 20px;
-    text-align: center;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    outline: none;
-    border: 2px solid #AA8A50;
-    filter: brightness(calc(100% + 10%));
-    background-color: #333;
-    color: whitesmoke;
-    font-size: 14px;
-    padding: 0 10px;
-}
-
-form input:focus {
-    border-color: #AA8A50;
-    filter: brightness(calc(100% + 30%));
-    background-color: #444;
 }
 
 form button {

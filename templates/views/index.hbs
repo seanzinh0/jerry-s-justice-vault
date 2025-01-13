@@ -41,7 +41,104 @@
             </div>
         </div>
     </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <h2>What Our Clients Are Saying</h2>
+        <div class="testimonial-slider">
+            <div class="slide">
+                <img src="/img/logo.jpeg" alt="Naomi L." class="testimonial-image">
+                <p class="test">"This platform helped me find the legal resources I needed to defend my rights. It gave me a clear understanding of my options." - Naomi L.</p>
+            </div>
+            <div class="slide">
+                <img src="pic1.jpeg" alt="James W." class="testimonial-image">
+                <p class="test" >"As someone from a minority community, I feel supported knowing that there are resources and legal professionals dedicated to my needs." - James W.</p>
+            </div>
+            <div class="slide">
+                <img src="pic1.jpeg" alt="Ayesha K." class="testimonial-image">
+                <p class="test">"Navigating the legal system was confusing, but this website made it easy to find the information I needed!" - Ayesha K.</p>
+            </div>
+        </div>
+        <div class="slider-controls">
+            <button id="prev" class="slider-btn">❮</button>
+            <button id="next" class="slider-btn">❯</button>
+        </div>
+    </section>
+    
+
+    <div class="contact-form">
+            <h2>Contact Us</h2>
+            <p>We would love to hear from you! Please fill out the form below, and we'll get in touch with you as soon as possible.</p>
+        <form>
+            <div class="form-group">
+                <label for="name"> First Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="name">Last Name</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="message">Message</label>
+                <textarea id="message" name="message" rows="4" required></textarea>
+            </div>
+            <button type="submit">Submit</button>
+        </form>
+    </div>
+    
+    <section class="faq">
+        <div class="faq-background">
+            <div class="faq-wrapper">
+                <h2 class="faq1">Frequently Asked Questions</h2>
+                <div class="faq-container">
+                    <div class="faq-item">
+                        <input type="checkbox" id="faq1" class="faq-checkbox">
+                        <label for="faq1" class="faq-question">
+                            <span class="faq-icon"><i class="fa-solid fa-gavel"></i></span> What is the legal process for minorities in the court system?
+                        </label>
+                        <div class="faq-answer">
+                            <p>The legal process for minorities follows the same procedure as for all individuals. However, there are specific challenges and barriers that can arise due to systemic bias. Our goal is to help underrepresented communities navigate these challenges.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <input type="checkbox" id="faq2" class="faq-checkbox">
+                        <label for="faq2" class="faq-question">
+                            <span class="faq-icon"><i class="fa-solid fa-gavel"></i></span> How can I access legal help if I can't afford it?
+                        </label>
+                        <div class="faq-answer">
+                            <p>There are various legal aid services, nonprofits, and pro bono programs that can assist low-income individuals. We provide resources and links to these services so you can get the help you need.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <input type="checkbox" id="faq3" class="faq-checkbox">
+                        <label for="faq3" class="faq-question">
+                            <span class="faq-icon"><i class="fa-solid fa-gavel"></i></span> What should I do if I’m not satisfied with my attorney?
+                        </label>
+                        <div class="faq-answer">
+                            <p>If you're unhappy with your attorney's performance, you have the right to seek a new one. We offer resources for filing complaints and finding a different legal representative.</p>
+                        </div>
+                    </div>
+                    <div class="faq-item">
+                        <input type="checkbox" id="faq4" class="faq-checkbox">
+                        <label for="faq4" class="faq-question">
+                            <span class="faq-icon"><i class="fa-solid fa-gavel"></i></span> What if I don't know which legal resources to trust?
+                        </label>
+                        <div class="faq-answer">
+                            <p>If you’re unsure which resources to trust, we provide a list of verified organizations and experts who can guide you through the legal process. We ensure the sources we provide are reputable and credible.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+</section>
+
     {{>footer}}
+    <script src="js/index.js"></script>
 </body>
 
 </html>
