@@ -1,5 +1,3 @@
-// const { response } = require("express");
-
 // Pulls user data from the database and displays it 
 document.addEventListener('DOMContentLoaded', () => {
     const userId = localStorage.getItem('id');
@@ -80,7 +78,6 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Fetches & displays users interested cases
-    // function fetchInterestedCases(userId) {
         fetch(`/api/cases?id=${userId}`, {
             method: 'GET',
             credentials: 'include',
