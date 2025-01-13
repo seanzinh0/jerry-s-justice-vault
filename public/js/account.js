@@ -1,3 +1,5 @@
+// const { response } = require("express");
+
 // Pulls user data from the database and displays it 
 document.addEventListener('DOMContentLoaded', () => {
     const userId = localStorage.getItem('id');
@@ -92,22 +94,58 @@ document.addEventListener('DOMContentLoaded', () => {
                 interestedCasesSection.innerHTML = '<p>No interested cases found.</p>';
                 return;
             }
+            
 
             const caseHTML = cases.map(c => `
-                <div class="case-card">
+                <div class="case-card" data-id="${c.id}">
                     <h4>${c.caseName}</h4>
                     <p><strong>Attorney:</strong> ${c.attorney || 'N/A'}</p>
                     <p><strong>Court:</strong> ${c.court}</p>
                     <p><strong>Date Filed:</strong> ${c.dateFiled}</p>
                     <p><strong>Snippet:</strong> ${c.snippet}</p>
                     <a href="${c.doc}" target="_blank" class="case-doc">View Document</a>
+                    <button class="delete-card-btn" aria-label="Delete Bookmark">Delete</button>
                 </div>
                 `).join('');
             interestedCasesSection.innerHTML = caseHTML;
+
+            const deleteButtons = document.querySelectorAll('.delete-card-btn');
+            deleteButtons.forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const caseCard = e.target.closest('.case-card');
+                    const bookmarkID = caseCard.dataset.id; // Get bookmark ID from the data attribute
+                    deleteBookMark(bookmarkID, caseCard);
+                });
+            });
         })
         .catch(error => {
             console.error('Error fetching interested cases:', error);
             interestedCasesSection.innerHTML = '<p>Error loading interested cases.</p>'
-        })
-    // }
+        });
+
+        function deleteBookMark(bookmarkID, caseCard) {
+            fetch(`/api/deleteBookmark?id=${bookmarkID}`, {
+                method: 'DELETE',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify({ id: bookmarkID}),
+            })
+            .then(response => {
+                if (!response.ok) {
+                    throw new Error('Failed to delete bookmark');
+                }
+                return response.json();
+            })
+            .then(result => {
+                console.log(result?.message || 'Bookmark deleted');
+                //Removes card from the UI
+                caseCard.remove();
+            })
+            .catch(error => {
+                console.error('Error deleting bookmark:', error.message || error);
+                alert('Failed to delete bookmark. Please try again later.');
+            });
+        }
+    
 });

@@ -271,6 +271,8 @@ h2 {
 
 /* Individual case card */
 .case-card {
+    position: relative;
+    overflow-x: hidden;
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -320,6 +322,24 @@ h2 {
     background-color: #007bff;
     color: #ffffff;
 }
+
+.delete-card-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    font-size: 1rem;
+    color: rgb(164, 0, 0);
+    cursor: pointer;
+    padding: 5px;
+}
+
+.delete-card-btn:hover {
+    color: red;
+    transform: scale(1.2);
+}
+
 
 /* Responsive adjustments */
 @media (min-width: 600px) {
