@@ -262,11 +262,13 @@ footer {
     place-items: center;
     background-color: #ededed ;
     padding: min(4em, 8%);
+    gap: 1.5rem;
 
 }
 
 .login-form {
     height: 75dvh;
+    height: 75vh;
     width: clamp(40dvh, 80dvw, 80dvh);
     width: clamp(40vh, 80vw, 80vh);
     padding: min(5em, 8%);
@@ -276,7 +278,7 @@ footer {
     flex-direction: column;
     background-color: var(--secondary-color);
     border-radius: 16px;
-
+    position: relative;
 }
 
 .left-container p {
@@ -304,12 +306,14 @@ footer {
 }
 
 .submit-btn {
-    margin-bottom: 50%;
+    margin-bottom: 40%;
 }
 
 hr {
     width: 100%;
     margin-bottom: 1rem;
+    /* margin: 0 auto; */
+    height: 1px;
 }
 
 .login-form input {
@@ -321,10 +325,21 @@ hr {
 }
 
 .sign-up-wrapper {
-    width: 100%;
+    width: 80%;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    position: absolute;
+    bottom: 5%;
+    left: 8%;
+    
+}
+
+.sign-up-info-wrapper {
     display: flex;
-    justify-content: space-between;
-    align-items: center;
+    gap: 15rem;
+    justify-content: space-around;
+    align-items: center;  
+    white-space: nowrap; 
 }
 
 
@@ -377,24 +392,18 @@ dialog::backdrop {
     background: rgba(0, 0, 0, 0.5); 
 }
 
-/* 
-.modal {
-    width: 500px;
-    font-family: 'Arial', sans-serif;
-    border-radius: 16px;
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    transform: translate(-50%, -50%);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-    padding: min(2rem, 4%); 
-    background: white;
-    border-radius: 0.25rem;
-} */
 
+/* responsiveness for ultra small devices */
+@media (max-width: 350px) {
+    .login-form {
+        scale: 0.8;
+    }
+
+    hr {
+        display: block;
+        margin-top: 5rem;
+    }
+}
 
 /* Mobile view adjustments */
 @media(max-width: 710px) {
@@ -429,18 +438,66 @@ dialog::backdrop {
     #check:checked ~ .menu {
         right: 0;
     }
+
+    .main-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column-reverse;
+    }
+
+    .login-form {
+        height: 72dvh;
+        height: 72vh;
+    }
+
+    .sign-up-wrapper {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    hr {
+        width: calc(100% + 9rem)
+    }
+
+    .sign-up-info-wrapper {
+        justify-content: space-between;
+    }
+
+    .sign-up-info-wrapper a {
+       position: absolute;
+       right: -50%;
+    }
+
+
+
+
 }
 
   /* tablet responsivness */
   @media (min-width: 700px) and (max-width: 1400px) {
     .login-form {
-        height: 65dvh;
-        height: 65vh;
+        height: 70dvh;
+        height: 70vh;
     }
 
-    .main-container {
-        grid-template-columns: 1fr;
+    .main-container { 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column-reverse;
+    }
 
+    .left-container {
+        margin-top: 2rem;
+    }
+
+    .welcome-text {
+        margin-top: 1rem;
+    }
+
+    .footer {
+        top: 10vh;
     }
    
   }
@@ -451,6 +508,11 @@ dialog::backdrop {
       height: 80dvh;
       height: 80vh;
     }
+
+     .main-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+     }
   }
 
 
