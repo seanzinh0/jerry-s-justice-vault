@@ -376,6 +376,31 @@ footer {
     margin: 0 auto;
 }
 
+/* sorting container styling */
+.search-form-wrapper {
+    display: grid;
+    margin-top: 2rem;
+}
+
+.sort-container {
+    height: 50px;
+    width: 150px;
+    background-color: #EDEDED;
+    border: none;
+    justify-self: right;
+    margin-right: min(2rem, 9%);
+    margin-bottom: min(-1.5rem, 3%);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+option span {
+    color: blue;
+}
+
+select:focus{
+    outline: none;
+}
 /* Mobile view adjustments */
 @media(max-width: 710px) {
     .menu {
@@ -392,9 +417,13 @@ footer {
         transition: all 0.2s ease-in-out;
     }
 
-    .menu li {
-        margin-top: 40px;
+    .loading-anim {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        translate: -50% -50%;
     }
+
 
     .menu li a {
         padding: 10px;
