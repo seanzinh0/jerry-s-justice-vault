@@ -3,23 +3,74 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Register</title>
     <link rel="stylesheet" href="/css/register.css">
+    <script src="https://kit.fontawesome.com/3a218d1933.js" crossorigin="anonymous"></script>
 </head>
 <body>
     {{>navbar}}
 
+    <header>
+        <div class="header-content">
+            <h1></h1>
+            <h2></h2>
+        </div>
+    </header>
 
-    <form id="register-form">
-        <h1>Sign Up</h1>
-        <input type="text" placeholder="First Name" id="fName">
-        <input type="text" placeholder="Last Name" id="lName">
-        <input type="text" placeholder="Email" id="email">
-        <input type="text" placeholder="Username" id="userName">
-        <input type="text" placeholder="Password" id="password">
-        <button>Submit</button>
-    </form>
+    <dialog data-modal class="modal">
+            <p>Successfully Created User</p>
+            <button data-close-modal>Close</button>
+    </dialog>
+
+    </header>
+    <main>
+        <div class="main-container">
+            <div class="left">
+                <div class="left-container">
+                    <h1 class="welcome-text">Sign Up</h1>
+                    <p>Sign up for an account to save bookmarked cases</p>
+                </div>
+            </div>
+
+            <div class="right">
+                <form  id="register-form">
+                    <h2>Sign Up!</h2>
+
+                    <span class="error-message" id="fName-error"></span>
+                    <label for="first name">First Name</label>
+                    <input type="text" id="fName" name="first name">
+
+                    <span class="error-message" id="lName-error"></span>
+                    <label for="last name">Last Name</label>
+                    <input type="text" id="lName" name="Last Name">
+                    
+                    <span class="error-message" id="email-error"></span>
+                    <label for="email">Email</label>
+                    <input type="text" id="email" name="email">
+                    
+                    <span class="error-message" id="userName-error"></span>
+                    <label for="username">Username</label>
+                    <input type="text" id="userName" name="Username">
+
+                    <span class="error-message" id="password-error"></span>
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password">  
+
+
+                    <button type="submit" class="submit-btn">Sign Up</button>
+
+                    <hr>
+                    <div class="sign-up-wrapper">
+                        <p>Already have an account?</p>
+                        <a href="/login">Login&#8599</a>
+                    </div>
+                
+                </form>
+            </div>
+        </div>
+    </main>
 
     {{>footer}}
+    <script src="js/register.js"></script>
 </body>
 </html>

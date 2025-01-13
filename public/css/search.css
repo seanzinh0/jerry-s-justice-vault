@@ -205,7 +205,7 @@ h1, h2, h3{
     justify-content: center;
     background-color: #fff;
     margin-bottom: 1.5rem;
-    padding: 1rem;
+    padding: 2rem;
     border-radius: 10px;
     border:1px solid #dadde1;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
@@ -350,6 +350,31 @@ footer {
     font-size: 12px;
 }
 
+
+
+/* bookmark icon and loading anim. styling */
+.bookmark-wrapper {
+    height: 199.98px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 5rem;
+}
+
+.bookmark-wrapper i:hover {
+    cursor: pointer;
+}
+
+.bookmark-wrapper button {
+    width: 3rem;
+    overflow: hidden;
+}
+
+.loading-anim {
+    margin: 0 auto;
+}
+
 /* Mobile view adjustments */
 @media(max-width: 710px) {
     .menu {
@@ -382,6 +407,25 @@ footer {
     /* When the checkbox is checked, show the menu */
     #check:checked ~ .menu {
         right: 0;
+    }
+    
+    .case {
+        flex-direction: column;
+    }
+
+    .case-name {
+        width: 100%;
+        text-align: center;
+        border-right: none;
+    }
+
+    .case-desc {
+        width: 100%;
+        text-align: center;
+    }
+
+    .case button {
+        width: 50%;
     }
 }
 

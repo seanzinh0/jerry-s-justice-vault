@@ -2,10 +2,11 @@ const path = require('path');
 const express = require('express');
 const hbs = require('hbs');
 const courtListener = require('./utils/courtlistener');
-const {insertUserData} = require('./database/databaseQueries');
+const {insertUserData, displayLegalCases} = require('./database/databaseQueries');
 const {getUserId} = require('./database/databaseQueries');
 const {getAccountInfoById} = require('./database/databaseQueries');
-
+const {insertLegalCase} = require('./database/databaseQueries');
+const {displayLegalCase} = require('./database/databaseQueries');
 
 const app = express();
 
@@ -18,6 +19,7 @@ app.set('view engine', 'hbs');
 hbs.registerPartials(partialsPath);
 
 app.use(express.static(publicDirectoryPath));
+app.use(express.json());
 
 app.get('', (req, res) => {
     res.render('index');
@@ -48,19 +50,14 @@ app.get('/login', (req, res) => {
 })
 
 app.post('/api/login', (req, res) => {
-    if(!req.query.username && !req.query.password) {
+    if(!req.body.username && !req.body.password) {
         return res.send({
             error: "Please provide a username and password to login"
         })
     }
-    getUserId(req.query.username, req.query.password).then(result => {
+    getUserId(req.body.username, req.body.password).then(result => {
         res.send(result);
-    }).catch(err => {
-        res.status(401).send({
-            err: 'Invalid username or password'
-        })
-    })
-
+    });
 })
 
 app.get('/register', (req, res) => {
@@ -69,12 +66,12 @@ app.get('/register', (req, res) => {
 
 app.post('/api/register', (req, res) => {
     console.log("Receive request");
- if(!req.query.username && !req.query.firstName && !req.query.lastName && !req.query.email &&  !req.query.password ) {
+ if(!req.body.username && !req.body.firstName && !req.body.lastName && !req.body.email &&  !req.body.password ) {
      return res.send({
          error: "You must provide a value for a user"
      })
  }
- insertUserData(req.query.username, req.query.firstName, req.query.lastName, req.query.email, req.query.password).then(result => {
+ insertUserData(req.body.username, req.body.firstName, req.body.lastName, req.body.email, req.body.password).then(result => {
      res.send(result)
  });
 })
@@ -92,6 +89,23 @@ app.get('/api/account', (req, res) => {
     getAccountInfoById(req.query.id).then(result => {
         res.send(result)
     })
+})
+
+app.post('/api/insertLegalCase', (req, res) => {
+    const { userID, attorney, caseName, court, dateFiled, doc, snippet } = req.body;
+    insertLegalCase(userID, attorney, caseName, court, dateFiled, doc, snippet).then(result => {
+        res.send(result)
+    })
+})
+
+app.get('/api/cases', (req, res) => {
+    displayLegalCases(req.query.id).then(result => {
+        res.send(result)
+    })
+})
+
+app.get('*', (req, res) => {
+    res.render('404');
 })
 
 const port = process.env.PORT || 3000;

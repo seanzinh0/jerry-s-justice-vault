@@ -5,19 +5,50 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
-    <script src="https://kit.fontawesome.com/3a218d1933.js" crossorigin="anonymous"></script>
+     <script src="https://kit.fontawesome.com/3a218d1933.js" crossorigin="anonymous" defer></script>
     <link rel="stylesheet" href="/css/login.css">
 </head>
 <body>
     {{>navbar}}
     <header>
     <div class="header-content">
-    <h1></h1>
-    <h2></h2>
+        <h1></h1>
+        <h2></h2>
     </div>
 </header>
+
+        <dialog data-modal class="modal">
+            <p>Redirecting to account page...</p> 
+            <lottie-player src="https://lottie.host/dc237204-66bf-4b5c-81bd-d356df729d70/qG13T5zBBS.json" background="##ffffff" speed="1.4" style="width: 100px; height: 100px" loop autoplay direction="1" mode="normal"></lottie-player>
+        </dialog>
+
+
     <main>
         <div class="main-container">
+
+             <div class="right">
+                <form class="login-form">
+                    <h2>Log In</h2>
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username">
+                   
+                    <label  for="password">Password</label>
+                    <input type="password" id="password" name="password">    
+
+
+                <button type="submit" class="submit-btn">Log In</button>
+                <div class="sign-up-wrapper">
+                    <hr>
+
+                    <div class="sign-up-info-wrapper">
+                        <p>Don't have an account</p>
+                        <a href="/register">Sign Up&#8599</a>
+                    </div>
+                </div>
+
+                </form>
+            </div>
+            
             <div class="left">
                 <div class="left-container">
                     <h1 class="welcome-text">WELCOME</h1>
@@ -25,27 +56,15 @@
                 </div>
             </div>
 
-            <div class="right">
-                <form  class="login-form">
-                    <h2>Log In</h2>
-                    <label for="username">Username</label>
-                    <input type="text" id="username" name="username">
-                   
-                    <label for="password">Password</label>
-                    <input type="password" id="password" name="password">    
 
 
-                <button type="submit" class="submit-btn">Log In</button>
-                <hr>
-                <div class="sign-up-wrapper">
-                    <p>Don't have an account</p>
-                    <a href="/register">Sign Up&#8599</a>
-                </div>
-                </form>
-            </div>
+
+           
         </div>
     </main>
         {{>footer}}
     <script src="js/login.js"></script>
-</body>
+    <script src="js/script.js"></script>
+    <script src="https://unpkg.com/@lottiefiles/lottie-player@2.0.8/dist/lottie-player.js"></script>
+    </body>
 </html>

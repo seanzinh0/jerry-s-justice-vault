@@ -28,8 +28,9 @@ header {
     align-items: center;
     justify-content: center;
     text-align: center;
-  }
-  header::after {
+}
+
+header::after {
     content: "";
     position: absolute;
     top: 0;
@@ -37,30 +38,24 @@ header {
     width: 100%;
     height: 100%;
     background: rgba(0, 0, 0, 0.5);
-  }
-  .header-content {
+}
+
+.header-content {
     position: relative;
     z-index: 2;
-  }
-  .header-content h1 {
+}
+
+.header-content h1 {
     margin: 0;
     font-size: 2.5em;
-  }
-
-/* body {
-    font-family: 'Times New Roman', Times, serif;
-    font-size: 1.2rem;
-    background-color: whitesmoke;
-    color: #FFF;
-    min-height: 100vh;
-    display: flex;
-    flex-direction: column;
-} */
+}
 
 #mini-hero-txt {
     color: #bc9859;
 }
 
+
+/* Body Styles */
 body {
     font-family: 'Times New Roman', Times, serif;
     line-height: 1.6;
@@ -73,7 +68,6 @@ body {
 
 h1 {
     text-align: center;
-    /* color: rgb(237, 241, 227); */
     color: white;
 }
 
@@ -161,16 +155,17 @@ h2 {
 }
 
 
-
 /* Container Section */
 .container {
     max-width: 800px;
+    text-align: center;
     margin: 50px auto;
     background-color: #20263E;
     padding: 20px 30px;
     border-radius: 8px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
 } 
+
 
 /* User Info */
 #user-info-form {
@@ -186,9 +181,7 @@ h2 {
     text-align: center;
     font-size: 1.2rem;
 }
-/* #user-info-form strong {
-    color: rgb(53, 53, 53);
-} */
+
 
 /* Button Container */
 .button-container {
@@ -207,6 +200,140 @@ h2 {
     cursor: pointer;
     background-color: rgb(129, 0, 0);
 }
+
+
+/* Modal Styles */
+#account-modal {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    z-index: 1000;
+    width: 80%;
+    max-width: 400px;
+    background-color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+    text-align: center;
+    padding: 20px;
+    animation: fadeIn 0.5s;
+}
+
+#account-modal .modal-content h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+}
+
+#account-modal .modal-content p {
+    font-size: 1em;
+    margin-bottom: 20px;
+}
+
+#account-modal .modal-button {
+    padding: 10px 20px;
+    background-color: #bc9859;
+    color: #20263E;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+}
+
+#account-modal .modal-button:hover {
+    background-color: #AA8A50;
+}
+
+/* Blur effect */
+.container.blur {
+    filter: blur(5px);
+    pointer-events: none;
+}
+
+/* Animation for fadeIn on modal */
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+
+/* Interested Case Cards */
+/* General container for the cases section */
+#interested-cases {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px; /* Space between cards */
+    justify-content: center; /* Center cards horizontally */
+    padding: 20px;
+    box-sizing: border-box;
+}
+
+/* Individual case card */
+.case-card {
+    background-color: #ffffff;
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    padding: 15px;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    width: calc(100% - 40px); /* Full width minus padding for small screens */
+    max-width: 400px; /* Restrict the max width for larger screens */
+    box-sizing: border-box;
+    transition: transform 0.3s, box-shadow 0.3s; /* Smooth hover effects */
+}
+
+/* Hover effects for case cards */
+.case-card:hover {
+    transform: translateY(-5px); /* Slight lift on hover */
+    box-shadow: 0 6px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Case card headings */
+.case-card h4 {
+    font-size: 1.2rem;
+    color: #333;
+    margin-bottom: 10px;
+}
+
+/* Case card paragraphs */
+.case-card p {
+    margin: 5px 0;
+    font-size: 0.95rem;
+    color: #555;
+}
+
+/* Case document link */
+.case-card .case-doc {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 0.9rem;
+    color: #007bff;
+    text-decoration: none;
+    border: 1px solid #007bff;
+    padding: 8px 12px;
+    border-radius: 5px;
+    transition: background-color 0.3s, color 0.3s;
+}
+
+/* Hover effect for document link */
+.case-card .case-doc:hover {
+    background-color: #007bff;
+    color: #ffffff;
+}
+
+/* Responsive adjustments */
+@media (min-width: 600px) {
+    .case-card {
+        width: calc(50% - 20px); /* Two cards per row */
+    }
+}
+
+@media (min-width: 900px) {
+    .case-card {
+        width: calc(33.333% - 20px); /* Three cards per row */
+    }
+}
+
 
 /* Footer Section */
 .footer {
@@ -368,18 +495,3 @@ footer {
 @media(max-width: 413px) {
 
 }
-
-
-/* #save-btn  {
-    background-color: #bc9859;
-    color: #20263E;
-    font-size: 1rem;
-    padding: 12px;
-    margin-right: 6rem;
-    border: none;
-    border-radius: .4rem;
-}
-#save-btn:hover {
-    cursor: pointer;
-    background-color: #be882c;
-} */

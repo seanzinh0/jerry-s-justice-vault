@@ -1,48 +1,27 @@
 const pool = require('./connectionPool.js');
 const bcrypt = require('bcryptjs');
+const crypto = require('crypto');
+const dotenv = require('dotenv');
+dotenv.config();
 
-async function fetchUserData(neededData = '*') {
-    switch(neededData) {
-        case 'id': {
-            neededData = 'id'
-            break;
-        }
-        case 'firstName': {
-            neededData = 'firstName'
-            break;
-        }
-        case 'lastName': {
-            neededData = 'lastName'
-            break;
-        }
-        case 'email': {
-            neededData = 'email'
-            break;
-        }
-        case 'username': {
-            neededData = 'username'
-            break;
-        }
-        case 'password': {
-            neededData = 'password'
-            break;
-        }
-        default: 
-            neededData = '*';
-            break;
-    }
+const secretKey = Buffer.from(process.env.SECRET_KEY, 'hex');
+const iv = Buffer.from(process.env.IV, 'hex');
 
-    const connection = await pool.getConnection();
-    try {
-         const [rows] = await connection.query(`SELECT * FROM users`)
-         return rows;
-    } catch (e) {
-        console.error('Error fetching user:', e);
-    } finally {
-        connection.release();
-    }
-};
+function encryptID(id) {
+    const cipher = crypto.createCipheriv('aes-256-cbc', secretKey, iv);
+    let encrypt = cipher.update(id.toString(), 'utf8', 'hex');
+    encrypt += cipher.final('hex');
+    return encrypt;
+}
 
+function decryptID(id) {
+    const decipher = crypto.createDecipheriv('aes-256-cbc', secretKey, iv);
+    let decrypt = decipher.update(id.toString(), 'hex', 'utf8');
+    decrypt += decipher.final('utf8');
+    return decrypt;
+}
+
+//update register functionality
 async function insertUserData(username, firstName, lastName, email, password) {
         const connection = await pool.getConnection();
         const hashedPassword = await bcrypt.hash(password, 10);
@@ -53,16 +32,18 @@ async function insertUserData(username, firstName, lastName, email, password) {
                 WHERE username = ? OR email = ?;
             `, [username, email]);
             if (existingUser.length > 0) {
-                return 'Username or email already exists';
+                return {
+                    error: 'Username or email already exists'};
             }
-            const [rows] = await connection.query('INSERT INTO `jjv`.`users` (`username`, `firstName`, `lastName`, `email`, `password`) VALUES (?, ?, ?, ?, ?);', [username, firstName, lastName, email, hashedPassword]);
-            return 'Registration successful!'
+            const [rows] = await connection.query('INSERT INTO `JJV`.`users` (`username`, `firstName`, `lastName`, `email`, `password`) VALUES (?, ?, ?, ?, ?);', [username, firstName, lastName, email, hashedPassword]);
+            return {success: true,
+            message: "Registration successful!"}
         } catch (e) {
             console.error('Error inserting user:', e);
+            throw e;
         } finally {
             connection.release();
         }
-    
 }
 
 
@@ -79,7 +60,8 @@ async function getUserId(username, password) {
         if (rows.length > 0) {
             const isValidPassword = await bcrypt.compare(password, rows[0].password);
             if(isValidPassword) {
-                return { id: rows[0].id };
+                const encryptedID = encryptID(rows[0].id);
+                return { id: encryptedID };
             } else {
                 return 'Invalid password';
             }
@@ -97,10 +79,11 @@ async function getUserId(username, password) {
 async function getAccountInfoById(id) {
     const connection = await pool.getConnection();
     try {
+        const decryptedID = decryptID(id)
         const [rows] = await connection.query(`
         SELECT username, firstName, lastName, email
         FROM users
-        WHERE id = ?`, [id]);
+        WHERE id = ?`, [decryptedID]);
         return rows[0];
     } catch (e) {
         console.error('Error finding account information: ', e);
@@ -109,10 +92,42 @@ async function getAccountInfoById(id) {
         connection.release();
     }
 }
+//comment
+async function insertLegalCase(userID, attorney, caseName, court, dateFiled, doc, snippet) {
+    const connection = await pool.getConnection();
+    try {
+        const decryptedID = decryptID(userID);
+        const [rows] = await connection.query('INSERT INTO `JJV`.`legal_cases` (`user_id`, `attorney`, `caseName`, `court`, `dateFiled`, `doc`, `snippet`) VALUES (?, ?, ?, ?, ?, ?, ?);', [decryptedID, attorney, caseName, court, dateFiled, doc, snippet]);
+        return 'Case bookmarked'
+    } catch (e) {
+        console.error('Cannot bookmark case: ', e);
+        throw e;
+    }
+    finally {
+        connection.release();
+    }
+}
+
+async function displayLegalCases(id) {
+    const connection = await pool.getConnection();
+    try {
+        const decryptedID = decryptID(id)
+        const [rows] = await connection.query(`SELECT * FROM legal_cases WHERE user_id = ?;`, [decryptedID]);
+        return rows;
+    } catch (e) {
+        console.error('Error getting legal cases: ', e);
+        throw e;
+    }
+    finally {
+        connection.release();
+    }
+}
+//comment b
 
 module.exports =  {
-    fetchUserData,
     insertUserData,
     getUserId,
-    getAccountInfoById
+    getAccountInfoById,
+    insertLegalCase,
+    displayLegalCases
 };

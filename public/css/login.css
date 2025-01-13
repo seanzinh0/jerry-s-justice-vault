@@ -251,6 +251,160 @@ footer {
     font-size: 12px;
 }
 
+
+
+/* ----------------------- submit form styling ----------------------------- */
+.main-container {
+    width: 100vw;
+    height: 100vh;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
+    place-items: center;
+    background-color: #ededed ;
+    padding: min(4em, 8%);
+    gap: 1.5rem;
+
+}
+
+.login-form {
+    height: 75dvh;
+    height: 75vh;
+    width: clamp(40dvh, 80dvw, 80dvh);
+    width: clamp(40vh, 80vw, 80vh);
+    padding: min(5em, 8%);
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-direction: column;
+    background-color: var(--secondary-color);
+    border-radius: 16px;
+    position: relative;
+}
+
+.left-container p {
+    margin-bottom: 1rem;
+}
+
+.login-form p,
+ .login-form label,
+ .login-form h2 {
+    color: white;
+}
+
+.login-form a,
+.login-form a:visited {
+    color: white;
+    text-decoration: none;
+}
+
+.login-form a:hover {
+    text-decoration: underline;
+}
+
+.login-form h2 {
+    margin-bottom: 1rem;
+}
+
+.submit-btn {
+    margin-bottom: 40%;
+}
+
+hr {
+    width: 100%;
+    margin-bottom: 1rem;
+    /* margin: 0 auto; */
+    height: 1px;
+}
+
+.login-form input {
+    width: 80%; 
+    max-width: 400px; 
+    padding: 10px;
+    background-color: var(--primary-color);
+ 
+}
+
+.sign-up-wrapper {
+    width: 80%;
+    display: grid;
+    grid-template-rows: repeat(2, 1fr);
+    position: absolute;
+    bottom: 5%;
+    left: 8%;
+    
+}
+
+.sign-up-info-wrapper {
+    display: flex;
+    gap: 15rem;
+    justify-content: space-around;
+    align-items: center;  
+    white-space: nowrap; 
+}
+
+
+.left-container {
+    display: grid;
+    grid-template-rows: 1fr 1fr;
+    place-items: center;
+
+}
+.welcome-text {
+    font-size: clamp(1.8rem, calc(7vw + 1rem), 5rem); /*vw unit won't zoom in must use calc() with vw*/
+}
+
+#username, #password {
+    background-color: white;
+    color: black;
+    text-align: left;
+    filter: brightness(calc(100% + 10%));
+    border-radius: 0;
+    border: 2px solid black;
+}
+
+
+.submit-btn {
+    border-radius: 0;
+}
+
+ .modal {
+     position: absolute;
+     top: 50%;
+     width: 500px; 
+    font-family: 'Arial', sans-serif;
+    margin: 0 auto;
+    border-radius: 16px;
+    padding: min(2rem, 4%); 
+    text-align: center;
+    background: #ffffff; 
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1), 0 1px 3px rgba(0, 0, 0, 0.06); 
+    font-family: 'Arial', sans-serif;
+    color: #333;
+   
+} 
+
+lottie-player {
+    margin: 0 auto;
+}
+
+
+dialog::backdrop {
+    background: rgba(0, 0, 0, 0.5); 
+}
+
+
+/* responsiveness for ultra small devices */
+@media (max-width: 350px) {
+    .login-form {
+        scale: 0.8;
+    }
+
+    hr {
+        display: block;
+        margin-top: 5rem;
+    }
+}
+
 /* Mobile view adjustments */
 @media(max-width: 710px) {
     .menu {
@@ -284,98 +438,90 @@ footer {
     #check:checked ~ .menu {
         right: 0;
     }
+
+    .main-container {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column-reverse;
+    }
+
+    .login-form {
+        height: 72dvh;
+        height: 72vh;
+    }
+
+    .sign-up-wrapper {
+        width: 50%;
+        margin: 0 auto;
+    }
+
+    hr {
+        width: calc(100% + 9rem)
+    }
+
+    .sign-up-info-wrapper {
+        justify-content: space-between;
+    }
+
+    .sign-up-info-wrapper a {
+       position: absolute;
+       right: -50%;
+    }
+
+
+
+
 }
 
+  /* tablet responsivness */
+  @media (min-width: 700px) and (max-width: 1400px) {
+    .login-form {
+        height: 70dvh;
+        height: 70vh;
+    }
 
+    .main-container { 
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        flex-direction: column-reverse;
+    }
 
-/* ----------------------- submit form styling ----------------------------- */
-.main-container {
-    width: 100vw;
-    height: 100vh;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    place-items: center;
-    background-color: #ededed ;
-}
+    .left-container {
+        margin-top: 2rem;
+    }
 
-.login-form {
-    height: 80vh;
-    width: 40vw;
-    background-color: green ;
-    padding: 5rem;
-    display: flex;
-    justify-content: flex-start;
-    align-items: flex-start;
-    flex-direction: column;
-    background-color: var(--secondary-color);
+    .welcome-text {
+        margin-top: 1rem;
+    }
 
-}
-.login-form p,
- .login-form label,
- .login-form h2 {
-    color: white;
-}
+    hr {
+        translate: -3%;
+        scale: 0.9;
+    }
 
-.login-form a,
-.login-form a:visited {
-    color: white;
-    text-decoration: none;
-}
+    .sign-up-info-wrapper a {
+        translate: -15%;
+    }
 
-.login-form a:hover {
-    text-decoration: underline;
-}
+    .footer {
+        top: 10vh;
+    }
+   
+  }
 
-.login-form h2 {
-    margin-bottom: 1rem;
-}
+/* desktop responsiveness */
+@media (min-width: 1024px) {
+    .login-form {
+      height: 80dvh;
+      height: 80vh;
+    }
 
-.submit-btn {
-    margin-bottom: 50%;
-}
+     .main-container {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+     }
+  }
 
-hr {
-    width: 100%;
-    margin-bottom: 1rem;
-}
-
-.login-form input {
-    width: 80%; 
-    max-width: 400px; 
-    padding: 10px;
-    background-color: var(--primary-color);
- 
-}
-
-.sign-up-wrapper {
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-
-.left-container {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    place-items: center;
-}
-.welcome-text {
-    font-size: 5rem;
-    white-space: pre-wrap;
-}
-
-#username, #password {
-    background-color: white;
-    color: black;
-    text-align: left;
-    filter: brightness(calc(100% + 10%));
-    border-radius: 0;
-    border: 2px solid black;
-}
-
-
-.submit-btn {
-    border-radius: 0;
-}
 
