@@ -9,6 +9,7 @@ const password = document.getElementById('password');
 const openButton = document.querySelector('[data-open-modal]');
 const closeButton = document.querySelector('[data-close-modal]');
 const modal = document.querySelector('dialog');
+const modalOriginalContent = modal.innerHTML;
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
@@ -33,12 +34,20 @@ async function processUserRegister() {
         });
 
         const result = await response.json();
+        console.log(result);
+
+        // reset back to original content for when user correctly enters their login 
+        modal.innerHTML = modalOriginalContent
         
 
         // checks if username or email exist in db
         if (result.error) {
             modal.innerHTML = `<p>${result.error}</p>`;
             modal.showModal();
+
+            setTimeout(() => {
+                modal.close();
+            }, 2000);
             return;
         }        
             localStorage.setItem('username', result.username);
@@ -53,12 +62,12 @@ async function processUserRegister() {
             email.value = '';
             password.value = '';
 
-            modal.textContent = 'Registration successful!';
             modal.showModal();
 
             setTimeout(() => {
                 modal.close();
-            }, 2000);
+                window.location.href = '/login';
+            }, 4000);
 
 
     } catch(e) {
