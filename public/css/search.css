@@ -209,6 +209,7 @@ h1, h2, h3{
     border-radius: 10px;
     border:1px solid #dadde1;
     transition: transform 0.3s ease, box-shadow 0.3s ease;
+    overflow-x: hidden;
 }
 
 .case:hover {
@@ -249,8 +250,7 @@ h1, h2, h3{
 }
 
 .case button{
-    width: 10%;
-    padding: .7rem;
+    padding: 1rem;
     background-color: #AA8A50;
     border-radius: 5px;
     border: none;
@@ -367,7 +367,7 @@ footer {
 }
 
 .bookmark-wrapper button {
-    width: 3rem;
+    margin: 0 1rem;
     overflow: hidden;
 }
 
@@ -375,6 +375,31 @@ footer {
     margin: 0 auto;
 }
 
+/* sorting container styling */
+.search-form-wrapper {
+    display: grid;
+    margin-top: 2rem;
+}
+
+.sort-container {
+    height: 50px;
+    width: 150px;
+    background-color: #EDEDED;
+    border: none;
+    justify-self: right;
+    margin-right: min(2rem, 9%);
+    margin-bottom: min(-1.5rem, 3%);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+option span {
+    color: blue;
+}
+
+select:focus{
+    outline: none;
+}
 /* Mobile view adjustments */
 @media(max-width: 710px) {
     .menu {
@@ -391,9 +416,13 @@ footer {
         transition: all 0.2s ease-in-out;
     }
 
-    .menu li {
-        margin-top: 40px;
+    .loading-anim {
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        translate: -50% -50%;
     }
+
 
     .menu li a {
         padding: 10px;
@@ -411,6 +440,7 @@ footer {
     
     .case {
         flex-direction: column;
+        text-align: center;
     }
 
     .case-name {
@@ -425,7 +455,9 @@ footer {
     }
 
     .case button {
-        width: 50%;
+        width: 100%;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
     }
 }
 

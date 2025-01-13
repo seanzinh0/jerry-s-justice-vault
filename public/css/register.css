@@ -404,6 +404,10 @@ dialog::backdrop {
     gap: 1rem;
 }
 
+lottie-player {
+    margin: 0 auto;
+}
+
 button {
     padding: 0.5rem 1rem;
     font-size: 0.9rem;
@@ -473,7 +477,6 @@ input .error-border {
 
     #register-form {
         margin: 1rem 0;
-        /* margin-left: 1rem; */
     }
 }
 
@@ -482,7 +485,7 @@ input .error-border {
 
     #register-form {
         margin: 1rem 0;
-        /* margin-left: 1rem; */
+
     }
 
     .main-container {

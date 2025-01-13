@@ -25,10 +25,26 @@
     
 
     <div class="form-container">
-        <form id="search-form">
-            <input id="search-case" type="text" placeholder="Search Case">
-            <button class="submit-btn">Search</button>
-        </form>
+        <div class="search-form-wrapper">
+
+             <select class="sort-container">
+                <option value="default">Sort by: Type</option>
+                <option value="A-Z">Cases: A to Z</option>
+                <option value="Z-A">Cases: Z to A</option>
+                <option value="Attorney">Has Attorney</option>
+                <option value="No-Attorney">No Attorney</option>
+
+            </select>
+
+            <form id="search-form">
+                <input id="search-case" type="text" placeholder="Search Case">
+                <button class="submit-btn">Search</button>
+
+            </form>
+
+           
+        </div>
+
     </div>
 
     <div class="container">

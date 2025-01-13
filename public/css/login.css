@@ -421,6 +421,7 @@ dialog::backdrop {
         transition: all 0.2s ease-in-out;
     }
 
+
     .menu li {
         margin-top: 40px;
     }
@@ -457,16 +458,16 @@ dialog::backdrop {
     }
 
     hr {
-        width: calc(100% + 9rem)
+        width: calc(100%)
     }
 
     .sign-up-info-wrapper {
         justify-content: space-between;
+        gap: 1rem;
     }
 
     .sign-up-info-wrapper a {
-       position: absolute;
-       right: -50%;
+       margin-left: 1rem;
     }
 
 
@@ -479,6 +480,8 @@ dialog::backdrop {
     .login-form {
         height: 70dvh;
         height: 70vh;
+        width: 60dvh;
+        height: 60vh;
     }
 
     .main-container { 
