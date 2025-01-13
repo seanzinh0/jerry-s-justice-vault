@@ -496,6 +496,15 @@ dialog::backdrop {
         margin-top: 1rem;
     }
 
+    hr {
+        translate: -3%;
+        scale: 0.9;
+    }
+
+    .sign-up-info-wrapper a {
+        translate: -15%;
+    }
+
     .footer {
         top: 10vh;
     }

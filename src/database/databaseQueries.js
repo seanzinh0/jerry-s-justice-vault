@@ -26,15 +26,36 @@ async function insertUserData(username, firstName, lastName, email, password) {
         const connection = await pool.getConnection();
         const hashedPassword = await bcrypt.hash(password, 10);
         try {
-            const [existingUser] = await connection.query(`
+            const [existingUserName] = await connection.query(`
                 SELECT id
                 FROM users
-                WHERE username = ? OR email = ?;
-            `, [username, email]);
-            if (existingUser.length > 0) {
+                WHERE username = ?;
+                `, [username]);
+
+            const [existingEmail] = await connection.query(`
+                SELECT id
+                FROM users
+                WHERE email = ?;
+                `, [email]);
+
+            if(existingUserName.length > 0 && existingEmail.length > 0) {
                 return {
-                    error: 'Username or email already exists'};
+                    error: 'Username and email already exists'
+                }
             }
+
+            if (existingUserName.length > 0) {
+                return {
+                    error: 'Username already exists'
+                };
+            }
+
+            if (existingEmail.length > 0) {
+                return {
+                    error: 'Email already exists'
+                }
+            }
+
             const [rows] = await connection.query('INSERT INTO `JJV`.`users` (`username`, `firstName`, `lastName`, `email`, `password`) VALUES (?, ?, ?, ?, ?);', [username, firstName, lastName, email, hashedPassword]);
             return {success: true,
             message: "Registration successful!"}
@@ -122,12 +143,27 @@ async function displayLegalCases(id) {
         connection.release();
     }
 }
-//comment b
+
+async function deleteBookMark(bookmarkID) {
+    const connection = await pool.getConnection();
+    try {
+        const [rows] = await connection.query(`
+        DELETE FROM legal_cases  WHERE id = ?;`, [bookmarkID]);
+    } catch (e) {
+        console.error('Error deleting legal cases: ', e);
+        throw e;
+    }
+    finally {
+        connection.release();
+    }
+}
+
 
 module.exports =  {
     insertUserData,
     getUserId,
     getAccountInfoById,
     insertLegalCase,
-    displayLegalCases
+    displayLegalCases,
+    deleteBookMark
 };
