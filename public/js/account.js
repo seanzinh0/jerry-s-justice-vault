@@ -97,7 +97,7 @@ document.addEventListener('DOMContentLoaded', () => {
             
 
             const caseHTML = cases.map(c => `
-                <div class="case-card">
+                <div class="case-card" data-id="${c.id}">
                     <h4>${c.caseName}</h4>
                     <p><strong>Attorney:</strong> ${c.attorney || 'N/A'}</p>
                     <p><strong>Court:</strong> ${c.court}</p>
@@ -113,7 +113,7 @@ document.addEventListener('DOMContentLoaded', () => {
             deleteButtons.forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     const caseCard = e.target.closest('.case-card');
-                    const bookmarkID = caseCard.dataset.id;
+                    const bookmarkID = caseCard.dataset.id; // Get bookmark ID from the data attribute
                     deleteBookMark(bookmarkID, caseCard);
                 });
             });
@@ -124,7 +124,7 @@ document.addEventListener('DOMContentLoaded', () => {
         });
 
         function deleteBookMark(bookmarkID, caseCard) {
-            fetch('/api/deleteBookmark', {
+            fetch(`/api/deleteBookmark?id=${bookmarkID}`, {
                 method: 'DELETE',
                 headers: {
                     'Content-Type': 'application/json',
@@ -138,13 +138,14 @@ document.addEventListener('DOMContentLoaded', () => {
                 return response.json();
             })
             .then(result => {
-                console.log(result.message)
+                console.log(result?.message || 'Bookmark deleted');
+                //Removes card from the UI
                 caseCard.remove();
             })
             .catch(error => {
-                console.error('Error deleting bookmark:', error);
+                console.error('Error deleting bookmark:', error.message || error);
                 alert('Failed to delete bookmark. Please try again later.');
             });
         }
-    // }
+    
 });
