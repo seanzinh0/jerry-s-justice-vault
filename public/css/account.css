@@ -272,6 +272,7 @@ h2 {
 /* Individual case card */
 .case-card {
     position: relative;
+    overflow-x: hidden;
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
