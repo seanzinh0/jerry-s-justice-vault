@@ -25,11 +25,13 @@ document.addEventListener('DOMContentLoaded', () => {
         </div>
         `;
 
+        // Go to login button on blurry modal
         document.getElementById('redirect-login').addEventListener('click', () => {
             window.location.href = '/login';
         });
     }
 
+    // Shows modal if user isn't signed in
     if (!userId) {
         showModal();
         return;
@@ -94,8 +96,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 interestedCasesSection.innerHTML = '<p>No interested cases found.</p>';
                 return;
             }
-            
 
+            // Bookmarked Cases Cards
             const caseHTML = cases.map(c => `
                 <div class="case-card" data-id="${c.id}">
                     <h4>${c.caseName}</h4>
@@ -104,7 +106,7 @@ document.addEventListener('DOMContentLoaded', () => {
                     <p><strong>Date Filed:</strong> ${c.dateFiled}</p>
                     <p><strong>Snippet:</strong> ${c.snippet}</p>
                     <a href="${c.doc}" target="_blank" class="case-doc">View Document</a>
-                    <button class="delete-card-btn" aria-label="Delete Bookmark">Delete</button>
+                    <button class="delete-card-btn" aria-label="Delete Bookmark">&times;</button>
                 </div>
                 `).join('');
             interestedCasesSection.innerHTML = caseHTML;
@@ -123,6 +125,7 @@ document.addEventListener('DOMContentLoaded', () => {
             interestedCasesSection.innerHTML = '<p>Error loading interested cases.</p>'
         });
 
+        // Bookmark Deletion
         function deleteBookMark(bookmarkID, caseCard) {
             fetch(`/api/deleteBookmark?id=${bookmarkID}`, {
                 method: 'DELETE',
@@ -147,5 +150,4 @@ document.addEventListener('DOMContentLoaded', () => {
                 alert('Failed to delete bookmark. Please try again later.');
             });
         }
-    
 });
