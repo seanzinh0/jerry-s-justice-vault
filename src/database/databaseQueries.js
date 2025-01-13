@@ -149,6 +149,7 @@ async function deleteBookMark(bookmarkID) {
     try {
         const [rows] = await connection.query(`
         DELETE FROM legal_cases  WHERE id = ?;`, [bookmarkID]);
+        return {success: true, message: `Bookmark deleted successfully.`};
     } catch (e) {
         console.error('Error deleting legal cases: ', e);
         throw e;

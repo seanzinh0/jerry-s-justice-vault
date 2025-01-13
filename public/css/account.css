@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 /* Overall Body */
 * {
     box-sizing: border-box;
@@ -5,6 +7,7 @@
     padding: 0;
 }
 
+/* Navbar & Header */
 .navbar {
     width: 100%;
     display: flex;
@@ -57,7 +60,7 @@ header::after {
 
 /* Body Styles */
 body {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: Playfair display;
     line-height: 1.6;
     margin: 0;
     padding: 0; 
@@ -183,7 +186,7 @@ h2 {
 }
 
 
-/* Button Container */
+/* Logout Button Container */
 .button-container {
     text-align: center;
 }
@@ -271,6 +274,8 @@ h2 {
 
 /* Individual case card */
 .case-card {
+    position: relative;
+    overflow-x: hidden;
     background-color: #ffffff;
     border: 1px solid #ddd;
     border-radius: 8px;
@@ -320,6 +325,24 @@ h2 {
     background-color: #007bff;
     color: #ffffff;
 }
+
+.delete-card-btn {
+    position: absolute;
+    top: 8px;
+    right: 8px;
+    background: none;
+    border: none;
+    font-size: 1.5rem;
+    color: rgb(164, 0, 0);
+    cursor: pointer;
+    padding: 5px;
+}
+
+.delete-card-btn:hover {
+    color: red;
+    transform: scale(1.2);
+}
+
 
 /* Responsive adjustments */
 @media (min-width: 600px) {
@@ -454,6 +477,13 @@ footer {
     text-align: center;
     color: white;
     font-size: 12px;
+}
+
+@media(max-width: 860px) {
+    #account-container {
+        margin-left: 1rem;
+        margin-right: 1rem;
+    }
 }
 
 /* Mobile view adjustments */
