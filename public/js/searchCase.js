@@ -13,7 +13,7 @@ submitBtn.addEventListener('click', () => {
     loadingAnim.style.display = "block";
     userSelectedOption.style.visibility = 'hidden'
     userSelectedOption.value = 'default'
-    similarCases.innerHTML = '';
+    similarCases.innerHTML = ''
 });
 
 userSelectedOption.addEventListener('change', (e) => {

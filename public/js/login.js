@@ -58,7 +58,7 @@ async function processUserLogin() {
             setTimeout(() => {
                 modal.close();
                 modal.innerHTML = modalOriginalContent //reset back to original content for when user correctly enters their login
-            }, 6500)
+            }, 6400)
 
         } 
     }
