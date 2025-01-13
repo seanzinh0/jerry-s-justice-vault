@@ -251,12 +251,13 @@ h1, h2, h3{
 
 .case button{
     padding: 1rem;
+    width: 100%;
     background-color: #AA8A50;
     border-radius: 5px;
     border: none;
     cursor: pointer;
     font-family: 'Times New Roman', Times, serif;
-    filter: brightness(calc(100% + 10%))
+    filter: brightness(calc(100% + 10%));
 }
 
 .case button:hover {
