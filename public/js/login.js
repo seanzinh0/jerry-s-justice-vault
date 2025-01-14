@@ -50,16 +50,15 @@ async function processUserLogin() {
 
     } catch (e) {
         console.error("Error fetching user id:", e);
-
         //if username and password aren't in db
-        if(e && localStorage.getItem('id') === null) {
-            modal.textContent = 'No user exist with that information, Please try again.'
+        if(e) {
+            modal.innerHTML = '<p>No user exist with that information, Click here to register.</p><a href=/register/>Register Here</a>'
             modal.showModal()
             
             setTimeout(() => {
                 modal.close();
                 modal.innerHTML = modalOriginalContent //reset back to original content for when user correctly enters their login
-            }, 2000)
+            }, 6400)
 
         } 
     }
