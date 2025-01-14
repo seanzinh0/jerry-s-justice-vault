@@ -25,6 +25,8 @@ userSelectedOption.addEventListener('change', (e) => {
         filterAttorney();
     } else if (e.target.value === 'No-Attorney') {
         filterNoAttorney();
+    } else {
+        defaultFilter();
     }
 });
 
@@ -180,4 +182,8 @@ function filterNoAttorney() {
     });
 
     appendCards(filteredCards);
+}
+
+function defaultFilter() {
+    appendCards(initialCardsState); // Reset the cases to their initial unfiltered state
 }
