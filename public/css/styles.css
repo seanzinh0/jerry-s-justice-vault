@@ -321,11 +321,11 @@ CONTACT FORM SECTION
     background-color: white;
     color: black;
     transition: all 0.3s ease;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: playfair display;
 }
 
 .contact-form button {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: playfair display;
     background-color: #AA8A50;
     color: black;
     font-size: 16px;
