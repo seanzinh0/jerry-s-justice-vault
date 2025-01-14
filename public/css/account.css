@@ -241,6 +241,7 @@ h2 {
 }
 
 #account-modal .modal-button {
+    font-family: playfair display;
     padding: 10px 20px;
     background-color: #bc9859;
     color: #20263E;
