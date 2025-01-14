@@ -5,16 +5,27 @@ const similarCases = document.querySelector('#similar-cases');
 const loadingAnim = document.querySelector('.loading-anim');
 const submitBtn = document.querySelector('.submit-btn');
 const userSelectedOption = document.querySelector('.sort-container');
-const searchInput = document.querySelector('#search-case');
 
 loadingAnim.style.display = 'none';
+userSelectedOption.style.visibility = 'hidden'
 
-// loading animation
-submitBtn.addEventListener('click', () => {  
-    if(searchInput.value.trim() !== '') {
-        loadingAnim.style.display = "block";
+submitBtn.addEventListener('click', () => {
+    loadingAnim.style.display = "block";
+    userSelectedOption.style.visibility = 'hidden'
+    userSelectedOption.value = 'default'
+    similarCases.innerHTML = ''
+});
+
+userSelectedOption.addEventListener('change', (e) => {
+    if (e.target.value === 'A-Z') {
+        sortCasesAtoZ();
+    } else if (e.target.value === 'Z-A') {
+        sortCasesZtoA();
+    } else if (e.target.value === 'Attorney') {
+        filterAttorney();
+    } else if (e.target.value === 'No-Attorney') {
+        filterNoAttorney();
     }
-    similarCases.innerHTML = '';
 });
 
 // when u click submit
@@ -22,32 +33,27 @@ form.addEventListener('submit', (e) => {
     // stop relaodiin
     e.preventDefault();
     const searchInput = document.querySelector('#search-case').value;
-    
-    //where JSON will come from
+
+    //hides animation if the user hasn't entered a search
+    if(searchInput.trim() === '') {
+        loadingAnim.style.display = 'none';
+    }
+
     fetch(`/api/search?lawCase=${searchInput}`).then(response => response.json()).then(data => {
         // error handling
         if (data.error) {
             similarCases.innerHTML = data.error;
         } else {
             loadingAnim.style.display = "none";
+            userSelectedOption.style.visibility = 'visible'
             similarCases.innerHTML = '';
             renderCases(data.results); // Render the cases
-
-            // Sorting logic will be handled when user selects an option in the dropdown
-            if (userSelectedOption.value === 'A-Z') {
-                sortCasesAtoZ();
-            } else if (userSelectedOption.value === 'Z-A') {
-                sortCasesZtoA();
-            } else if (userSelectedOption.value === 'Attorney') {
-                filterAttorney(); 
-            } else if (userSelectedOption.value === 'No-Attorney') {
-                filterNoAttorneys();
-            }
         }
     });
 });
 
-// creates elemeents for case cards and adds their style respectively
+let initialCardsState = []; // Stores the initial unfiltered state of cards for needed for the attorney funtions below
+
 function renderCases(cases) {
     cases.forEach((lawCase) => {
         const { caseName, court, dateFiled, doc, snippet } = lawCase;
@@ -94,7 +100,7 @@ function renderCases(cases) {
         bookmarkIcon.addEventListener('click', () => {
             bookmarkIcon.classList.toggle('fa-regular');
             bookmarkIcon.classList.toggle('fa-solid');
-            handleBookmarkFeature(caseCard); // Pass caseCard to get the correct context
+            handleBookmarkFeature(caseCard); // Pass caseCard to get the correct information on each card
         });
 
         // creates element that has a link
@@ -117,28 +123,33 @@ function renderCases(cases) {
         caseCard.appendChild(bookmarkWrapper);
 
         similarCases.appendChild(caseCard);
+
+        initialCardsState = [...similarCases.children]; // Update the initial state with the newly rendered cards needed for the attorney funtions below
+
     });
 }
-
 function appendCards(cards) {
     similarCases.innerHTML = '';
-    cards.forEach((card) => {
-        similarCases.appendChild(card);
-    });
+    cards.forEach(card => similarCases.appendChild(card));
 }
-// Sorting function for "A to Z"
+
+
+// Sorting function for A to Z
 function sortCasesAtoZ() {
     const caseCards = [...similarCases.children];
     const sortedCards = caseCards.sort((a, b) => {
         const caseNameA = a.querySelector('.case-name h4').textContent;
         const caseNameB = b.querySelector('.case-name h4').textContent;
-        return caseNameA.localeCompare(caseNameB); // Sort A to Z
+        return caseNameA.localeCompare(caseNameB); // Actually does the sorting A to Z
     });
 
-    appendCards(sortedCards)
+    appendCards(sortedCards);
+
 }
 
-// Sorting function for "Z to A"
+
+
+// Sorting function for Z to A
 function sortCasesZtoA() {
     const caseCards = [...similarCases.children];
     const sortedCards = caseCards.sort((a, b) => {
@@ -146,16 +157,14 @@ function sortCasesZtoA() {
         const caseNameB = b.querySelector('.case-name h4').textContent;
         return caseNameB.localeCompare(caseNameA); // Sort Z to A
     });
-    
-    appendCards(sortedCards)
+
+    appendCards(sortedCards);
+
 }
 
 // Filter function for cases with attorneys
 function filterAttorney() {
-    const caseCards = [...similarCases.children];
-
-    // Removes cards that do not have an attorney 
-    const filteredCards = caseCards.filter(card => {
+    const filteredCards = initialCardsState.filter(card => {
         const attorneyText = card.querySelector('.attorney-name-text').textContent;
         return !attorneyText.includes('N/A'); 
     });
@@ -163,15 +172,12 @@ function filterAttorney() {
     appendCards(filteredCards);
 }
 
-function filterNoAttorneys() {
-    const caseCards = [...similarCases.children];
-
-    // Removes the cards that do actually have an attorney 
-    const filteredCards = caseCards.filter(card => {
+// Filter function for cases with no attorneys
+function filterNoAttorney() {
+    const filteredCards = initialCardsState.filter(card => {
         const attorneyText = card.querySelector('.attorney-name-text').textContent;
         return attorneyText.includes('N/A'); 
     });
 
     appendCards(filteredCards);
 }
-
