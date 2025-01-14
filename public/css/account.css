@@ -177,6 +177,7 @@ h2 {
     background-color: rgb(247, 247, 247);
     border-radius: 5px;
     border: 1px solid rgb(211, 211, 211);
+    font-family: Playfair display;
 
 }
 
@@ -194,6 +195,7 @@ h2 {
 }
 
 #logout-btn {
+    font-family: Playfair display;
     background-color: rgb(164, 0, 0);
     color: white;
     font-size: 1rem;
