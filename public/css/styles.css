@@ -366,6 +366,12 @@ FAQ SECTION STYLES
     padding: 20px;
     border-radius: 5px;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    transition: background-color 0.3s;
+}
+
+.faq-item:hover {
+    background-color: #f1f1f1;
+    cursor: pointer;
 }
 
 .faq1 {
@@ -379,10 +385,6 @@ FAQ SECTION STYLES
     color: #AA8A50;
 }
 
-.faq-checkbox {
-    display: none;
-}
-
 .faq-question {
     font-size: 18px;
     font-weight: bold;
@@ -394,7 +396,7 @@ FAQ SECTION STYLES
 }
 
 .faq-question:hover {
-    color: #20263E;
+    color: #AA8A50;
 }
 
 .faq-answer {
@@ -404,9 +406,11 @@ FAQ SECTION STYLES
     color: #20263E;
 }
 
-.faq-checkbox:checked + .faq-question + .faq-answer {
+.faq-item.active .faq-answer {
     display: block;
 }
+
+
 
 .faq-item:hover {
     background-color: #f1f1f1;
