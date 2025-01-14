@@ -33,50 +33,68 @@ nextButton.addEventListener('click', () => {
     updateSlider();
 });
 
-//contact form validation
 document.addEventListener("DOMContentLoaded", function () {
     // Add event listener for form submission
     document.getElementById("contactForm").addEventListener("submit", function (event) {
+        event.preventDefault(); // Prevent form submission
+        
         const firstName = document.getElementById("firstName").value.trim();
         const lastName = document.getElementById("lastName").value.trim();
         const email = document.getElementById("email").value.trim();
         const message = document.getElementById("message").value.trim();
 
-        // Regex for name validation (no numbers allowed)
-        const nameRegex = /^[A-Za-z\s]+$/;
+        // Error messages
+        const fNameError = document.getElementById("fName-error");
+        const lNameError = document.getElementById("lName-error");
+        const emailError = document.getElementById("email-error");
+        const messageError = document.getElementById("message-error");
 
-        // Regex for email validation
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        // Regex for validation
+        const nameRegex = /^[A-Za-z\s]+$/; // Name: letters and spaces only
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/; // Basic email regex
 
         let isValid = true;
 
+        // Reset error messages
+        fNameError.style.display = 'none';
+        lNameError.style.display = 'none';
+        emailError.style.display = 'none';
+        messageError.style.display = 'none';
+
         // Validate First Name
         if (!nameRegex.test(firstName)) {
-            alert("First Name must not contain numbers or special characters.");
+            fNameError.textContent = "First Name must not contain numbers or special characters.";
+            fNameError.style.display = 'block';
             isValid = false;
         }
 
         // Validate Last Name
         if (!nameRegex.test(lastName)) {
-            alert("Last Name must not contain numbers or special characters.");
+            lNameError.textContent = "Last Name must not contain numbers or special characters.";
+            lNameError.style.display = 'block';
             isValid = false;
         }
 
         // Validate Email
         if (!emailRegex.test(email)) {
-            alert("Please enter a valid email address.");
+            emailError.textContent = "Please enter a valid email address.";
+            emailError.style.display = 'block';
             isValid = false;
         }
 
         // Validate Message (at least 5 words)
         if (message.split(/\s+/).filter(word => word.length > 0).length < 5) {
-            alert("Message must contain at least 5 words.");
+            messageError.textContent = "Message must contain at least 5 words.";
+            messageError.style.display = 'block';
             isValid = false;
         }
 
-        // Prevent form submission if any validation fails
-        if (!isValid) {
-            event.preventDefault();
+        // Prevent form submission if validation fails
+        if (isValid) {
+            // Form is valid, proceed with submission
+            alert("Form submitted successfully!");
+        } else {
+            console.log("Form validation failed.");
         }
     });
 });
