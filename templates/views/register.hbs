@@ -11,6 +11,7 @@
 <body>
     {{>navbar}}
 
+    {{!-- header picture section --}}
     <header>
         <div class="header-content">
             <h1></h1>
@@ -18,14 +19,17 @@
         </div>
     </header>
 
+    {{!-- modal section --}}
     <dialog data-modal class="modal">
             <p>Successfully Created User, Redirecting to login page...</p>
             <lottie-player src="https://lottie.host/dc237204-66bf-4b5c-81bd-d356df729d70/qG13T5zBBS.json" background="##ffffff" speed="1.4" style="width: 100px; height: 100px" loop autoplay direction="1" mode="normal"></lottie-player>
     </dialog>
 
-    </header>
+    {{!-- main content --}}
     <main>
         <div class="main-container">
+
+            {{!-- left section sign up section --}}
             <div class="left">
                 <div class="left-container">
                     <h1 class="welcome-text">Sign Up</h1>
@@ -33,6 +37,7 @@
                 </div>
             </div>
 
+            {{!-- right section - register form --}}
             <div class="right">
                 <form  id="register-form">
                     <h2>Sign Up!</h2>
@@ -70,7 +75,7 @@
             </div>
         </div>
     </main>
-
+    {{!-- end of main content --}}
     {{>footer}}
     <script src="js/register.js"></script>
     <script src="js/script.js"></script>

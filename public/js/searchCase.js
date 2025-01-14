@@ -9,6 +9,7 @@ const searchInput = document.querySelector('#search-case');
 
 loadingAnim.style.display = 'none';
 
+// loading animation
 submitBtn.addEventListener('click', () => {  
     if(searchInput.value.trim() !== '') {
         loadingAnim.style.display = "block";
@@ -16,11 +17,15 @@ submitBtn.addEventListener('click', () => {
     similarCases.innerHTML = '';
 });
 
+// when u click submit
 form.addEventListener('submit', (e) => {
+    // stop relaodiin
     e.preventDefault();
     const searchInput = document.querySelector('#search-case').value;
-
+    
+    //where JSON will come from
     fetch(`/api/search?lawCase=${searchInput}`).then(response => response.json()).then(data => {
+        // error handling
         if (data.error) {
             similarCases.innerHTML = data.error;
         } else {
@@ -42,6 +47,7 @@ form.addEventListener('submit', (e) => {
     });
 });
 
+// creates elemeents for case cards and adds their style respectively
 function renderCases(cases) {
     cases.forEach((lawCase) => {
         const { caseName, court, dateFiled, doc, snippet } = lawCase;
@@ -83,18 +89,20 @@ function renderCases(cases) {
 
         bookmarkWrapper.appendChild(bookmarkIcon);
         bookmarkWrapper.appendChild(caseBtn);
-
+        
+        //this will save cases when click ono bookmark
         bookmarkIcon.addEventListener('click', () => {
             bookmarkIcon.classList.toggle('fa-regular');
             bookmarkIcon.classList.toggle('fa-solid');
             handleBookmarkFeature(caseCard); // Pass caseCard to get the correct context
         });
 
+        // creates element that has a link
         const a = document.createElement('a');
         a.href = doc;
         a.textContent = 'Case Docs';
         a.setAttribute('target', '_blank');
-
+        
         caseNameSection.appendChild(name);
         caseNameSection.appendChild(attorneyName);
         caseNameSection.appendChild(dateEl);
