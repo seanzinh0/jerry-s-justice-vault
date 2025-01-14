@@ -33,6 +33,15 @@ nextButton.addEventListener('click', () => {
     updateSlider();
 });
 
+//FAQ dropdown
+document.querySelectorAll('.faq-question').forEach((question) => {
+    question.addEventListener('click', () => {
+        const faqItem = question.parentElement;
+        faqItem.classList.toggle('active');
+    });
+});
+
+
 document.addEventListener("DOMContentLoaded", function () {
     // Add event listener for form submission
     document.getElementById("contactForm").addEventListener("submit", function (event) {
