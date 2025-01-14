@@ -41,7 +41,7 @@
 ## Contributors
   * [Efren Laris](https://github.com/efr-en)
   * [Jerry Castro Luz](https://github.com/JerryC2005)
-  * [Khalia Howards](https://github.com/kkhhaalliiaa)
+  * [Khalia Howard](https://github.com/kkhhaalliiaa)
   * [Sean Pichay](https://github.com/seanzinh0)
   * [Yonjou Victorin](https://github.com/YVictorin)
 
