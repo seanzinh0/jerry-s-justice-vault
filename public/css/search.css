@@ -390,22 +390,18 @@ footer {
     margin-top: 2rem;
 }
 
+
 .sort-container {
     height: 50px;
-    width: 150px;
-    background-color: #EDEDED;
+    width: 175px;
+    background-color: white;
     justify-self: right;
     margin-right: min(2rem, 9%);
     margin-bottom: min(1.5rem, 3%);
     border-radius: 10px;
     padding: 1rem;
 }
-
-option span {
-    color: blue;
-}
-
-
+  
 /* Mobile view adjustments */
 @media(max-width: 710px) {
     .menu {
