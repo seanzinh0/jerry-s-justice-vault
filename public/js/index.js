@@ -32,3 +32,51 @@ nextButton.addEventListener('click', () => {
     // Update the slider position
     updateSlider();
 });
+
+//contact form validation
+document.addEventListener("DOMContentLoaded", function () {
+    // Add event listener for form submission
+    document.getElementById("contactForm").addEventListener("submit", function (event) {
+        const firstName = document.getElementById("firstName").value.trim();
+        const lastName = document.getElementById("lastName").value.trim();
+        const email = document.getElementById("email").value.trim();
+        const message = document.getElementById("message").value.trim();
+
+        // Regex for name validation (no numbers allowed)
+        const nameRegex = /^[A-Za-z\s]+$/;
+
+        // Regex for email validation
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
+        let isValid = true;
+
+        // Validate First Name
+        if (!nameRegex.test(firstName)) {
+            alert("First Name must not contain numbers or special characters.");
+            isValid = false;
+        }
+
+        // Validate Last Name
+        if (!nameRegex.test(lastName)) {
+            alert("Last Name must not contain numbers or special characters.");
+            isValid = false;
+        }
+
+        // Validate Email
+        if (!emailRegex.test(email)) {
+            alert("Please enter a valid email address.");
+            isValid = false;
+        }
+
+        // Validate Message (at least 5 words)
+        if (message.split(/\s+/).filter(word => word.length > 0).length < 5) {
+            alert("Message must contain at least 5 words.");
+            isValid = false;
+        }
+
+        // Prevent form submission if any validation fails
+        if (!isValid) {
+            event.preventDefault();
+        }
+    });
+});
