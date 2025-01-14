@@ -3,6 +3,10 @@ const slider = document.querySelector('.testimonial-slider');
 const slides = document.querySelectorAll('.slide'); 
 const prevButton = document.getElementById('prev'); 
 const nextButton = document.getElementById('next'); 
+const modal = document.querySelector('dialog')
+const allFormInputs = document.querySelectorAll('form div input');
+const textArea = document.querySelector('textarea');
+
 
 // Initialize the current index to keep track of the visible slide
 let currentIndex = 0;
@@ -101,7 +105,18 @@ document.addEventListener("DOMContentLoaded", function () {
         // Prevent form submission if validation fails
         if (isValid) {
             // Form is valid, proceed with submission
-            alert("Form submitted successfully!");
+           modal.showModal();
+           
+           setTimeout(() => {
+            modal.close()
+           }, 1550)
+
+         const arrOfInputs = [...allFormInputs];
+         arrOfInputs.forEach((input) => {
+            input.value = '';
+         })
+         textArea.value = '';
+
         } else {
             console.log("Form validation failed.");
         }
