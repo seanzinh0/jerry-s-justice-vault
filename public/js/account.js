@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Greeting above the account info container
         const helloUserMessage = document.getElementById('hello-user');
         if (helloUserMessage && user.firstName) {
-            helloUserMessage.textContent = `Hello, ${user.firstName}`;
+            helloUserMessage.textContent = `Welcome, ${user.firstName}!`;
         } 
     })
     .catch(error => {
