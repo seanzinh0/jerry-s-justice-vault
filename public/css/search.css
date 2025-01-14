@@ -29,6 +29,18 @@ body {
     box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
+select, option {
+    font-family: 'Playfair Display', Times, serif;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 0.5rem;
+    font-size: 0.8rem;
+    /* padding: 0.5rem; */
+    text-align: center;
+
+}
+
 /* Logo image styling */
 .logo img {
     width: 80px;
@@ -392,7 +404,6 @@ footer {
 
 
 .sort-container {
-    height: 50px;
     width: 175px;
     background-color: white;
     justify-self: right;
