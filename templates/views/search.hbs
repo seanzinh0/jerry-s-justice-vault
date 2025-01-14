@@ -21,7 +21,15 @@
    {{!-- search container --}}
     <div class="form-container">
         <div class="search-form-wrapper">
-            {{!-- sort dropdown --}}
+          
+             {{!-- Search input form --}}
+            <form id="search-form">
+                <input id="search-case" type="text" placeholder="Search Case">
+                <button class="submit-btn">Search</button>
+
+            </form>
+
+  {{!-- sort dropdown --}}
              <select class="sort-container">
                 <option value="default">Sort by: Type</option>
                 <option value="A-Z">Cases: A to Z</option>
@@ -30,13 +38,6 @@
                 <option value="No-Attorney">No Attorney</option>
 
             </select>
-             {{!-- Search input form --}}
-            <form id="search-form">
-                <input id="search-case" type="text" placeholder="Search Case">
-                <button class="submit-btn">Search</button>
-
-            </form>
-
            
         </div>
 

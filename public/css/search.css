@@ -390,10 +390,9 @@ footer {
     height: 50px;
     width: 150px;
     background-color: #EDEDED;
-    border: none;
     justify-self: right;
     margin-right: min(2rem, 9%);
-    margin-bottom: min(-1.5rem, 3%);
+    margin-bottom: min(1.5rem, 3%);
     border-radius: 10px;
     padding: 1rem;
 }
@@ -402,9 +401,6 @@ option span {
     color: blue;
 }
 
-select:focus{
-    outline: none;
-}
 
 /* Mobile view adjustments */
 @media(max-width: 710px) {

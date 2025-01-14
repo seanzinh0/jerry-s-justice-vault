@@ -509,6 +509,10 @@ dialog::backdrop {
         translate: -15%;
     }
 
+    .sign-up-wrapper {
+        scale: 0.8;
+        
+    }
     .footer {
         top: 10vh;
     }
