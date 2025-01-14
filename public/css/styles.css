@@ -1,13 +1,17 @@
 @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
 
-/* Reset for all elements to maintain consistency */
+/* ==========================
+STYLES RESET
+========================== */
 * {
     box-sizing: border-box;
     margin: 0;
     padding: 0;
 }
 
-/* Basic body styling */
+/* ==========================
+BODY STYLING
+   ========================== */
 body {
     font-family: Playfair display;
     font-size: 1rem;
@@ -18,7 +22,9 @@ body {
     flex-direction: column;
 }
 
-/* Navbar styling */
+/* ==========================
+NAVBAR STYLING
+   ========================== */
 .navbar {
     width: 100%;
     display: flex;
@@ -108,12 +114,20 @@ body {
     display: none;
 }
 
-/* Hero Section */
+/* ==========================
+HERO SECTION
+========================== */
 .hero {
     background: url('/img/hero.jpeg') no-repeat center center/cover;
     color: white;
     text-align: center;
     padding: 100px 20px;
+}
+
+.hero-txt{
+    backdrop-filter: blur(1.5px);
+    margin: 8px;
+    border-radius: 5px;
 }
 
 .hero h1 {
@@ -148,7 +162,9 @@ body {
     filter: brightness(calc(100% + 20%))
 }
 
-/* Offerings Section */
+/* ==========================
+OFFERINGS SECTION
+========================== */
 .offerings {
     background-color: #AA8A50;
     filter: brightness(calc(100% + 20%));
@@ -201,9 +217,9 @@ body {
 }
 
 /* ==========================
-   TESTIMONIALS SECTION
+TESTIMONIALS SECTION
    ========================== */
-   .testimonials {
+.testimonials {
     background-color: #F2F2F2;
     padding: 50px 20px;
     text-align: center;
@@ -266,9 +282,9 @@ body {
 }
 
 /* ==========================
-   CONTACT FORM SECTION
-   ========================== */
-   .contact-form {
+CONTACT FORM SECTION
+========================== */
+    .contact-form {
     background-color: #20263E;
     color: white;
     padding: 40px 20px;
@@ -305,11 +321,11 @@ body {
     background-color: white;
     color: black;
     transition: all 0.3s ease;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: playfair display;
 }
 
 .contact-form button {
-    font-family: 'Times New Roman', Times, serif;
+    font-family: playfair display;
     background-color: #AA8A50;
     color: black;
     font-size: 16px;
@@ -326,8 +342,8 @@ body {
 }
 
 /* ==========================
-   FAQ SECTION STYLES
-   ========================== */
+FAQ SECTION STYLES
+========================== */
 .faq-background {
     background-color: #f7f7f7;
     padding: 50px 0;
@@ -398,8 +414,8 @@ body {
 }
 
 /* ==========================
-   ERROR MESSAGE STYLING
-   ========================== */
+ERROR MESSAGE STYLING
+========================== */
 .error-message {
     color: #FF3B3B;
     font-size: 12px;
@@ -408,8 +424,8 @@ body {
 }
 
 /* ==========================
-   RESPONSIVE DESIGN
-   ========================== */
+RESPONSIVE DESIGN
+========================== */
 @media (max-width: 1024px) {
     .offerings-container {
         flex-direction: column;
@@ -477,7 +493,9 @@ body {
 }
 
 
-/* Footer */
+/* ==========================
+FOOTER
+   ========================== */
 .footer {
     width: 100%;
     padding: 20px 10%;
@@ -574,7 +592,9 @@ footer {
     font-size: 12px;
 }
 
-/* Mobile view adjustments */
+/* ==========================
+MOBLIE STYLES
+========================== */
 @media(max-width: 710px) {
     .menu {
         flex-direction: column;

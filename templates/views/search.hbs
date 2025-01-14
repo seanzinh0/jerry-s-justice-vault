@@ -10,12 +10,7 @@
 <body>
     {{>navbar}}
 
-    {{!-- <div class="container">
-        <h1>Find a Case.</h1>
-        <h2>Solve Your issues.</h2>
-        <h3>We make legal easier.</h3>
-    </div> --}}
-
+    {{!-- header picture at the top --}}
     <header>
     <div class="header-content">
     <h1>Search</h1>
@@ -23,10 +18,10 @@
     </div>
     </header>
     
-
+   {{!-- search container --}}
     <div class="form-container">
         <div class="search-form-wrapper">
-
+            {{!-- sort dropdown --}}
              <select class="sort-container">
                 <option value="default">Sort by: Type</option>
                 <option value="A-Z">Cases: A to Z</option>
@@ -35,7 +30,7 @@
                 <option value="No-Attorney">No Attorney</option>
 
             </select>
-
+             {{!-- Search input form --}}
             <form id="search-form">
                 <input id="search-case" type="text" placeholder="Search Case">
                 <button class="submit-btn">Search</button>
@@ -46,9 +41,10 @@
         </div>
 
     </div>
-
+    {{!-- loading animation --}}
     <div class="container">
-    <dotlottie-player class="loading-anim" src="https://lottie.host/3bf5e240-e973-4e89-92fd-e951f9eed7d9/vqCGULBgIG.lottie" background="transparent" speed="1" style="width: 500px; height: 500px" loop autoplay></dotlottie-player>  
+    <dotlottie-player class="loading-anim" src="https://lottie.host/3bf5e240-e973-4e89-92fd-e951f9eed7d9/vqCGULBgIG.lottie" background="transparent" speed="1" style="width: 500px; height: 500px" loop autoplay></dotlottie-player>
+    {{!-- case section  --}}
     <section id="similar-cases">
     </section>
     </div>
@@ -57,5 +53,6 @@
 
         <script type="module" src="js/bookmark.js"></script>
     <script type="module" src="js/searchCase.js"></script>
+        <script src="js/script.js"></script>
     <script src="https://unpkg.com/@dotlottie/player-component@2.7.12/dist/dotlottie-player.mjs" type="module"></script>
 </html>

@@ -1,7 +1,11 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 :root {
     --primary-color: #AA8A50;
     --secondary-color: #20263E;
 }
+
+
 
 * {
     margin: 0;
@@ -19,7 +23,7 @@ body {
     font-size: 1rem;
     background-color: #EDEDED;
     line-height: 1.5;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: playfair display;
 }
 /* Navbar styling */
 .navbar {
@@ -190,7 +194,7 @@ header {
 }
 
 form input {
-   font-family: 'Times New Roman', Times, serif;
+    font-family: playfair display;
     width: 80%;
     max-width: 300px;
     height: 35px;
@@ -313,6 +317,7 @@ footer {
 
 .submit-btn {
     margin-bottom: 1.5rem;
+    font-family: playfair display;
 }
 
 hr {
@@ -354,8 +359,8 @@ input {
     color: black;
     text-align: left;
     filter: brightness(calc(100% + 10%));
-    border-radius: 0;
-    
+    border-radius: 5px;
+    border: 2px solid #AA8A50;
 }
 
 
@@ -494,4 +499,4 @@ input .error-border {
 
     }
    
-  }
+}

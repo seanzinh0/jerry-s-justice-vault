@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 * {
     margin: 0;
     padding: 0;
@@ -11,7 +13,7 @@ body {
     font-size: 1rem;
     background-color: #ededed;
     line-height: 1.5;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: 'Playfair Display', Times, serif;
 }
 
 /* Navbar styling */
@@ -104,6 +106,7 @@ body {
     display: none;
 }
 
+/* -------- header styling ----------- */
 header {
     position: relative;
     width: 100%;
@@ -152,7 +155,12 @@ h1, h2, h3{
     margin: 1rem;
 }
 
+h2{
+    color: #AA8A50;
+    filter: brightness(calc(100% + 10%))
+}
 
+/* --------- search input form -------------*/
 .form-container {
     width: 100%;
     max-width: 800px;
@@ -173,7 +181,7 @@ h1, h2, h3{
     padding: 1rem;
     margin-right: 1rem;
     width: 100%;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: playfair display;
 }
 
 #search-form button {
@@ -187,7 +195,7 @@ h1, h2, h3{
     border-radius: 5px;
     border: none;
     cursor: pointer;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: playfair display;
     filter: brightness(calc(100% + 10%))
 }
 
@@ -198,7 +206,7 @@ h1, h2, h3{
 #search-form button:active {
     filter: brightness(calc(100% + 30%));
 }
-
+/* -------------- case card ---------------- */
 .case {
     display: flex;
     align-items: center;
@@ -256,7 +264,7 @@ h1, h2, h3{
     border-radius: 5px;
     border: none;
     cursor: pointer;
-    font-family: 'Times New Roman', Times, serif;
+    font-family: playfair display;
     filter: brightness(calc(100% + 10%));
 }
 
@@ -273,7 +281,7 @@ h1, h2, h3{
     color: #000;
 }
 
-/* Footer */
+/* -------- Footer ---------*/
 .footer {
     width: 100%;
     padding: 20px 10%;
@@ -401,6 +409,7 @@ option span {
 select:focus{
     outline: none;
 }
+
 /* Mobile view adjustments */
 @media(max-width: 710px) {
     .menu {
@@ -460,6 +469,40 @@ select:focus{
         padding-top: 1rem;
         padding-bottom: 1rem;
     }
+
+    .bookmark-wrapper {
+        width: 100%;
+    }
 }
 
 
+  /* tablet responsivness */
+@media (min-width: 700px) and (max-width: 1400px) {
+
+    .case {
+        flex-direction: column;
+        text-align: center;
+    }
+
+    .case-name {
+        width: 100%;
+        text-align: center;
+        border-right: none;
+    }
+
+    .case-desc {
+        width: 100%;
+        text-align: center;
+    }
+
+    .case button {
+        width: 100%;
+        padding-top: 1rem;
+        padding-bottom: 1rem;
+    }
+
+    .bookmark-wrapper {
+        width: 75%;
+    }
+
+}

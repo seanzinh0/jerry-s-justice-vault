@@ -81,12 +81,13 @@ app.get('/register', (req, res) => {
 // API route for register page that validates if req body params are empty return an error and if it isn't post and insert that data to our database
 app.post('/api/register', (req, res) => {
     console.log("Receive request");
-    if (!req.body.username && !req.body.firstName && !req.body.lastName && !req.body.email && !req.body.password) {
+    const {username, firstName, lastName, email, password} = req.body;
+    if (!username && !firstName && !lastName && !email && !password) {
         return res.send({
             error: "You must provide a value for a user"
         })
     }
-    insertUserData(req.body.username, req.body.firstName, req.body.lastName, req.body.email, req.body.password).then(result => {
+    insertUserData(username, firstName, lastName, email, password).then(result => {
         res.send(result)
     });
 })
