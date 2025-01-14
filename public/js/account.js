@@ -10,6 +10,7 @@ document.addEventListener('DOMContentLoaded', () => {
             accountContainer.classList.add('blur');
         }
 
+        // Get the modal element 
         const modal = document.getElementById('account-modal');
         modal.style.display = 'block';
         modal.innerHTML = 
@@ -41,12 +42,14 @@ document.addEventListener('DOMContentLoaded', () => {
         credentials: 'include',
     })
     .then(response => {
+        //Checks if the response is ok
         if (!response.ok) {
             throw new Error('User not logged in or not found')
         }
         return response.json();
     })
     .then(user => {
+        // Populates the account form
         document.getElementById('username').value = user.username || '';
         document.getElementById('first-name').value = user.firstName || '';
         document.getElementById('last-name').value = user.lastName || '';
@@ -55,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
         // Greeting above the account info container
         const helloUserMessage = document.getElementById('hello-user');
         if (helloUserMessage && user.firstName) {
-            helloUserMessage.textContent = `Hello, ${user.firstName}`;
+            helloUserMessage.textContent = `Welcome, ${user.firstName}!`;
         } 
     })
     .catch(error => {
@@ -89,6 +92,7 @@ document.addEventListener('DOMContentLoaded', () => {
             return response.json();
         })
         .then(cases => {
+            // Checks if there are no interested cases
             if (!cases.length) {
                 interestedCasesSection.innerHTML = '<p>No interested cases found.</p>';
                 return;
@@ -108,6 +112,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 `).join('');
             interestedCasesSection.innerHTML = caseHTML;
 
+            // Delete card button 
             const deleteButtons = document.querySelectorAll('.delete-card-btn');
             deleteButtons.forEach(btn => {
                 btn.addEventListener('click', (e) => {

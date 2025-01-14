@@ -418,10 +418,10 @@ ERROR MESSAGE STYLING
 ========================== */
 .error-message {
     color: #FF3B3B;
-    font-size: 12px;
+    font-size: 16px;
     margin-top: 5px;
-    display: none; /* Hidden by default */
 }
+
 
 /* ==========================
 RESPONSIVE DESIGN

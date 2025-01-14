@@ -175,14 +175,17 @@ h2 {
     margin: 20px 0;
     padding: 10px 15px;
     background-color: rgb(247, 247, 247);
-    border-radius: 8px;
+    border-radius: 5px;
     border: 1px solid rgb(211, 211, 211);
+    font-family: Playfair display;
 
 }
+
 #user-info-form label {
-    margin: 1rem;
     text-align: center;
     font-size: 1.2rem;
+    min-width: 50%;
+    height: 35px;
 }
 
 
@@ -192,6 +195,7 @@ h2 {
 }
 
 #logout-btn {
+    font-family: Playfair display;
     background-color: rgb(164, 0, 0);
     color: white;
     font-size: 1rem;
@@ -220,6 +224,10 @@ h2 {
     text-align: center;
     padding: 20px;
     animation: fadeIn 0.5s;
+}
+
+#account-modal form {
+    text-align: center;
 }
 
 #account-modal .modal-content h2 {
@@ -422,23 +430,30 @@ form input {
     width: 80%;
     max-width: 300px;
     height: 35px;
-    border-radius: 20px;
+    border-radius: 5px;
     text-align: center;
-    margin-top: 10px;
-    margin-bottom: 20px;
     outline: none;
     border: 2px solid #AA8A50;
     filter: brightness(calc(100% + 10%));
-    background-color: #333;
-    color: whitesmoke;
+    background-color: #ededed;
+    color: rgb(0, 0, 0);
     font-size: 14px;
     padding: 0 10px;
+}
+.inputForm {
+    display: flex;
+    justify-content: center;
+    gap: .8rem;
+    flex-wrap: wrap;
+    align-items: center;
+    margin-top: 15px;
+    margin-bottom: 15px;
 }
 
 form input:focus {
     border-color: #AA8A50;
     filter: brightness(calc(100% + 30%));
-    background-color: #444;
+    background-color: #333;
 }
 
 form button {
