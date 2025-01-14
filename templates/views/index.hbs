@@ -12,11 +12,13 @@
     {{>navbar}}
     <!-- Hero Section -->
     <section class="hero">
+        <div class="hero-txt">
         <h1>Empowering Minorities with Access to Legal Resources</h1>
         <p>Your gateway to finding court cases and legal information. We specialize in helping underrepresented communities navigate the legal system.</p>
         <div class="hero-buttons">
             <a href="/search" class="button">Search Court Cases</a>
             <a href="https://www.lawhelp.org/sc/online-intake" class="button">Get Legal Help</a>
+        </div>
         </div>
     </section>
 
@@ -47,15 +49,15 @@
         <h2>What Our Clients Are Saying</h2>
         <div class="testimonial-slider">
             <div class="slide">
-                <img src="/img/logo.jpeg" alt="Naomi L." class="testimonial-image">
+                <img src="/img/pic1.jpeg" alt="Naomi L." class="testimonial-image">
                 <p class="test">"This platform helped me find the legal resources I needed to defend my rights. It gave me a clear understanding of my options." - Naomi L.</p>
             </div>
             <div class="slide">
-                <img src="pic1.jpeg" alt="James W." class="testimonial-image">
+                <img src="/img/pic3.jpeg" alt="James W." class="testimonial-image">
                 <p class="test" >"As someone from a minority community, I feel supported knowing that there are resources and legal professionals dedicated to my needs." - James W.</p>
             </div>
             <div class="slide">
-                <img src="pic1.jpeg" alt="Ayesha K." class="testimonial-image">
+                <img src="img/pic2.jpeg" alt="Ayesha K." class="testimonial-image">
                 <p class="test">"Navigating the legal system was confusing, but this website made it easy to find the information I needed!" - Ayesha K.</p>
             </div>
         </div>
@@ -65,18 +67,18 @@
         </div>
     </section>
     
-
+<!-- Contact Section -->
     <div class="contact-form">
             <h2>Contact Us</h2>
             <p>We would love to hear from you! Please fill out the form below, and we'll get in touch with you as soon as possible.</p>
-        <form>
+        <form id="contactForm">
             <div class="form-group">
-                <label for="name"> First Name</label>
-                <input type="text" id="name" name="name" required>
+                <label for="firstName"> First Name</label>
+                <input type="text" id="firstName" name="firstName" required>
             </div>
             <div class="form-group">
-                <label for="name">Last Name</label>
-                <input type="text" id="name" name="name" required>
+                <label for="lastName">Last Name</label>
+                <input type="text" id="lastName" name="lastName" required>
             </div>
             <div class="form-group">
                 <label for="email">Email</label>
@@ -90,6 +92,7 @@
         </form>
     </div>
     
+<!-- FAQ Section -->
     <section class="faq">
         <div class="faq-background">
             <div class="faq-wrapper">
