@@ -27,50 +27,52 @@ function decryptID(id) {
 
 // Insert user data function that takes in all required info and inserts into database
 async function insertUserData(username, firstName, lastName, email, password) {
-        const connection = await pool.getConnection();
-        // Hashes password for database security
-        const hashedPassword = await bcrypt.hash(password, 10);
-        try {
-            // Checks if username or email is in DB and if it returns errors accordingly
-            const [existingUserName] = await connection.query(`
-                SELECT id
-                FROM users
-                WHERE username = ?;
-                `, [username]);
+    const connection = await pool.getConnection();
+    // Hashes password for database security
+    const hashedPassword = await bcrypt.hash(password, 10);
+    try {
+        // Checks if username or email is in DB and if it returns errors accordingly
+        const [existingUserName] = await connection.query(`
+            SELECT id
+            FROM users
+            WHERE username = ?;
+        `, [username]);
 
-            const [existingEmail] = await connection.query(`
-                SELECT id
-                FROM users
-                WHERE email = ?;
-                `, [email]);
+        const [existingEmail] = await connection.query(`
+            SELECT id
+            FROM users
+            WHERE email = ?;
+        `, [email]);
 
-            if(existingUserName.length > 0 && existingEmail.length > 0) {
-                return {
-                    error: 'Username and email already exists'
-                }
+        if (existingUserName.length > 0 && existingEmail.length > 0) {
+            return {
+                error: 'Username and email already exists'
             }
-
-            if (existingUserName.length > 0) {
-                return {
-                    error: 'Username already exists'
-                };
-            }
-
-            if (existingEmail.length > 0) {
-                return {
-                    error: 'Email already exists'
-                }
-            }
-            // Query to insert data into DB to register a new user
-            const [rows] = await connection.query('INSERT INTO `JJV`.`users` (`username`, `firstName`, `lastName`, `email`, `password`) VALUES (?, ?, ?, ?, ?);', [username, firstName, lastName, email, hashedPassword]);
-            return {success: true,
-            message: "Registration successful!"}
-        } catch (e) {
-            console.error('Error inserting user:', e);
-            throw e;
-        } finally {
-            connection.release();
         }
+
+        if (existingUserName.length > 0) {
+            return {
+                error: 'Username already exists'
+            };
+        }
+
+        if (existingEmail.length > 0) {
+            return {
+                error: 'Email already exists'
+            }
+        }
+        // Query to insert data into DB to register a new user
+        const [rows] = await connection.query('INSERT INTO `JJV`.`users` (`username`, `firstName`, `lastName`, `email`, `password`) VALUES (?, ?, ?, ?, ?);', [username, firstName, lastName, email, hashedPassword]);
+        return {
+            success: true,
+            message: "Registration successful!"
+        }
+    } catch (e) {
+        console.error('Error inserting user:', e);
+        throw e;
+    } finally {
+        connection.release();
+    }
 }
 
 // Login that gets user ID to store in local storage
@@ -88,10 +90,10 @@ async function getUserId(username, password) {
         if (rows.length > 0) {
             // If found decrypt the password
             const isValidPassword = await bcrypt.compare(password, rows[0].password);
-            if(isValidPassword) {
+            if (isValidPassword) {
                 // Return the encrypted ID
                 const encryptedID = encryptID(rows[0].id);
-                return { id: encryptedID };
+                return {id: encryptedID};
             } else {
                 return 'Invalid password';
             }
@@ -114,9 +116,9 @@ async function getAccountInfoById(id) {
         const decryptedID = decryptID(id)
         // Gets all user info with ID in query from DB and returns it
         const [rows] = await connection.query(`
-        SELECT username, firstName, lastName, email
-        FROM users
-        WHERE id = ?`, [decryptedID]);
+            SELECT username, firstName, lastName, email
+            FROM users
+            WHERE id = ?`, [decryptedID]);
         return rows[0];
     } catch (e) {
         console.error('Error finding account information: ', e);
@@ -138,8 +140,7 @@ async function insertLegalCase(userID, attorney, caseName, court, dateFiled, doc
     } catch (e) {
         console.error('Cannot bookmark case: ', e);
         throw e;
-    }
-    finally {
+    } finally {
         connection.release();
     }
 }
@@ -150,13 +151,14 @@ async function displayLegalCases(id) {
     try {
         // Decrypts user ID and selects all cases where user ID matches
         const decryptedID = decryptID(id)
-        const [rows] = await connection.query(`SELECT * FROM legal_cases WHERE user_id = ?;`, [decryptedID]);
+        const [rows] = await connection.query(`SELECT *
+                                               FROM legal_cases
+                                               WHERE user_id = ?;`, [decryptedID]);
         return rows;
     } catch (e) {
         console.error('Error getting legal cases: ', e);
         throw e;
-    }
-    finally {
+    } finally {
         connection.release();
     }
 }
@@ -166,23 +168,46 @@ async function deleteBookMark(bookmarkID) {
     const connection = await pool.getConnection();
     try {
         const [rows] = await connection.query(`
-        DELETE FROM legal_cases  WHERE id = ?;`, [bookmarkID]);
+            DELETE
+            FROM legal_cases
+            WHERE id = ?;`, [bookmarkID]);
         return {success: true, message: `Bookmark deleted successfully.`};
     } catch (e) {
         console.error('Error deleting legal cases: ', e);
         throw e;
+    } finally {
+        connection.release();
     }
-    finally {
+}
+
+// Function to update user info
+async function updateUser(id, username, firstName, lastName, email) {
+    const connection = await pool.getConnection();
+    try {
+        const decryptedID = decryptID(id);
+        const [rows] = await connection.query(`
+                    UPDATE users
+                    SET username = ?,
+                        firstName = ?,
+                        lastName = ?,
+                        email = ?
+                    WHERE id = ?;`,
+            [username, firstName, lastName, email, decryptedID]);
+    } catch (e) {
+        console.error('Error updating user: ', e);
+        throw e;
+    } finally {
         connection.release();
     }
 }
 
 // Export functions
-module.exports =  {
+module.exports = {
     insertUserData,
     getUserId,
     getAccountInfoById,
     insertLegalCase,
     displayLegalCases,
-    deleteBookMark
+    deleteBookMark,
+    updateUser
 };
