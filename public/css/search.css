@@ -49,6 +49,7 @@ select, option {
 /* Menu items container */
 .menu {
     display: flex;
+    gap: 2rem
 }
 
 /* Menu list items */
