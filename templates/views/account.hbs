@@ -18,33 +18,37 @@
     </header>
 
 {{!-- User Information Displayed Here --}}
+
     <section id="account-container" class="container">
         <h1 id="hello-user"></h1>
         <form id="user-info-form">
 
+    <div id="success-message"></div>
+
             <div class="inputForm">
             <label for="username">Username:</label>
-            <input type="text" id="username" name="username" readonly><br>
+            <input type="text" id="username" name="username" ><br>
             </div>
 
             <div class="inputForm">
             <label for="first-name">First Name:</label>
-            <input type="text" id="first-name" name="first-name" readonly><br>
+            <input type="text" id="first-name" name="first-name" ><br>
             </div>
             
             <div class="inputForm">
             <label for="last-name">Last Name:</label>
-            <input type="text" id="last-name" name="last-name" readonly><br>
+            <input type="text" id="last-name" name="last-name" ><br>
             </div>
 
             <div class="inputForm">
             <label for="user-email">User Email:</label>
-            <input type="email" id="user-email" name="email" readonly><br>
+            <input type="email" id="user-email" name="email" ><br>
             </div>
 
         </form>
 
         <div class="button-container">
+            <button type="button" id="save-changes-btn">Save Changes</button>
             <button id="logout-btn">Log Out</button>
         </div>
     </section>

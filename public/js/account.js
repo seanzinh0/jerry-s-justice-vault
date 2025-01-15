@@ -3,6 +3,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const userId = localStorage.getItem('id');
     const accountContainer = document.getElementById('account-container');
     const interestedCasesSection = document.querySelector('#interested-cases');
+    const saveChangesButton = document.getElementById('save-changes-btn');
+    const successMessageDiv = document.getElementById('success-message');
 
     // Blur Modal for account page
     function showModal() {
@@ -64,6 +66,42 @@ document.addEventListener('DOMContentLoaded', () => {
     .catch(error => {
         console.error('Error fetching user data:', error);
         alert('Error loading user information. Please log in or create an account.');
+    });
+
+    // Save changes to user
+    saveChangesButton.addEventListener('click', async () => {
+        const updatedData = {
+            id: userId,
+            username: document.getElementById('username').value,
+            firstName: document.getElementById('first-name').value,
+            lastName: document.getElementById('last-name').value,
+            email: document.getElementById('user-email').value,
+        };
+
+        try {
+            const response = await fetch('/api/updateUser', {
+                method: 'PUT',
+                headers: {
+                    'Content-Type': 'application/json',
+                },
+                body: JSON.stringify(updatedData)
+            });
+            if (!response.ok) {
+                throw new Error('Failed to save changes');
+            }
+            const result = await response.json();
+
+            successMessageDiv.textContent = result.message || 'Changes saved successfully';
+            successMessageDiv.style.display = 'block';
+            setTimeout(() => {
+                successMessageDiv.style.display = 'none'
+            }, 5000);
+        } catch (error) {
+            console.error('Error saving changes:', error);
+            successMessageDiv.textContent = 'Failed to save changes. Please try again.';
+            successMessageDiv.style.color = 'red';
+            successMessageDiv.style.display = 'block';
+        }
     });
 
     // Logout functionality
