@@ -49,7 +49,6 @@ select, option {
 /* Menu items container */
 .menu {
     display: flex;
-    gap: 2rem
 }
 
 /* Menu list items */
@@ -428,6 +427,7 @@ footer {
         z-index: 100;
         background-color: #20263E;
         transition: all 0.2s ease-in-out;
+        gap: 2rem;
     }
 
     .loading-anim {
