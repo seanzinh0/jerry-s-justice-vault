@@ -193,6 +193,7 @@ async function updateUser(id, username, firstName, lastName, email) {
                         email = ?
                     WHERE id = ?;`,
             [username, firstName, lastName, email, decryptedID]);
+        return {success: true, message: `User updated successfully.`};
     } catch (e) {
         console.error('Error updating user: ', e);
         throw e;
