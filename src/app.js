@@ -9,7 +9,8 @@ const {
     getAccountInfoById,
     insertLegalCase,
     displayLegalCases,
-    deleteBookMark
+    deleteBookMark,
+    updateUser,
 } = require('./database/databaseQueries');
 
 // Create backend server with express
@@ -129,6 +130,14 @@ app.delete('/api/deleteBookmark', (req, res) => {
     deleteBookMark(req.query.id).then(result => {
         res.send(result);
     })
+})
+
+//Route to update user info
+app.put('/api/updateUser', (req, res) => {
+    const {id, username, firstName, lastName, email} = req.body;
+    updateUser(id, username, firstName, lastName, email).then(result => {
+        res.send(result);
+    });
 })
 
 // Route that displays 404 page if there is not a proper route
