@@ -223,6 +223,14 @@ h2 {
     background-color: rgb(129, 0, 0);
 }
 
+#success-message {
+    display: none;
+    text-align: center;
+    color: green;
+    font-weight: bold; 
+    margin-top: 20px;
+}
+
 
 /* Modal Styles */
 #account-modal {

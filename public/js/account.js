@@ -4,6 +4,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const accountContainer = document.getElementById('account-container');
     const interestedCasesSection = document.querySelector('#interested-cases');
     const saveChangesButton = document.getElementById('save-changes-btn');
+    const successMessageDiv = document.getElementById('success-message');
 
     // Blur Modal for account page
     function showModal() {
@@ -89,9 +90,17 @@ document.addEventListener('DOMContentLoaded', () => {
                 throw new Error('Failed to save changes');
             }
             const result = await response.json();
-            alert(result.message || 'Changes saved successfully');
+
+            successMessageDiv.textContent = result.message || 'Changes saved successfully';
+            successMessageDiv.style.display = 'block';
+            setTimeout(() => {
+                successMessageDiv.style.display = 'none'
+            }, 5000);
         } catch (error) {
             console.error('Error saving changes:', error);
+            successMessageDiv.textContent = 'Failed to save changes. Please try again.';
+            successMessageDiv.style.color = 'red';
+            successMessageDiv.style.display = 'block';
         }
     });
 
